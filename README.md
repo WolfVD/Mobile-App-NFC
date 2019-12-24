@@ -1,5 +1,3 @@
 # Mobile-App-NFC
-To launch:
-1. Open Visual Studio
-2. Open the solution
-3. Launch the program with an Android/IOS emulator
+**OUTDATED VERSION**
+Updated version will be uploaded soon when I figure out how to decrease file size.

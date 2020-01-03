@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Google.Protobuf" Version="3.11.2" />
+    <PackageReference Include="Google.Protobuf.Tools" Version="3.11.2" />
+    <PackageReference Include="NFCForms" Version="2.3.2" />
+    <PackageReference Include="Xamarin.Forms" Version="4.2.0.709249" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Pages\WriteToNode.xaml.cs">
+      <DependentUpon>WriteToNode.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Pages\ReadFromNode.xaml.cs">
+      <DependentUpon>ReadFromNode.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+</Project>

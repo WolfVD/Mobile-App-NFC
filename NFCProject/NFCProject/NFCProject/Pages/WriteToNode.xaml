@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NFCProject.Pages.WriteToNode"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true"
+             Title="Write To Node">
+
+    <StackLayout Padding="10" Spacing="10">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60" />
+                <RowDefinition Height="60" />
+                <RowDefinition Height="60" />
+                <RowDefinition Height="60" />
+                <RowDefinition Height="60" />
+                <RowDefinition Height="60" />
+                <RowDefinition Height="60" />
+                <RowDefinition Height="60" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <CheckBox ClassId="NetID" Grid.Row="0" Grid.Column="0" CheckedChanged="Entry_CheckBox"/>
+            <Label Text="Network ID" FontSize="20" LineBreakMode="WordWrap" VerticalOptions="Center" Grid.Row="0" Grid.Column="1"/>
+            <Entry x:Name="NetID" ClassId="NetID" Text="N/A" Keyboard="Numeric" Grid.Row="0" Grid.Column="2" TextChanged="OnTextChanged"/>
+
+            <CheckBox ClassId="NetChan" Grid.Row="1" Grid.Column="0" CheckedChanged="Entry_CheckBox"/>
+            <Label Text="Network Channel" FontSize="20" LineBreakMode="WordWrap" VerticalOptions="Center" Grid.Row="1" Grid.Column="1"/>
+            <Entry ClassId="NetChan" Text="N/A" Keyboard="Numeric" Grid.Row="1" Grid.Column="2" TextChanged="OnTextChanged"/>
+
+            <CheckBox ClassId="ConfigID" Grid.Row="2" Grid.Column="0" CheckedChanged="Entry_CheckBox"/>
+            <Label Text="Configuration ID" FontSize="20" LineBreakMode="WordWrap" VerticalOptions="Center" Grid.Row="2" Grid.Column="1"/>
+            <Entry ClassId="ConfigID" Text="N/A" Keyboard="Numeric" Grid.Row="2" Grid.Column="2" TextChanged="OnTextChanged"/>
+
+            <CheckBox ClassId="EncKeyCom" Grid.Row="3" Grid.Column="0" CheckedChanged="Entry_CheckBox"/>
+            <Label Text="Encryption Key for Communication" FontSize="20" LineBreakMode="WordWrap" VerticalOptions="Center" Grid.Row="3" Grid.Column="1"/>
+            <Entry ClassId="EncKeyCom" Text="N/A" Keyboard="Numeric" Grid.Row="3" Grid.Column="2" TextChanged="OnTextChanged"/>
+
+            <CheckBox ClassId="AuthKeyCom" Grid.Row="4" Grid.Column="0" CheckedChanged="Entry_CheckBox"/>
+            <Label Text="Authentication Key for Communication" FontSize="20" LineBreakMode="WordWrap" VerticalOptions="Center" Grid.Row="4" Grid.Column="1"/>
+            <Entry ClassId="AuthKeyCom" Text="N/A" Keyboard="Numeric" Grid.Row="4" Grid.Column="2" TextChanged="OnTextChanged"/>
+
+            <CheckBox ClassId="EncKeyOTAP" Grid.Row="5" Grid.Column="0" CheckedChanged="Entry_CheckBox"/>
+            <Label Text="Encryption Key for OTAP" FontSize="20" LineBreakMode="WordWrap" VerticalOptions="Center" Grid.Row="5" Grid.Column="1"/>
+            <Entry ClassId="EncKeyOTAP" Text="N/A" Keyboard="Numeric" Grid.Row="5" Grid.Column="2" TextChanged="OnTextChanged"/>
+
+            <CheckBox ClassId="AuthKeyOTAP" Grid.Row="6" Grid.Column="0" CheckedChanged="Entry_CheckBox"/>
+            <Label Text="Authentication Key for OTAP" FontSize="20" LineBreakMode="WordWrap" VerticalOptions="Center" Grid.Row="6" Grid.Column="1"/>
+            <Entry ClassId="AuthKeyOTAP" Text="N/A" Keyboard="Numeric" Grid.Row="6" Grid.Column="2" TextChanged="OnTextChanged"/>
+
+            <CheckBox ClassId="OperMode" Grid.Row="7" Grid.Column="0" CheckedChanged="Entry_CheckBox"/>
+            <Label Text="Operating Mode" FontSize="20" LineBreakMode="WordWrap" Grid.Row="7" VerticalOptions="Center" Grid.Column="1"/>
+            <Entry ClassId="OperMode" Text="N/A" Keyboard="Numeric" Grid.Row="7" Grid.Column="2" TextChanged="OnTextChanged"/>
+        </Grid>
+        <Button Text="Scan" FontSize="20" HorizontalOptions="Start" Clicked="iosScan">
+            <Button.IsVisible>
+                <OnPlatform x:TypeArguments="x:Boolean" iOS="true" Android="false"/>
+            </Button.IsVisible>
+        </Button>
+        <Button Text="Save"
+                VerticalOptions="End"
+                HorizontalOptions="Start"
+                Clicked="SaveValues"/>
+    </StackLayout>
+
+</ContentPage>

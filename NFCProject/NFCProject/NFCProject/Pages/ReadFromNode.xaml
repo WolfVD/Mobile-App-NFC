@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NFCProject.Pages.ReadFromNode"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true"
+             Title="Read From Node">
+
+    <StackLayout Padding="10" Spacing="10">
+        <Label x:Name="testID" Text="Serial Number:" FontSize="20"/>
+        <Label Text="HW Version:" FontSize="20"/>
+        <Label Text="Application Area ID:" FontSize="20"/>
+        <Label Text="Configuration ID:" FontSize="20"/>
+        <Label Text="WP SW Version:" FontSize="20"/>
+        <Label Text="Network ID:" FontSize="20"/>
+        <Label Text="Network Channel:" FontSize="20"/>
+        <Label Text="Head Node RSSI:" FontSize="20"/>
+        <Label Text="Power-On-Self-Test Result:" FontSize="20"/>
+        <Label Text="Battery Voltage Level:" FontSize="20"/>
+        <Label Text="Gatewat SN:" FontSize="20"/>
+        <Label Text="Operating Mode:" FontSize="20"/>
+        <Button Text="Scan" FontSize="20" HorizontalOptions="Start" Clicked="iosScan">
+            <Button.IsVisible>
+                <OnPlatform x:TypeArguments="x:Boolean" iOS="true" Android="false"/>
+            </Button.IsVisible>
+        </Button>
+    </StackLayout>
+
+</ContentPage>

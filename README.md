@@ -1,4 +1,3 @@
 # Mobile-App-NFC
-**Currently does not include protocoll buffer/writing**
-Due to the simulated and physical NFC working differently for IOS, a scan button had to be used to initiate the scan. (The physical NFC previously couldn't be tested because a developer license was required)
-Due to this differing from the way it is done in Android, the protocol buffer, which was initially in the shared code, now has to be done seperately for each platform. The protocol buffers haven't been implemented for each platform, but will be ASAP and once this has been done writing functionality will be added again (The writing functionality is still present but isn't called)
+**Currently does not display values from Read on the page, only prints them out in console**
+It's an issue that will not be difficult to fix, but I am currently working on getting both the DidDetect and DidDetectTags methods to get hit in the IOS NFC. DidDetect gets the NFC message, and DidDetectTags gets the NFC tag (to be able to write), but for some reason they can't both get hit during the same scan. Will look for a solution ASAP.

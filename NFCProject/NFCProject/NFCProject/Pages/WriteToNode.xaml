@@ -16,7 +16,6 @@
                 <RowDefinition Height="60" />
                 <RowDefinition Height="60" />
                 <RowDefinition Height="60" />
-                <RowDefinition Height="60" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="30" />
@@ -31,29 +30,25 @@
             <Label Text="Network Channel" FontSize="20" LineBreakMode="WordWrap" VerticalOptions="Center" Grid.Row="1" Grid.Column="1"/>
             <Entry ClassId="NetChan" Text="N/A" Keyboard="Numeric" Grid.Row="1" Grid.Column="2" TextChanged="OnTextChanged"/>
 
-            <CheckBox ClassId="ConfigID" Grid.Row="2" Grid.Column="0" CheckedChanged="Entry_CheckBox"/>
-            <Label Text="Configuration ID" FontSize="20" LineBreakMode="WordWrap" VerticalOptions="Center" Grid.Row="2" Grid.Column="1"/>
-            <Entry ClassId="ConfigID" Text="N/A" Keyboard="Numeric" Grid.Row="2" Grid.Column="2" TextChanged="OnTextChanged"/>
+            <CheckBox ClassId="NodeConfig" Grid.Row="2" Grid.Column="0" CheckedChanged="Entry_CheckBox"/>
+            <Label Text="Node Configuration" FontSize="20" LineBreakMode="WordWrap" VerticalOptions="Center" Grid.Row="2" Grid.Column="1"/>
+            <Entry ClassId="NodeConfig" Text="N/A" Keyboard="Numeric" Grid.Row="2" Grid.Column="2" TextChanged="OnTextChanged"/>
 
-            <CheckBox ClassId="EncKeyCom" Grid.Row="3" Grid.Column="0" CheckedChanged="Entry_CheckBox"/>
-            <Label Text="Encryption Key for Communication" FontSize="20" LineBreakMode="WordWrap" VerticalOptions="Center" Grid.Row="3" Grid.Column="1"/>
-            <Entry ClassId="EncKeyCom" Text="N/A" Keyboard="Numeric" Grid.Row="3" Grid.Column="2" TextChanged="OnTextChanged"/>
+            <CheckBox ClassId="OperMode" Grid.Row="3" Grid.Column="0" CheckedChanged="Entry_CheckBox"/>
+            <Label Text="Operating Mode" FontSize="20" LineBreakMode="WordWrap" Grid.Row="3" VerticalOptions="Center" Grid.Column="1"/>
+            <Entry ClassId="OperMode" Text="N/A" Keyboard="Numeric" Grid.Row="3" Grid.Column="2" TextChanged="OnTextChanged"/>
 
-            <CheckBox ClassId="AuthKeyCom" Grid.Row="4" Grid.Column="0" CheckedChanged="Entry_CheckBox"/>
-            <Label Text="Authentication Key for Communication" FontSize="20" LineBreakMode="WordWrap" VerticalOptions="Center" Grid.Row="4" Grid.Column="1"/>
-            <Entry ClassId="AuthKeyCom" Text="N/A" Keyboard="Numeric" Grid.Row="4" Grid.Column="2" TextChanged="OnTextChanged"/>
+            <CheckBox ClassId="EncKey" Grid.Row="4" Grid.Column="0" CheckedChanged="Entry_CheckBox"/>
+            <Label Text="Encryption Key" FontSize="20" LineBreakMode="WordWrap" VerticalOptions="Center" Grid.Row="4" Grid.Column="1"/>
+            <Entry ClassId="EncKey" Text="N/A" Keyboard="Numeric" Grid.Row="4" Grid.Column="2" TextChanged="OnTextChanged"/>
 
-            <CheckBox ClassId="EncKeyOTAP" Grid.Row="5" Grid.Column="0" CheckedChanged="Entry_CheckBox"/>
-            <Label Text="Encryption Key for OTAP" FontSize="20" LineBreakMode="WordWrap" VerticalOptions="Center" Grid.Row="5" Grid.Column="1"/>
-            <Entry ClassId="EncKeyOTAP" Text="N/A" Keyboard="Numeric" Grid.Row="5" Grid.Column="2" TextChanged="OnTextChanged"/>
+            <CheckBox ClassId="AuthKey" Grid.Row="5" Grid.Column="0" CheckedChanged="Entry_CheckBox"/>
+            <Label Text="Authentication Key" FontSize="20" LineBreakMode="WordWrap" VerticalOptions="Center" Grid.Row="5" Grid.Column="1"/>
+            <Entry ClassId="AuthKey" Text="N/A" Keyboard="Numeric" Grid.Row="5" Grid.Column="2" TextChanged="OnTextChanged"/>
 
-            <CheckBox ClassId="AuthKeyOTAP" Grid.Row="6" Grid.Column="0" CheckedChanged="Entry_CheckBox"/>
-            <Label Text="Authentication Key for OTAP" FontSize="20" LineBreakMode="WordWrap" VerticalOptions="Center" Grid.Row="6" Grid.Column="1"/>
-            <Entry ClassId="AuthKeyOTAP" Text="N/A" Keyboard="Numeric" Grid.Row="6" Grid.Column="2" TextChanged="OnTextChanged"/>
-
-            <CheckBox ClassId="OperMode" Grid.Row="7" Grid.Column="0" CheckedChanged="Entry_CheckBox"/>
-            <Label Text="Operating Mode" FontSize="20" LineBreakMode="WordWrap" Grid.Row="7" VerticalOptions="Center" Grid.Column="1"/>
-            <Entry ClassId="OperMode" Text="N/A" Keyboard="Numeric" Grid.Row="7" Grid.Column="2" TextChanged="OnTextChanged"/>
+            <CheckBox ClassId="UpdateRate" Grid.Row="6" Grid.Column="0" CheckedChanged="Entry_CheckBox"/>
+            <Label Text="Update Rate" FontSize="20" LineBreakMode="WordWrap" VerticalOptions="Center" Grid.Row="6" Grid.Column="1"/>
+            <Entry ClassId="UpdateRate" Text="N/A" Keyboard="Numeric" Grid.Row="6" Grid.Column="2" TextChanged="OnTextChanged"/>
         </Grid>
         <Button Text="Scan" FontSize="20" HorizontalOptions="Start" Clicked="iosScan">
             <Button.IsVisible>

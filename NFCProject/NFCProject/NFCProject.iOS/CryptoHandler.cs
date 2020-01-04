@@ -9,77 +9,35 @@ namespace NFCProject.Services
 {
     public class CryptoHandler
     {
-        public static byte[] EncryptString(string plainText, byte[] Key, byte[] IV)
+        public byte[] Encrypt(byte[] data, byte[] Key, byte[] IV)
         {
-
-            byte[] encrypted;
-
-            // Create an Aes object
-            // with the specified key and IV.
-            using (Aes aesAlg = Aes.Create())
+            using (var aes = Aes.Create())
             {
-                aesAlg.Key = Key;
-                aesAlg.IV = IV;
+                aes.KeySize = 128;
+                aes.BlockSize = 128;
+                aes.Padding = PaddingMode.PKCS7;
 
-                // Create an encryptor to perform the stream transform.
-                ICryptoTransform encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV);
+                aes.Key = Key;
+                aes.IV = IV;
 
-                // Create the streams used for encryption.
-                using (MemoryStream msEncrypt = new MemoryStream())
-                {
-                    using (CryptoStream csEncrypt = new CryptoStream(msEncrypt, encryptor, CryptoStreamMode.Write))
-                    {
-                        using (StreamWriter swEncrypt = new StreamWriter(csEncrypt))
-                        {
-                            //Write all data to the stream.
-                            swEncrypt.Write(plainText);
-                        }
-                        encrypted = msEncrypt.ToArray();
-                    }
+                using (var encryptor = aes.CreateEncryptor(aes.Key, aes.IV)) {
+                    return PerformCryptography(data, encryptor);
                 }
+
             }
-
-
-            // Return the encrypted bytes from the memory stream.
-            return encrypted;
 
         }
 
-        public static string DecryptByte(byte[] cipherText, byte[] Key, byte[] IV)
+        private byte[] PerformCryptography(byte[] data, ICryptoTransform cryptoTransform)
         {
-            // Declare the string used to hold
-            // the decrypted text.
-            string plaintext = null;
-
-            // Create an Aes object
-            // with the specified key and IV.
-            using (Aes aesAlg = Aes.Create())
+            using (var ms = new MemoryStream())
+            using (var cryptoStream = new CryptoStream(ms, cryptoTransform, CryptoStreamMode.Write))
             {
-                aesAlg.Key = Key;
-                aesAlg.IV = IV;
+                cryptoStream.Write(data, 0, data.Length);
+                cryptoStream.FlushFinalBlock();
 
-                // Create a decryptor to perform the stream transform.
-                ICryptoTransform decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV);
-
-                // Create the streams used for decryption.
-                using (MemoryStream msDecrypt = new MemoryStream(cipherText))
-                {
-                    using (CryptoStream csDecrypt = new CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read))
-                    {
-                        using (StreamReader srDecrypt = new StreamReader(csDecrypt))
-                        {
-
-                            // Read the decrypted bytes from the decrypting stream
-                            // and place them in a string.
-                            plaintext = srDecrypt.ReadToEnd();
-                        }
-                    }
-                }
-
+                return ms.ToArray();
             }
-
-            return plaintext;
-
         }
     }
 }

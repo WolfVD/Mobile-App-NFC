@@ -113,6 +113,17 @@ namespace NFCProject.Pages
                     UpdateRateOn = false;
                 }
             }
+            else if (classId == "AuthKey")
+            {
+                if (AuthKeyOn == false)
+                {
+                    AuthKeyOn = true;
+                }
+                else
+                {
+                    AuthKeyOn = false;
+                }
+            }
         }
 
         void OnTextChanged(object sender, EventArgs e)
@@ -140,6 +151,10 @@ namespace NFCProject.Pages
             {
                 EncKey = entry.Text;
             }
+            else if (classId == "AuthKey")
+            {
+                AuthKey = entry.Text;
+            }
             else if (classId == "UpdateRate")
             {
                 UpdateRate = entry.Text;
@@ -162,11 +177,15 @@ namespace NFCProject.Pages
             {
                 UpdateRateFinal = UpdateRate;
             }
+            if (AuthKeyOn == true)
+            {
+                AuthKeyFinal = AuthKey;
+            }
         }
         async void iosScan(object sender, System.EventArgs e)
         {
             IWriteScan service = DependencyService.Get<IWriteScan>(DependencyFetchTarget.NewInstance);
-            await service.StartWriteScan(netIDFinal, netChanFinal, NodeConfigFinal, OperModeFinal, EncKeyFinal, UpdateRateFinal);
+            await service.StartWriteScan(netIDFinal, netChanFinal, NodeConfigFinal, OperModeFinal, EncKeyFinal, AuthKeyFinal, UpdateRateFinal, netIDOn, netChanOn, NodeConfigOn, OperModeOn, EncKeyOn, AuthKeyOn, UpdateRateOn);
         }
     }
 }

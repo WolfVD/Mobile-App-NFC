@@ -30,20 +30,22 @@ namespace NFCProject.iOS
 
         byte[] trimmedResult;
 
+        NFCNdefReaderSession nfcSession;
+        INFCNdefTag tag;
+
         public override void DidDetect(NFCNdefReaderSession session, NFCNdefMessage[] messages)
         {
             //This is left empty on purpose because it will never be called
         }
 
         public void EncryptNonce(NFCNdefMessage message, NSError error) {
-            
-            NSData readPayload = message.Records[0].Payload;
-            byte[] bytes = readPayload.ToArray();
 
-            RX1_NFC_Reply nfcReply;
-            nfcReply = RX1_NFC_Reply.Parser.ParseFrom(bytes);
+            NFCNdefPayload messageRecord = message.Records[0];
+            Console.WriteLine(messageRecord.Payload);
+
+            RX1_NFC_Reply nfcReply = RX1_NFC_Reply.Parser.ParseFrom(messageRecord.Payload.ToArray());
             byte[] nonce = nfcReply.Nonce.ToByteArray();
-            Console.WriteLine("Nonce: " + nonce);
+            Console.WriteLine("Nonce: " + nfcReply);
 
             //Generate the key and IV for encryption
             byte[] Key = hexToByte("2b7e151628aed2a6abf7158809cf4f3c");
@@ -60,15 +62,39 @@ namespace NFCProject.iOS
             {
                 trimmedResult[i] = encryptedNonce[i];
             }
+
+
+            RX1_NFC_Request nfcRequest = new RX1_NFC_Request
+            {
+                RequestType = RX1_NFC_Request.Types.NFCRequestType.GetNodeConfig,
+                EncryptedNonce = ByteString.CopyFrom(trimmedResult),
+                NullPayload = true
+            };
+
+            string nfcReplyPayload = nfcRequest.ToString(); //Convert to a request to a string so it can be written
+            Console.WriteLine(nfcReplyPayload);
+
+            //Create a payload/message and write it.
+            NFCNdefPayload writePayload = NFCNdefPayload.CreateWellKnownTypePayload(nfcReplyPayload, NSLocale.CurrentLocale);
+            NFCNdefMessage writeMessage = new NFCNdefMessage(new NFCNdefPayload[] { writePayload });
+            tag.WriteNdef(writeMessage, delegate { Console.WriteLine("Write succesful"); });
+
+            System.Threading.Thread.Sleep(1000); //Wait 1 second
+
+            //Read tag again to get node config
+            Action<NFCNdefMessage, NSError> readNodeConfig;
+            readNodeConfig = GetNodeConfig;
+            tag.ReadNdef(readNodeConfig);
+
         }
 
         public void GetNodeConfig(NFCNdefMessage message, NSError error) 
         {
-            NSData readPayload = message.Records[0].Payload;
-            byte[] bytes = readPayload.ToArray();
+            
+            NFCNdefPayload messageRecord = message.Records[0];
+            Console.WriteLine(messageRecord.Payload);
 
-            RX1_NFC_Reply nfcSecondReply;
-            nfcSecondReply = RX1_NFC_Reply.Parser.ParseFrom(bytes);
+            RX1_NFC_Reply nfcSecondReply = RX1_NFC_Reply.Parser.ParseFrom(messageRecord.Payload.ToArray());
             RX1_Uplink_Config nodeConfig = nfcSecondReply.NodeConfig;
             Console.WriteLine(nodeConfig);
 
@@ -105,13 +131,18 @@ namespace NFCProject.iOS
             Console.WriteLine("headNodeRSSI: " + headNodeRSSI);
             Console.WriteLine("batteryVolt: " + batteryVolt);
             Console.WriteLine("gatewayConnect: " + gatewayConnect);
+
+            nfcSession.InvalidateSession();
         }
 
         [Foundation.Export("readerSession:didDetectTags:")]
         public override void DidDetectTags(NFCNdefReaderSession session, INFCNdefTag[] tags)
         {
             //Connect with the NDEF Tag
-            INFCNdefTag tag = tags[0];
+            tag = tags[0];
+
+            nfcSession = session;
+
             session.ConnectToTag(tag, delegate { });
 
             Action<NFCNdefMessage, NSError> readNonce;
@@ -120,33 +151,11 @@ namespace NFCProject.iOS
             tag.ReadNdef(readNonce); //Read NDEF tag and then encrypt the nonce
 
             //Create a request to write back to the RX1 Node
-            RX1_NFC_Request nfcRequest = new RX1_NFC_Request
-            {
-                RequestType = RX1_NFC_Request.Types.NFCRequestType.GetNodeConfig,
-                EncryptedNonce = ByteString.CopyFrom(trimmedResult),
-                NullPayload = true
-            };
-
-            string nfcReplyPayload = nfcRequest.ToString(); //Convert to a request to a string so it can be written
-
-            //Create a payload/message and write it.
-            NFCNdefPayload writePayload = NFCNdefPayload.CreateWellKnownTypePayload(nfcReplyPayload, NSLocale.CurrentLocale);
-            NFCNdefMessage writeMessage = new NFCNdefMessage(new NFCNdefPayload[] { writePayload });
-            tag.WriteNdef(writeMessage, delegate { Console.WriteLine("Write succesful"); } );
-
-            System.Threading.Thread.Sleep(1000); //Wait 1 second
-
-            //Read tag again to get node config
-            Action<NFCNdefMessage, NSError> readNodeConfig;
-            readNodeConfig = GetNodeConfig;
-            tag.ReadNdef(readNodeConfig);
-
-            session.InvalidateSession(); //Invalidate session (automatically goes to DidInvalidate)
-
         }
         public override void DidInvalidate(NFCNdefReaderSession session, NSError error)
         {
             //Pass variables through to ReadFromNode.cs page
+            Console.WriteLine("DidInvalidate");
         }
 
         public async Task StartReadScan()

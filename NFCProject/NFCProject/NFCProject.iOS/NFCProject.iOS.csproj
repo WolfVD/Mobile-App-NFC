@@ -137,9 +137,6 @@
     <PackageReference Include="Google.Protobuf.Tools">
       <Version>3.11.2</Version>
     </PackageReference>
-    <PackageReference Include="NFCForms">
-      <Version>2.3.2</Version>
-    </PackageReference>
     <PackageReference Include="Xamarin.Forms" Version="4.2.0.709249" />
     <PackageReference Include="Xamarin.Essentials" Version="1.2.0" />
   </ItemGroup>

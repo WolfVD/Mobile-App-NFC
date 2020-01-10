@@ -9,13 +9,13 @@ namespace NFCProject.Pages
     public partial class WriteToNode : ContentPage
     {
 
-        string NetID = "N/A";
-        string NetChan = "N/A";
-        string NodeConfig = "N/A";
-        string OperMode = "N/A";
-        string EncKey = "N/A";
-        string AuthKey = "N/A";
-        string UpdateRate = "N/A";
+        public string NetID = "N/A";
+        public string NetChan = "N/A";
+        public string NodeConfig = "N/A";
+        public string OperMode = "N/A";
+        public string EncKey = "N/A";
+        public string AuthKey = "N/A";
+        public string UpdateRate = "N/A";
 
         public WriteToNode()
         {
@@ -64,7 +64,7 @@ namespace NFCProject.Pages
             {
                 IWriteScan service = DependencyService.Get<IWriteScan>(DependencyFetchTarget.NewInstance);
                 Console.WriteLine("test");
-                service.StartWriteScan(NetID, NetChan, NodeConfig, OperMode, EncKey, AuthKey, UpdateRate, NetIDBox.IsChecked, NetChanBox.IsChecked, NodeConfigBox.IsChecked, OperModeBox.IsChecked, EncKeyBox.IsChecked, AuthKeyBox.IsChecked, UpdateRateBox.IsChecked);
+                service.StartWriteScan();
             }
             catch {
                 Console.WriteLine("yeet");

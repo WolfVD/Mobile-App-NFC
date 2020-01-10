@@ -184,7 +184,15 @@ namespace NFCProject.iOS
         {
             NSData readPayload = message.Records[0].Payload;
             Console.WriteLine(readPayload);
-            byte[] bytes = readPayload.ToArray();
+
+            byte[] packet = readPayload.ToArray();
+            var i = packet.Length - 1;
+            while (packet[i] == 0)
+            {
+                --i;
+            }
+            var bytes = new byte[i + 1];
+            Array.Copy(packet, bytes, i + 1);
 
             RX1_NFC_Reply nfcSecondReply;
             nfcSecondReply = RX1_NFC_Reply.Parser.ParseFrom(bytes);
@@ -202,22 +210,25 @@ namespace NFCProject.iOS
             //Purposefuly left empty
         }
 
-        public void StartWriteScan(string NetIDTemp, string NetChanTemp, string NodeConfigTemp, string OperModeTemp, string EncKeyTemp, string AuthKeyTemp, string UpdateRateTemp, bool NetIDBoolTemp, bool NetChanBoolTemp, bool NodeConfigBoolTemp, bool OperModeBoolTemp, bool EncKeyBoolTemp, bool AuthKeyBoolTemp, bool UpdateRateBoolTemp)
+        public void StartWriteScan()
         {
-            NetID = NetIDTemp;
-            NetChan = NetChanTemp;
-            NodeConfig = NodeConfigTemp;
-            OperMode = OperModeTemp;
-            EncKey = EncKeyTemp;
-            AuthKey = AuthKeyTemp;
-            UpdateRate = UpdateRateTemp;
-            NetIDBool = NetIDBoolTemp;
-            NetChanBool = NetChanBoolTemp;
-            NodeConfigBool = NodeConfigBoolTemp;
-            OperModeBool = OperModeBoolTemp;
-            EncKeyBool = EncKeyBoolTemp;
-            AuthKeyBool = AuthKeyBoolTemp;
-            UpdateRateBool = UpdateRateBoolTemp;
+            WriteToNode writeNodePage = new WriteToNode();
+
+            NetID = writeNodePage.NetID;
+            NetChan = writeNodePage.NetChan;
+            NodeConfig = writeNodePage.NodeConfig;
+            OperMode = writeNodePage.OperMode;
+            EncKey = writeNodePage.EncKey;
+            AuthKey = writeNodePage.AuthKey;
+            UpdateRate = writeNodePage.UpdateRate;
+
+            NetIDBool = writeNodePage.NetIDBox.IsChecked;
+            NetChanBool = writeNodePage.NetChanBox.IsChecked;
+            NodeConfigBool = writeNodePage.NodeConfigBox.IsChecked;
+            OperModeBool = writeNodePage.OperModeBox.IsChecked;
+            EncKeyBool = writeNodePage.EncKeyBox.IsChecked;
+            AuthKeyBool = writeNodePage.AuthKeyBox.IsChecked;
+            UpdateRateBool = writeNodePage.UpdateRateBox.IsChecked;
 
             Console.WriteLine("StartWrite");
             Session = new NFCNdefReaderSession(this, DispatchQueue.CurrentQueue, false);

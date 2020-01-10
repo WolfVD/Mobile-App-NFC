@@ -28,6 +28,7 @@ namespace NFCProject.iOS
             LoadApplication(new App());
 
             DependencyService.Register<IReadScan, ReadScan>();
+            DependencyService.Register<IWriteScan, WriteScan>();
             return base.FinishedLaunching(app, options);
             }
 

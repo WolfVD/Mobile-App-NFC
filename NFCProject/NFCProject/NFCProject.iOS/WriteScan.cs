@@ -13,18 +13,18 @@ using Xamarin;
 
 namespace NFCProject.iOS
 {
-    class WriteScan : NFCNdefReaderSessionDelegate, IWriteScan
+    public class WriteScan : NFCNdefReaderSessionDelegate, IWriteScan
     {
-        string netIDWrite; 
-        string netChanWrite;
-        string nodeConfigWrite;
-        string operModeWrite;
-        string encKeyWrite;
-        string authKeyWrite;
-        string updateRateWrite;
+        string NetID; 
+        string NetChan;
+        string NodeConfig;
+        string OperMode;
+        string EncKey;
+        string AuthKey;
+        string UpdateRate;
 
-        bool netIDBool;
-        bool netChanBool;
+        bool NetIDBool;
+        bool NetChanBool;
         bool NodeConfigBool;
         bool OperModeBool;
         bool EncKeyBool;
@@ -33,29 +33,45 @@ namespace NFCProject.iOS
 
         byte[] trimmedResult;
 
+        INFCNdefTag tag;
+        NFCNdefReaderSession Session;
+
         public override void DidDetect(NFCNdefReaderSession session, NFCNdefMessage[] messages)
         {
             //This is left empty on purpose because it will never be called
+        }
+
+        [Foundation.Export("readerSession:didDetectTags:")]
+        public override void DidDetectTags(NFCNdefReaderSession session, INFCNdefTag[] tags)
+        {
+            tag = tags[0];
+            session.ConnectToTag(tag, delegate { });
+
+            Action<NFCNdefMessage, NSError> readNonce;
+            readNonce = EncryptNonce;
+
+            tag.ReadNdef(readNonce);
+
         }
 
         public uint calculateChksum() 
         {
             int chksum = 0;
 
-            chksum += Convert.ToInt32(netIDWrite);
-            chksum += Convert.ToInt32(netChanWrite);
-            chksum += Convert.ToInt32(nodeConfigWrite);
-            chksum += Convert.ToInt32(operModeWrite);
+            chksum += Convert.ToInt32(NetID);
+            chksum += Convert.ToInt32(NetChan);
+            chksum += Convert.ToInt32(NodeConfig);
+            chksum += Convert.ToInt32(OperMode);
             for (int i = 0; i < 16; i++) {
-                chksum += hexToByte(encKeyWrite)[i]&0xff;
+                chksum += hexToByte(EncKey)[i]&0xff;
             }
             for (int i = 0; i < 16; i++)
             {
-                chksum += hexToByte(authKeyWrite)[i] & 0xff;
+                chksum += hexToByte(AuthKey)[i] & 0xff;
             }
 
-            chksum += netIDBool ? 1 : 0;
-            chksum += netChanBool ? 1 : 0;
+            chksum += NetIDBool ? 1 : 0;
+            chksum += NetChanBool ? 1 : 0;
             chksum += NodeConfigBool ? 1 : 0;
             chksum += OperModeBool ? 1 : 0;
             chksum += EncKeyBool ? 1 : 0;
@@ -64,99 +80,7 @@ namespace NFCProject.iOS
             return Convert.ToUInt32(chksum);
         }
 
-        [Foundation.Export("readerSession:didDetectTags:")]
-        public override void DidDetectTags(NFCNdefReaderSession session, INFCNdefTag[] tags)
-        {
-            INFCNdefTag tag = tags[0];
-            session.ConnectToTag(tag, delegate { });
-
-            Action<NFCNdefMessage, NSError> readNonce;
-            readNonce = EncryptNonce;
-
-            tag.ReadNdef(readNonce);
-
-            NodeConfiguration nodeConfiguration;
-            NodeOperatingMode operatingMode;
-
-            #region fix garbage later
-            if (nodeConfigWrite == "0")
-            {
-                nodeConfiguration = NodeConfiguration.Desk1M;
-            }
-            else if (nodeConfigWrite == "1")
-            {
-                nodeConfiguration = NodeConfiguration.Desk2M;
-            }
-            else if (nodeConfigWrite == "2")
-            {
-                nodeConfiguration = NodeConfiguration.Ceiling1M;
-            }
-            else {
-                nodeConfiguration = NodeConfiguration.Ceiling2M;
-            }
-
-            if (operModeWrite == "0")
-            {
-                operatingMode = NodeOperatingMode.Run;
-            }
-            else {
-                operatingMode = NodeOperatingMode.Inventory;
-            }
-            #endregion fix garbage later
-
-            RX1_NFC_Request nfcRequest = new RX1_NFC_Request
-            {
-                RequestType = RX1_NFC_Request.Types.NFCRequestType.SetNodeConfig,
-                EncryptedNonce = ByteString.CopyFrom(trimmedResult),
-                NodeConfig = new RX1_NFC_Config {
-                    NetworkID = (Convert.ToUInt32(netIDWrite)),
-                    HasNetworkID = netIDBool,
-                    NetworkChannel = (Convert.ToUInt32(netChanWrite)),
-                    HasNetworkChannel = netChanBool,
-                    NodeConfiguration = nodeConfiguration,
-                    HasNodeConfiguration = NodeConfigBool,
-                    OperatingMode = operatingMode,
-                    HasOperatingMode = OperModeBool,
-                    EncryptionKey = (ByteString.CopyFrom(hexToByte(encKeyWrite))),
-                    HasEncryptionKey = EncKeyBool,
-                    AuthenticationKey = (ByteString.CopyFrom(hexToByte(authKeyWrite))),
-                    HasAuthenticationKey = AuthKeyBool
-
-                },
-                Chksum = calculateChksum()
-                
-            };
-
-            string nfcReplyPayload = nfcRequest.ToString(); //Convert to a request to a string so it can be written
-
-            //Create a payload/message and write it.
-            NFCNdefPayload writePayload = NFCNdefPayload.CreateWellKnownTypePayload(nfcReplyPayload, NSLocale.CurrentLocale);
-            NFCNdefMessage writeMessage = new NFCNdefMessage(new NFCNdefPayload[] { writePayload });
-            tag.WriteNdef(writeMessage, delegate { Console.WriteLine("Write succesful"); });
-
-            System.Threading.Thread.Sleep(1000);
-
-            Action<NFCNdefMessage, NSError> readNodeReply;
-            readNodeReply = ValidateWrite;
-            tag.ReadNdef(ValidateWrite);
-
-            session.InvalidateSession();
-
-
-
-        }
-
-        public void ValidateWrite(NFCNdefMessage message, NSError error) {
-            NSData readPayload = message.Records[0].Payload;
-            byte[] bytes = readPayload.ToArray();
-
-            RX1_NFC_Reply nfcSecondReply;
-            nfcSecondReply = RX1_NFC_Reply.Parser.ParseFrom(bytes);
-
-            if (nfcSecondReply.SetNodeConfigAcknowledge) {
-                Console.WriteLine("Data Written to Node Successfully.  Node will apply settings in 5 seconds and subsequently reset");
-            }
-        }
+        
 
         private void EncryptNonce(NFCNdefMessage message, NSError error)
         {
@@ -166,7 +90,7 @@ namespace NFCProject.iOS
             RX1_NFC_Reply nfcReply;
             nfcReply = RX1_NFC_Reply.Parser.ParseFrom(bytes);
             byte[] nonce = nfcReply.Nonce.ToByteArray();
-            Console.WriteLine("Nonce: " + nonce);
+            Console.WriteLine("Nonce: " + nfcReply);
 
             //Generate the key and IV for encryption
             byte[] Key = hexToByte("2b7e151628aed2a6abf7158809cf4f3c");
@@ -183,6 +107,94 @@ namespace NFCProject.iOS
             {
                 trimmedResult[i] = encryptedNonce[i];
             }
+
+            Console.WriteLine("dds");
+                
+            NodeConfiguration nodeConfiguration;
+            NodeOperatingMode operatingMode;
+
+            #region fix garbage later
+            if (NodeConfig == "0")
+            {
+                nodeConfiguration = NodeConfiguration.Desk1M;
+            }
+            else if (NodeConfig == "1")
+            {
+                nodeConfiguration = NodeConfiguration.Desk2M;
+            }
+            else if (NodeConfig == "2")
+            {
+                nodeConfiguration = NodeConfiguration.Ceiling1M;
+            }
+            else
+            {
+                nodeConfiguration = NodeConfiguration.Ceiling2M;
+            }
+
+            if (OperMode == "0")
+            {
+                operatingMode = NodeOperatingMode.Run;
+            }
+            else
+            {
+                operatingMode = NodeOperatingMode.Inventory;
+            }
+            #endregion fix garbage later
+
+            RX1_NFC_Request nfcRequest = new RX1_NFC_Request
+            {
+                RequestType = RX1_NFC_Request.Types.NFCRequestType.SetNodeConfig,
+                EncryptedNonce = ByteString.CopyFrom(trimmedResult),
+                NodeConfig = new RX1_NFC_Config
+                {
+                    NetworkID = (Convert.ToUInt32(NetID)),
+                    HasNetworkID = NetIDBool,
+                    NetworkChannel = (Convert.ToUInt32(NetChan)),
+                    HasNetworkChannel = NetChanBool,
+                    NodeConfiguration = nodeConfiguration,
+                    HasNodeConfiguration = NodeConfigBool,
+                    OperatingMode = operatingMode,
+                    HasOperatingMode = OperModeBool,
+                    EncryptionKey = (ByteString.CopyFrom(hexToByte(EncKey))),
+                    HasEncryptionKey = EncKeyBool,
+                    AuthenticationKey = (ByteString.CopyFrom(hexToByte(AuthKey))),
+                    HasAuthenticationKey = AuthKeyBool
+
+                },
+                Chksum = calculateChksum()
+
+            };
+
+            string nfcReplyPayload = nfcRequest.ToString(); //Convert to a request to a string so it can be written
+
+            //Create a payload/message and write it.
+            NFCNdefPayload writePayload = NFCNdefPayload.CreateWellKnownTypePayload(nfcReplyPayload, NSLocale.CurrentLocale);
+            NFCNdefMessage writeMessage = new NFCNdefMessage(new NFCNdefPayload[] { writePayload });
+            tag.WriteNdef(writeMessage, delegate { Console.WriteLine("Write succesful"); });
+
+            System.Threading.Thread.Sleep(1000);
+
+            Action<NFCNdefMessage, NSError> readNodeReply;
+            readNodeReply = ValidateWrite;
+            tag.ReadNdef(ValidateWrite);
+
+        }
+
+        public void ValidateWrite(NFCNdefMessage message, NSError error)
+        {
+            NSData readPayload = message.Records[0].Payload;
+            Console.WriteLine(readPayload);
+            byte[] bytes = readPayload.ToArray();
+
+            RX1_NFC_Reply nfcSecondReply;
+            nfcSecondReply = RX1_NFC_Reply.Parser.ParseFrom(bytes);
+
+            if (nfcSecondReply.SetNodeConfigAcknowledge)
+            {
+                Console.WriteLine("Data Written to Node Successfully.  Node will apply settings in 5 seconds and subsequently reset");
+            }
+
+            Session.InvalidateSession();
         }
 
         public override void DidInvalidate(NFCNdefReaderSession session, NSError error)
@@ -190,25 +202,25 @@ namespace NFCProject.iOS
             //Purposefuly left empty
         }
 
-        public async Task StartWriteScan(string netID, string netChan, string nodeConfig, string operMode, string encKey, string authKey, string updateRate, bool netIDOn, bool netChanOn, bool NodeConfigOn, bool OperModeOn, bool EncKeyOn, bool AuthKeyOn, bool UpdateRateOn)
+        public void StartWriteScan(string NetIDTemp, string NetChanTemp, string NodeConfigTemp, string OperModeTemp, string EncKeyTemp, string AuthKeyTemp, string UpdateRateTemp, bool NetIDBoolTemp, bool NetChanBoolTemp, bool NodeConfigBoolTemp, bool OperModeBoolTemp, bool EncKeyBoolTemp, bool AuthKeyBoolTemp, bool UpdateRateBoolTemp)
         {
-            netIDWrite = netID;
-            netChanWrite = netChan;
-            nodeConfigWrite = nodeConfig;
-            operModeWrite = operMode;
-            encKeyWrite = encKey;
-            authKeyWrite = authKey;
-            updateRateWrite = updateRate;
+            NetID = NetIDTemp;
+            NetChan = NetChanTemp;
+            NodeConfig = NodeConfigTemp;
+            OperMode = OperModeTemp;
+            EncKey = EncKeyTemp;
+            AuthKey = AuthKeyTemp;
+            UpdateRate = UpdateRateTemp;
+            NetIDBool = NetIDBoolTemp;
+            NetChanBool = NetChanBoolTemp;
+            NodeConfigBool = NodeConfigBoolTemp;
+            OperModeBool = OperModeBoolTemp;
+            EncKeyBool = EncKeyBoolTemp;
+            AuthKeyBool = AuthKeyBoolTemp;
+            UpdateRateBool = UpdateRateBoolTemp;
 
-            netIDBool = netIDOn;
-            netChanBool = netChanOn;
-            NodeConfigBool = NodeConfigOn;
-            OperModeBool = OperModeOn;
-            EncKeyBool = EncKeyOn;
-            AuthKeyBool = AuthKeyOn;
-            UpdateRateBool = UpdateRateOn;
-
-            NFCNdefReaderSession Session = new NFCNdefReaderSession(this, DispatchQueue.CurrentQueue, false);
+            Console.WriteLine("StartWrite");
+            Session = new NFCNdefReaderSession(this, DispatchQueue.CurrentQueue, false);
             Session.BeginSession();
         }
         public static byte[] hexToByte(String s)

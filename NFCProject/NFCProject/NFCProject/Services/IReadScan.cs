@@ -4,6 +4,6 @@ namespace NFCProject.Services
 {
     public interface IReadScan
     {
-        Task StartReadScan();
+        void StartReadScan();
     }
 }

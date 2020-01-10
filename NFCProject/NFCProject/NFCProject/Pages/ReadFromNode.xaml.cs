@@ -17,7 +17,7 @@ namespace NFCProject.Pages
         async void iosScan(object sender, System.EventArgs e)
         {
             IReadScan service = DependencyService.Get<IReadScan>(DependencyFetchTarget.NewInstance);
-            await service.StartReadScan();
+            service.StartReadScan();
 
         }
     }

@@ -4,6 +4,6 @@ namespace NFCProject.Services
 {
     public interface IWriteScan
     {
-        Task StartWriteScan(string netIDFinal, string netChanFinal, string NodeConfigFinal, string OperModeFinal, string EncKeyFinal, string AuthKeyFinal, string UpdateRateFinal, bool netIDOn, bool netChanOn, bool NodeConfigOn, bool OperModeOn, bool EncKeyOn, bool AuthKeyOn, bool UpdateRateOn);
+        void StartWriteScan(string NetID, string NetChan, string NodeConfig, string OperMode, string EncKey, string AuthKey, string UpdateRate, bool NetIDOn, bool NetChanOn, bool NodeConfigOn, bool OperModeOn, bool EncKeyOn, bool AuthKeyOn, bool UpdateRateOn);
     }
 }

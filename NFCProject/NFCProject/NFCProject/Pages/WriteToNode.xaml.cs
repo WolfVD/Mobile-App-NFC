@@ -2,190 +2,73 @@
 using System;
 using System.IO;
 using NFCProject.Services;
+using System.Collections.Generic;
 
 namespace NFCProject.Pages
 {
     public partial class WriteToNode : ContentPage
     {
-        private string classId;
 
-        private string netID = "N/A";
-        private string netIDFinal = null;
-        private bool netIDOn = false;
+        string NetID = "N/A";
+        string NetChan = "N/A";
+        string NodeConfig = "N/A";
+        string OperMode = "N/A";
+        string EncKey = "N/A";
+        string AuthKey = "N/A";
+        string UpdateRate = "N/A";
 
-        private string netChan = "N/A";
-        private string netChanFinal = null;
-        private bool netChanOn = false;
-
-        private string NodeConfig = "N/A";
-        private string NodeConfigFinal = null;
-        private bool NodeConfigOn = false;
-
-        private string OperMode = "N/A";
-        private string OperModeFinal = null;
-        private bool OperModeOn = false;
-
-        private string EncKey = "N/A";
-        private string EncKeyFinal = null;
-        private bool EncKeyOn = false;
-
-        private string AuthKey = "N/A";
-        private string AuthKeyFinal = null;
-        private bool AuthKeyOn = false;
-
-        private string UpdateRate = "N/A";
-        private string UpdateRateFinal = null;
-        private bool UpdateRateOn = false;
         public WriteToNode()
         {
             InitializeComponent();
         }
 
-        void Entry_CheckBox(object sender, CheckedChangedEventArgs e)
+        async void SaveValues(object sender, System.EventArgs e)
         {
-            CheckBox checkbox = (CheckBox)sender;
-            string classId = checkbox.ClassId;
+            bool answer = await DisplayAlert("Save Values", "Are you sure you want to write the given values to the node?", "Yes", "No");
 
+            if (answer == true) {
 
-            if (classId == "NetID")
-            {
-                if (netIDOn == false)
-                {
-                    netIDOn = true;
+                if (NetIDBox.IsChecked) {
+                    NetID = NetIDEntry.Text;
                 }
-                else
+                if (NetChanBox.IsChecked)
                 {
-                    netIDOn = false;
+                    NetChan = NetChanEntry.Text;
                 }
-            }
-            else if (classId == "NetChan")
-            {
-                if (netChanOn == false)
+                if (NodeConfigBox.IsChecked)
                 {
-                    netChanOn = true;
+                    NodeConfig = NodeConfigEntry.Text;
                 }
-                else
+                if (OperModeBox.IsChecked)
                 {
-                    netChanOn = false;
+                    OperMode = OperModeEntry.Text;
                 }
-            }
-            else if (classId == "NodeConfig")
-            {
-                if (NodeConfigOn == false)
+                if (EncKeyBox.IsChecked)
                 {
-                    NodeConfigOn = true;
+                    EncKey = EncKeyEntry.Text;
                 }
-                else
+                if (AuthKeyBox.IsChecked)
                 {
-                    NodeConfigOn = false;
+                    AuthKey = AuthKeyEntry.Text;
+                }
+                if (UpdateRateBox.IsChecked)
+                {
+                    UpdateRate = UpdateRateEntry.Text;
                 }
             }
-            else if (classId == "OperMode")
-            {
-                if (OperModeOn == false)
-                {
-                    OperModeOn = true;
-                }
-                else
-                {
-                    OperModeOn = false;
-                }
-            }
-            else if (classId == "EncKey")
-            {
-                if (EncKeyOn == false)
-                {
-                    EncKeyOn = true;
-                }
-                else
-                {
-                    EncKeyOn = false;
-                }
-            }
-            else if (classId == "UpdateRate")
-            {
-                if (UpdateRateOn == false)
-                {
-                    UpdateRateOn = true;
-                }
-                else
-                {
-                    UpdateRateOn = false;
-                }
-            }
-            else if (classId == "AuthKey")
-            {
-                if (AuthKeyOn == false)
-                {
-                    AuthKeyOn = true;
-                }
-                else
-                {
-                    AuthKeyOn = false;
-                }
-            }
-        }
 
-        void OnTextChanged(object sender, EventArgs e)
-        {
-            Entry entry = (Entry)sender;
-            classId = entry.ClassId;
-
-            if (classId == "NetID")
-            {
-                netID = entry.Text;
-            }
-            else if (classId == "NetChan")
-            {
-                netChan = entry.Text;
-            }
-            else if (classId == "NodeConfig")
-            {
-                NodeConfig = entry.Text;
-            }
-            else if (classId == "OperMode")
-            {
-                OperMode = entry.Text;
-            }
-            else if (classId == "EncKey")
-            {
-                EncKey = entry.Text;
-            }
-            else if (classId == "AuthKey")
-            {
-                AuthKey = entry.Text;
-            }
-            else if (classId == "UpdateRate")
-            {
-                UpdateRate = entry.Text;
-            }
-        }
-
-        void SaveValues(object sender, System.EventArgs e)
-        {
-            if (netIDOn == true) {
-                netIDFinal = netID; 
-            } if (netChanOn == true) {
-                netChanFinal = netChan;
-            } if (NodeConfigOn == true) {
-                NodeConfigFinal = NodeConfig;
-            } if (OperModeOn == true) {
-                OperModeFinal = OperMode;
-            } if (EncKeyOn == true) {
-                EncKeyFinal = EncKey;
-            } if (UpdateRateOn == true)
-            {
-                UpdateRateFinal = UpdateRate;
-            }
-            if (AuthKeyOn == true)
-            {
-                AuthKeyFinal = AuthKey;
-            }
         }
         async void iosScan(object sender, System.EventArgs e)
         {
-            IWriteScan service = DependencyService.Get<IWriteScan>(DependencyFetchTarget.NewInstance);
-            await service.StartWriteScan(netIDFinal, netChanFinal, NodeConfigFinal, OperModeFinal, EncKeyFinal, AuthKeyFinal, UpdateRateFinal, netIDOn, netChanOn, NodeConfigOn, OperModeOn, EncKeyOn, AuthKeyOn, UpdateRateOn);
+            try
+            {
+                IWriteScan service = DependencyService.Get<IWriteScan>(DependencyFetchTarget.NewInstance);
+                Console.WriteLine("test");
+                service.StartWriteScan(NetID, NetChan, NodeConfig, OperMode, EncKey, AuthKey, UpdateRate, NetIDBox.IsChecked, NetChanBox.IsChecked, NodeConfigBox.IsChecked, OperModeBox.IsChecked, EncKeyBox.IsChecked, AuthKeyBox.IsChecked, UpdateRateBox.IsChecked);
+            }
+            catch {
+                Console.WriteLine("yeet");
+            }
         }
     }
 }

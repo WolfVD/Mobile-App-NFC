@@ -25,17 +25,34 @@ namespace NFCProject.iOS
         string nodeConfigValue;
         uint headNodeRSSI;
         uint batteryVolt;
-        bool gatewayConnectBool;
         string gatewayConnect;
 
         byte[] trimmedResult;
 
-        NFCNdefReaderSession nfcSession;
+        NFCNdefReaderSession Session;
         INFCNdefTag tag;
 
         public override void DidDetect(NFCNdefReaderSession session, NFCNdefMessage[] messages)
         {
             //This is left empty on purpose because it will never be called
+        }
+
+        [Foundation.Export("readerSession:didDetectTags:")]
+        public override void DidDetectTags(NFCNdefReaderSession session, INFCNdefTag[] tags)
+        {
+            //Connect with the NDEF Tag
+            tag = tags[0];
+
+            Session = session;
+
+            session.ConnectToTag(tag, delegate { });
+
+            Action<NFCNdefMessage, NSError> readNonce;
+            readNonce = EncryptNonce;
+
+            tag.ReadNdef(readNonce); //Read NDEF tag and then encrypt the nonce
+
+            //Create a request to write back to the RX1 Node
         }
 
         public void EncryptNonce(NFCNdefMessage message, NSError error) {
@@ -92,7 +109,6 @@ namespace NFCProject.iOS
         {
             
             NFCNdefPayload messageRecord = message.Records[0];
-            Console.WriteLine(messageRecord.Payload);
 
             RX1_NFC_Reply nfcSecondReply = RX1_NFC_Reply.Parser.ParseFrom(messageRecord.Payload.ToArray());
             RX1_Uplink_Config nodeConfig = nfcSecondReply.NodeConfig;
@@ -132,35 +148,20 @@ namespace NFCProject.iOS
             Console.WriteLine("batteryVolt: " + batteryVolt);
             Console.WriteLine("gatewayConnect: " + gatewayConnect);
 
-            nfcSession.InvalidateSession();
+            Session.InvalidateSession();
         }
 
-        [Foundation.Export("readerSession:didDetectTags:")]
-        public override void DidDetectTags(NFCNdefReaderSession session, INFCNdefTag[] tags)
-        {
-            //Connect with the NDEF Tag
-            tag = tags[0];
-
-            nfcSession = session;
-
-            session.ConnectToTag(tag, delegate { });
-
-            Action<NFCNdefMessage, NSError> readNonce;
-            readNonce = EncryptNonce;
-
-            tag.ReadNdef(readNonce); //Read NDEF tag and then encrypt the nonce
-
-            //Create a request to write back to the RX1 Node
-        }
+        
+        
         public override void DidInvalidate(NFCNdefReaderSession session, NSError error)
         {
             //Pass variables through to ReadFromNode.cs page
             Console.WriteLine("DidInvalidate");
         }
 
-        public async Task StartReadScan()
+        public void StartReadScan()
         {
-            NFCNdefReaderSession Session = new NFCNdefReaderSession(this, DispatchQueue.CurrentQueue, false);
+            Session = new NFCNdefReaderSession(this, DispatchQueue.CurrentQueue, false);
             Session.BeginSession();
         }
 

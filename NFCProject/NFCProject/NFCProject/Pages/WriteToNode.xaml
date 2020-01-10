@@ -22,33 +22,34 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <CheckBox ClassId="NetID" Grid.Row="0" Grid.Column="0" CheckedChanged="Entry_CheckBox"/>
+            
+            <CheckBox x:Name="NetIDBox" Grid.Row="0" Grid.Column="0" />
             <Label Text="Network ID" FontSize="20" LineBreakMode="WordWrap" VerticalOptions="Center" Grid.Row="0" Grid.Column="1"/>
-            <Entry x:Name="NetID" ClassId="NetID" Text="N/A" Keyboard="Numeric" Grid.Row="0" Grid.Column="2" TextChanged="OnTextChanged"/>
+            <Entry x:Name="NetIDEntry" Keyboard="Numeric" Grid.Row="0" Grid.Column="2" />
 
-            <CheckBox ClassId="NetChan" Grid.Row="1" Grid.Column="0" CheckedChanged="Entry_CheckBox"/>
+            <CheckBox x:Name="NetChanBox" Grid.Row="1" Grid.Column="0" />
             <Label Text="Network Channel" FontSize="20" LineBreakMode="WordWrap" VerticalOptions="Center" Grid.Row="1" Grid.Column="1"/>
-            <Entry ClassId="NetChan" Text="N/A" Keyboard="Numeric" Grid.Row="1" Grid.Column="2" TextChanged="OnTextChanged"/>
+            <Entry x:Name="NetChanEntry" Keyboard="Numeric" Grid.Row="1" Grid.Column="2" />
 
-            <CheckBox ClassId="NodeConfig" Grid.Row="2" Grid.Column="0" CheckedChanged="Entry_CheckBox"/>
+            <CheckBox x:Name="NodeConfigBox" Grid.Row="2" Grid.Column="0" />
             <Label Text="Node Configuration" FontSize="20" LineBreakMode="WordWrap" VerticalOptions="Center" Grid.Row="2" Grid.Column="1"/>
-            <Entry ClassId="NodeConfig" Text="N/A" Keyboard="Numeric" Grid.Row="2" Grid.Column="2" TextChanged="OnTextChanged"/>
+            <Entry x:Name="NodeConfigEntry" Keyboard="Numeric" Grid.Row="2" Grid.Column="2" />
 
-            <CheckBox ClassId="OperMode" Grid.Row="3" Grid.Column="0" CheckedChanged="Entry_CheckBox"/>
+            <CheckBox x:Name="OperModeBox" Grid.Row="3" Grid.Column="0"/>
             <Label Text="Operating Mode" FontSize="20" LineBreakMode="WordWrap" Grid.Row="3" VerticalOptions="Center" Grid.Column="1"/>
-            <Entry ClassId="OperMode" Text="N/A" Keyboard="Numeric" Grid.Row="3" Grid.Column="2" TextChanged="OnTextChanged"/>
+            <Entry x:Name="OperModeEntry" Keyboard="Numeric" Grid.Row="3" Grid.Column="2" />
 
-            <CheckBox ClassId="EncKey" Grid.Row="4" Grid.Column="0" CheckedChanged="Entry_CheckBox"/>
+            <CheckBox x:Name="EncKeyBox" Grid.Row="4" Grid.Column="0"/>
             <Label Text="Encryption Key" FontSize="20" LineBreakMode="WordWrap" VerticalOptions="Center" Grid.Row="4" Grid.Column="1"/>
-            <Entry ClassId="EncKey" Text="N/A" Keyboard="Numeric" Grid.Row="4" Grid.Column="2" TextChanged="OnTextChanged"/>
+            <Entry x:Name="EncKeyEntry" Grid.Row="4" Grid.Column="2"/>
 
-            <CheckBox ClassId="AuthKey" Grid.Row="5" Grid.Column="0" CheckedChanged="Entry_CheckBox"/>
+            <CheckBox x:Name="AuthKeyBox" Grid.Row="5" Grid.Column="0"/>
             <Label Text="Authentication Key" FontSize="20" LineBreakMode="WordWrap" VerticalOptions="Center" Grid.Row="5" Grid.Column="1"/>
-            <Entry ClassId="AuthKey" Text="N/A" Keyboard="Numeric" Grid.Row="5" Grid.Column="2" TextChanged="OnTextChanged"/>
+            <Entry x:Name="AuthKeyEntry" Grid.Row="5" Grid.Column="2"/>
 
-            <CheckBox ClassId="UpdateRate" Grid.Row="6" Grid.Column="0" CheckedChanged="Entry_CheckBox"/>
+            <CheckBox x:Name="UpdateRateBox" Grid.Row="6" Grid.Column="0"/>
             <Label Text="Update Rate" FontSize="20" LineBreakMode="WordWrap" VerticalOptions="Center" Grid.Row="6" Grid.Column="1"/>
-            <Entry ClassId="UpdateRate" Text="N/A" Keyboard="Numeric" Grid.Row="6" Grid.Column="2" TextChanged="OnTextChanged"/>
+            <Entry x:Name="UpdateRateEntry" Keyboard="Numeric" Grid.Row="6" Grid.Column="2"/>
         </Grid>
         <Button Text="Scan" FontSize="20" HorizontalOptions="Start" Clicked="iosScan">
             <Button.IsVisible>

@@ -9,13 +9,21 @@ namespace NFCProject.Pages
     public partial class WriteToNode : ContentPage
     {
 
-        public string NetID = "N/A";
-        public string NetChan = "N/A";
-        public string NodeConfig = "N/A";
-        public string OperMode = "N/A";
-        public string EncKey = "N/A";
-        public string AuthKey = "N/A";
-        public string UpdateRate = "N/A";
+        static string NetID = "1";
+        static string NetChan = "1";
+        static string NodeConfig = "1";
+        static string OperMode = "1";
+        static string EncKey = "6650208e3aac4f4043a9ae5a9a8761c1";
+        static string AuthKey = "22de24ea7356c76e79126bff3491333f";
+        static string UpdateRate = "60";
+
+        static bool NetIDOn;
+        static bool NetChanOn;
+        static bool NodeConfigOn;
+        static bool OperModeOn;
+        static bool EncKeyOn;
+        static bool AuthKeyOn;
+        static bool UpdateRateOn;
 
         public WriteToNode()
         {
@@ -58,17 +66,59 @@ namespace NFCProject.Pages
             }
 
         }
+
+        private void CheckBoxChanged(object sender, CheckedChangedEventArgs e)
+        {
+            bool value = Convert.ToBoolean(e.Value.ToString().ToLower());
+
+            if (sender == NetIDBox)
+            {
+                NetIDOn = value;
+            } 
+            else if (sender == NetChanBox)
+            {
+                NetChanOn = value;
+            }
+            else if (sender == NodeConfigBox)
+            {
+                NodeConfigOn = value;
+            }
+            else if (sender == OperModeBox)
+            {
+                OperModeOn = value;
+            }
+            else if (sender == EncKeyBox)
+            {
+                EncKeyOn = value;
+            }
+            else if (sender == AuthKeyBox)
+            {
+                AuthKeyOn = value;
+            }
+            else if (sender == UpdateRateBox)
+            {
+                UpdateRateOn = value;
+            }
+        }
+
+        public string[] ReturnValues()
+        {
+            string[] valueList = new string[] { NetID, NetChan, NodeConfig, OperMode, EncKey, AuthKey, UpdateRate };
+
+            return valueList;
+        }
+
+        public bool[] ReturnChecked()
+        {
+            bool[] checkedList = new bool[] { NetIDOn, NetChanOn, NodeConfigOn, OperModeOn, EncKeyOn, AuthKeyOn, UpdateRateOn };
+
+            return checkedList;
+        }
+
         async void iosScan(object sender, System.EventArgs e)
         {
-            try
-            {
-                IWriteScan service = DependencyService.Get<IWriteScan>(DependencyFetchTarget.NewInstance);
-                Console.WriteLine("test");
-                service.StartWriteScan();
-            }
-            catch {
-                Console.WriteLine("yeet");
-            }
+            IWriteScan service = DependencyService.Get<IWriteScan>(DependencyFetchTarget.NewInstance);
+            service.StartWriteScan();
         }
     }
 }

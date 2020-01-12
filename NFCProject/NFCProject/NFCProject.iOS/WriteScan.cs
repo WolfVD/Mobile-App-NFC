@@ -15,21 +15,6 @@ namespace NFCProject.iOS
 {
     public class WriteScan : NFCNdefReaderSessionDelegate, IWriteScan
     {
-        string NetID; 
-        string NetChan;
-        string NodeConfig;
-        string OperMode;
-        string EncKey;
-        string AuthKey;
-        string UpdateRate;
-
-        bool NetIDBool;
-        bool NetChanBool;
-        bool NodeConfigBool;
-        bool OperModeBool;
-        bool EncKeyBool;
-        bool AuthKeyBool;
-        bool UpdateRateBool;
 
         byte[] trimmedResult;
 
@@ -54,7 +39,7 @@ namespace NFCProject.iOS
 
         }
 
-        public uint calculateChksum() 
+        public uint calculateChksum(string NetID, string NetChan, string NodeConfig, string OperMode, string EncKey, string AuthKey, bool NetIDBool, bool NetChanBool, bool NodeConfigBool, bool OperModeBool, bool EncKeyBool, bool AuthKeyBool) 
         {
             int chksum = 0;
 
@@ -108,12 +93,32 @@ namespace NFCProject.iOS
                 trimmedResult[i] = encryptedNonce[i];
             }
 
-            Console.WriteLine("dds");
-                
+            WriteToNode writeNodePage = new WriteToNode();
+
+            bool[] checkedList = writeNodePage.ReturnChecked();
+
+            string[] valueList = writeNodePage.ReturnValues();
+
+            uint NetID = Convert.ToUInt32(valueList[0]);
+            uint NetChan = Convert.ToUInt32(valueList[1]);
+            string NodeConfig = valueList[2];
+            string OperMode = valueList[3];
+            ByteString EncKey = ByteString.CopyFrom(hexToByte(valueList[4]));
+            ByteString AuthKey = ByteString.CopyFrom(hexToByte(valueList[5]));
+            string UpdateRate = valueList[6];
+
+            bool NetIDBool = checkedList[0];
+            bool NetChanBool = checkedList[1];
+            bool NodeConfigBool = checkedList[2];
+            bool OperModeBool = checkedList[3];
+            bool EncKeyBool = checkedList[4];
+            bool AuthKeyBool = checkedList[5];
+            bool UpdateRateBool = checkedList[6];
+
             NodeConfiguration nodeConfiguration;
             NodeOperatingMode operatingMode;
 
-            #region fix garbage later
+            #region optimize this (if possible)
             if (NodeConfig == "0")
             {
                 nodeConfiguration = NodeConfiguration.Desk1M;
@@ -147,21 +152,22 @@ namespace NFCProject.iOS
                 EncryptedNonce = ByteString.CopyFrom(trimmedResult),
                 NodeConfig = new RX1_NFC_Config
                 {
-                    NetworkID = (Convert.ToUInt32(NetID)),
+                    NetworkID = NetID,
                     HasNetworkID = NetIDBool,
-                    NetworkChannel = (Convert.ToUInt32(NetChan)),
+                    NetworkChannel = NetChan,
                     HasNetworkChannel = NetChanBool,
                     NodeConfiguration = nodeConfiguration,
                     HasNodeConfiguration = NodeConfigBool,
                     OperatingMode = operatingMode,
                     HasOperatingMode = OperModeBool,
-                    EncryptionKey = (ByteString.CopyFrom(hexToByte(EncKey))),
+                    EncryptionKey = EncKey,
                     HasEncryptionKey = EncKeyBool,
-                    AuthenticationKey = (ByteString.CopyFrom(hexToByte(AuthKey))),
+                    AuthenticationKey = AuthKey,
                     HasAuthenticationKey = AuthKeyBool
 
                 },
-                Chksum = calculateChksum()
+                Chksum = calculateChksum(valueList[0], valueList[1], valueList[2], valueList[3], valueList[4], valueList[5], checkedList[0], checkedList[1], checkedList[2], checkedList[3], checkedList[4], checkedList[5])
+
 
             };
 
@@ -185,14 +191,7 @@ namespace NFCProject.iOS
             NSData readPayload = message.Records[0].Payload;
             Console.WriteLine(readPayload);
 
-            byte[] packet = readPayload.ToArray();
-            var i = packet.Length - 1;
-            while (packet[i] == 0)
-            {
-                --i;
-            }
-            var bytes = new byte[i + 1];
-            Array.Copy(packet, bytes, i + 1);
+            byte[] bytes = readPayload.ToArray();
 
             RX1_NFC_Reply nfcSecondReply;
             nfcSecondReply = RX1_NFC_Reply.Parser.ParseFrom(bytes);
@@ -213,22 +212,6 @@ namespace NFCProject.iOS
         public void StartWriteScan()
         {
             WriteToNode writeNodePage = new WriteToNode();
-
-            NetID = writeNodePage.NetID;
-            NetChan = writeNodePage.NetChan;
-            NodeConfig = writeNodePage.NodeConfig;
-            OperMode = writeNodePage.OperMode;
-            EncKey = writeNodePage.EncKey;
-            AuthKey = writeNodePage.AuthKey;
-            UpdateRate = writeNodePage.UpdateRate;
-
-            NetIDBool = writeNodePage.NetIDBox.IsChecked;
-            NetChanBool = writeNodePage.NetChanBox.IsChecked;
-            NodeConfigBool = writeNodePage.NodeConfigBox.IsChecked;
-            OperModeBool = writeNodePage.OperModeBox.IsChecked;
-            EncKeyBool = writeNodePage.EncKeyBox.IsChecked;
-            AuthKeyBool = writeNodePage.AuthKeyBox.IsChecked;
-            UpdateRateBool = writeNodePage.UpdateRateBox.IsChecked;
 
             Console.WriteLine("StartWrite");
             Session = new NFCNdefReaderSession(this, DispatchQueue.CurrentQueue, false);

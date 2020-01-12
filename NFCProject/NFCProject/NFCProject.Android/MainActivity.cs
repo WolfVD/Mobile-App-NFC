@@ -1,19 +1,15 @@
-﻿using System;
-
-using Android.App;
-using Android.Content.PM;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
-using Android.OS;
-
-using Android.Nfc;
-using Google.Protobuf;
-using NFCProject.Services;
-using NFCProject.Pages;
-
-using Android.Nfc.Tech;
+﻿using Android.App;
 using Android.Content;
+using Android.Content.PM;
+using Android.Nfc;
+using Android.Nfc.Tech;
+using Android.OS;
+using Android.Runtime;
+using Android.Widget;
+using Google.Protobuf;
+using NFCProject.Pages;
+using NFCProject.Services;
+using System;
 
 namespace NFCProject.Droid
 {
@@ -26,23 +22,11 @@ namespace NFCProject.Droid
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
 
-        PendingIntent nfcPendingIntent; 
+        PendingIntent nfcPendingIntent;
         IntentFilter[] nfcIntentFiltersArray;
         private NfcAdapter nfcAdapter;
 
-        uint nodeID;
-        uint netChan;
-        uint netID;
-        uint hardVersion;
-        uint softVersion;
-        string wirepasVersion;
-        string operMode;
-        string appAreaID;
-        string nodeConfigValue;
-        uint headNodeRSSI;
-        uint batteryVolt;
-        string gatewayConnect;
-
+        static string currentPage;
 
         byte[] trimmedResult;
 
@@ -78,10 +62,16 @@ namespace NFCProject.Droid
             {
                 nfcAdapter.EnableForegroundDispatch(this, nfcPendingIntent, nfcIntentFiltersArray, null);
             }
+            
         }
 
         protected override void OnNewIntent(Intent intent)
         {
+            MainPage page = new MainPage();
+
+            currentPage = page.ReturnCurrentPage();
+            Console.WriteLine(currentPage);
+
             HandleNFC(intent);
         }
 
@@ -114,9 +104,6 @@ namespace NFCProject.Droid
 
         protected void HandleNFC(Intent intent)
         {
-            var currentPage = this.GetType().Name;
-            Console.WriteLine(currentPage);
-
             var tag = intent.GetParcelableExtra(NfcAdapter.ExtraTag) as Tag;
 
             IParcelable[] rawMsgs = intent.GetParcelableArrayExtra(NfcAdapter.ExtraNdefMessages);
@@ -143,9 +130,8 @@ namespace NFCProject.Droid
                         trimmedResult[i] = encryptedNonce[i];
                     }
 
-                    if (currentPage == "ReadFromNode")
+                    if (currentPage == "Read From Node")
                     {
-                        Console.WriteLine("Read");
                         RX1_NFC_Request nfcRequest = new RX1_NFC_Request
                         {
                             RequestType = RX1_NFC_Request.Types.NFCRequestType.GetNodeConfig,
@@ -167,30 +153,51 @@ namespace NFCProject.Droid
                         NdefRecord[] secondRecords = secondMessage.GetRecords();
 
                         RX1_NFC_Reply nfcSecondReply = RX1_NFC_Reply.Parser.ParseFrom(secondRecords[0].GetPayload());
-                        Console.WriteLine(nfcSecondReply);
+                        ndef.Close();
+
+                        string NodeID = "Node ID: " + nfcSecondReply.NodeConfig.NodeID.ToString();
+                        string NetworkID = "Network ID: " + nfcSecondReply.NodeConfig.NetworkID.ToString();
+                        string NetworkChannel = "Network Channel: " + nfcSecondReply.NodeConfig.NetworkChannel.ToString();
+                        string Softver = "Software Version: " + nfcSecondReply.NodeConfig.SoftwareVersion.ToString();
+                        string WireVer = "Wirepas Version: " + nfcSecondReply.NodeConfig.WirepasVersion.Major.ToString() + "." + nfcSecondReply.NodeConfig.WirepasVersion.Devel.ToString() + "." + nfcSecondReply.NodeConfig.WirepasVersion.Maint.ToString() + "." + nfcSecondReply.NodeConfig.WirepasVersion.Minor.ToString();
+                        string NodeConfig = "Node Configuration: " + nfcSecondReply.NodeConfig.NodeConfiguration.ToString();
+                        string AppAreaID = "Application Area ID: " + nfcSecondReply.NodeConfig.ApplicationAreaID.ToString();
+                        string HeadNodeRSSI = "Head Node RSSI: " + nfcSecondReply.NodeConfig.HeadNodeRSSI.ToString();
+                        string BatVoltage = "Battery Voltage: " + nfcSecondReply.NodeConfig.BatteryVoltage.ToString();
+
+                        string[] valueList = new string[] { NodeID, NetworkID, NetworkChannel, Softver, WireVer, NodeConfig, AppAreaID, HeadNodeRSSI, BatVoltage };
+                        Toast.MakeText(ApplicationContext, "Read Succesful", ToastLength.Long).Show();
+
+                        ReadFromNode readValues = new ReadFromNode();
+                        readValues.DisplayValues(valueList);
+
                     }
-                    else {
-                        Console.WriteLine("Write");
+                    else
+                    {
                         NodeConfiguration nodeConfiguration;
                         NodeOperatingMode operatingMode;
 
                         WriteToNode writeNodePage = new WriteToNode();
 
-                        string NetID = writeNodePage.NetID;
-                        string NetChan = writeNodePage.NetChan;
-                        string NodeConfig = writeNodePage.NodeConfig;
-                        string OperMode = writeNodePage.OperMode;
-                        string EncKey = writeNodePage.EncKey;
-                        string AuthKey = writeNodePage.AuthKey;
-                        string UpdateRate = writeNodePage.UpdateRate;
+                        bool[] checkedList = writeNodePage.ReturnChecked();
 
-                        bool NetIDBool = writeNodePage.NetIDBox.IsChecked;
-                        bool NetChanBool = writeNodePage.NetChanBox.IsChecked;
-                        bool NodeConfigBool = writeNodePage.NodeConfigBox.IsChecked;
-                        bool OperModeBool = writeNodePage.OperModeBox.IsChecked;
-                        bool EncKeyBool = writeNodePage.EncKeyBox.IsChecked;
-                        bool AuthKeyBool = writeNodePage.AuthKeyBox.IsChecked;
-                        bool UpdateRateBool = writeNodePage.UpdateRateBox.IsChecked;
+                        string[] valueList = writeNodePage.ReturnValues();
+
+                        uint NetID = Convert.ToUInt32(valueList[0]);
+                        uint NetChan = Convert.ToUInt32(valueList[1]);
+                        string NodeConfig = valueList[2];
+                        string OperMode = valueList[3];
+                        ByteString EncKey = ByteString.CopyFrom(hexToByte(valueList[4]));
+                        ByteString AuthKey = ByteString.CopyFrom(hexToByte(valueList[5]));
+                        string UpdateRate = valueList[6];
+
+                        bool NetIDBool = checkedList[0];
+                        bool NetChanBool = checkedList[1];
+                        bool NodeConfigBool = checkedList[2];
+                        bool OperModeBool = checkedList[3];
+                        bool EncKeyBool = checkedList[4];
+                        bool AuthKeyBool = checkedList[5];
+                        bool UpdateRateBool = checkedList[6];
 
                         #region fix garbage later
                         if (NodeConfig == "0")
@@ -226,21 +233,21 @@ namespace NFCProject.Droid
                             EncryptedNonce = ByteString.CopyFrom(trimmedResult),
                             NodeConfig = new RX1_NFC_Config
                             {
-                                NetworkID = (Convert.ToUInt32(NetID)),
+                                NetworkID = NetID,
                                 HasNetworkID = NetIDBool,
-                                NetworkChannel = (Convert.ToUInt32(NetChan)),
+                                NetworkChannel = NetChan,
                                 HasNetworkChannel = NetChanBool,
                                 NodeConfiguration = nodeConfiguration,
                                 HasNodeConfiguration = NodeConfigBool,
                                 OperatingMode = operatingMode,
                                 HasOperatingMode = OperModeBool,
-                                EncryptionKey = (ByteString.CopyFrom(hexToByte(EncKey))),
+                                EncryptionKey = EncKey,
                                 HasEncryptionKey = EncKeyBool,
-                                AuthenticationKey = (ByteString.CopyFrom(hexToByte(AuthKey))),
+                                AuthenticationKey = AuthKey,
                                 HasAuthenticationKey = AuthKeyBool
 
                             },
-                            Chksum = calculateChksum(NetID, NetChan, NodeConfig, OperMode, EncKey, AuthKey, NetIDBool, NetChanBool, NodeConfigBool, OperModeBool, EncKeyBool, AuthKeyBool)
+                            Chksum = calculateChksum(valueList[0], valueList[1], valueList[2], valueList[3], valueList[4], valueList[5], checkedList[0], checkedList[1], checkedList[2], checkedList[3], checkedList[4], checkedList[5])
 
                         };
 
@@ -256,10 +263,13 @@ namespace NFCProject.Droid
 
                         NdefMessage secondMessage = ndef.NdefMessage;
                         NdefRecord[] secondRecords = secondMessage.GetRecords();
-                        Console.WriteLine(secondRecords[0].GetPayload());
 
                         RX1_NFC_Reply nfcSecondReply = RX1_NFC_Reply.Parser.ParseFrom(secondRecords[0].GetPayload());
-                        Console.WriteLine(nfcSecondReply);
+
+                        if (nfcSecondReply.SetNodeConfigAcknowledge)
+                        {
+                            Toast.MakeText(ApplicationContext, "Write Succesful", ToastLength.Long).Show();
+                        }
                     }
 
                 }

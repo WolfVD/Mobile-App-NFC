@@ -7,6 +7,7 @@ using Foundation;
 using CoreFoundation;
 using Google.Protobuf;
 using NFCProject.Services;
+using NFCProject.Pages;
 using Xamarin;
 using System.Text;
 
@@ -14,21 +15,6 @@ namespace NFCProject.iOS
 {
     public class ReadScan : NFCNdefReaderSessionDelegate, IReadScan
     {
-        uint nodeID;
-        uint netChan;
-        uint netID;
-        uint hardVersion;
-        uint softVersion;
-        string wirepasVersion;
-        string operMode;
-        string appAreaID;
-        string nodeConfigValue;
-        uint headNodeRSSI;
-        uint batteryVolt;
-        string gatewayConnect;
-
-        byte[] trimmedResult;
-
         NFCNdefReaderSession Session;
         INFCNdefTag tag;
 
@@ -52,28 +38,27 @@ namespace NFCProject.iOS
 
             tag.ReadNdef(readNonce); //Read NDEF tag and then encrypt the nonce
 
-            //Create a request to write back to the RX1 Node
+            
         }
 
         public void EncryptNonce(NFCNdefMessage message, NSError error) {
-
             NFCNdefPayload messageRecord = message.Records[0];
-            Console.WriteLine(messageRecord.Payload);
+            Console.WriteLine(message);
 
-            RX1_NFC_Reply nfcReply = RX1_NFC_Reply.Parser.ParseFrom(messageRecord.Payload.ToArray());
+            byte[] bytes = messageRecord.Payload.ToArray();
+
+            RX1_NFC_Reply nfcReply = RX1_NFC_Reply.Parser.ParseFrom(bytes);
             byte[] nonce = nfcReply.Nonce.ToByteArray();
-            Console.WriteLine("Nonce: " + nfcReply);
 
             //Generate the key and IV for encryption
             byte[] Key = hexToByte("2b7e151628aed2a6abf7158809cf4f3c");
             byte[] IV = hexToByte("000102030405060708090a0b0c0d0e0f");
 
             CryptoHandler cryptoHandler = new CryptoHandler();
-
             byte [] encryptedNonce = cryptoHandler.Encrypt(nonce, Key, IV); //Encrypt the nonce using AES128 CBC encryption (with PKCS7Padding)
 
             //Trim the encrypted nonce to a length of 16 bytes
-            trimmedResult = new byte[16];
+            byte[] trimmedResult = new byte[16];
 
             for (int i = 0; i < 16; i++)
             {
@@ -107,46 +92,29 @@ namespace NFCProject.iOS
 
         public void GetNodeConfig(NFCNdefMessage message, NSError error) 
         {
-            
-            NFCNdefPayload messageRecord = message.Records[0];
+            NSData messageRecord = message.Records[0].Payload;
 
-            RX1_NFC_Reply nfcSecondReply = RX1_NFC_Reply.Parser.ParseFrom(messageRecord.Payload.ToArray());
+            byte[] bytes = messageRecord.ToArray();
+
+            RX1_NFC_Reply nfcSecondReply = RX1_NFC_Reply.Parser.ParseFrom(bytes);
             RX1_Uplink_Config nodeConfig = nfcSecondReply.NodeConfig;
             Console.WriteLine(nodeConfig);
 
-            nodeID = nodeConfig.NodeID;
-            netChan = nodeConfig.NetworkChannel;
-            netID = nodeConfig.NetworkID;
-            hardVersion = nodeConfig.HardwareVersion;
-            softVersion = nodeConfig.SoftwareVersion;
-            wirepasVersion = nodeConfig.WirepasVersion.Major.ToString() + "." + nodeConfig.WirepasVersion.Devel.ToString() + "." + nodeConfig.WirepasVersion.Maint.ToString() + "." + nodeConfig.WirepasVersion.Minor.ToString();
-            nodeConfigValue = nodeConfig.NodeConfiguration.ToString();
-            operMode = nodeConfig.OperatingMode.ToString();
-            appAreaID = Convert.ToString(nodeConfig.ApplicationAreaID, 16);
-            headNodeRSSI = nodeConfig.HeadNodeRSSI;
-            batteryVolt = nodeConfig.BatteryVoltage;
-            bool gatewayConnectBool = nodeConfig.GatewayConnected;
-            if (gatewayConnectBool == true)
-            {
-                gatewayConnect = "Yes";
-            }
-            else
-            {
-                gatewayConnect = "No";
-            }
+            string NodeID = "Node ID: " + nfcSecondReply.NodeConfig.NodeID.ToString();
+            string NetworkID = "Network ID: " + nfcSecondReply.NodeConfig.NetworkID.ToString();
+            string NetworkChannel = "Network Channel: " + nfcSecondReply.NodeConfig.NetworkChannel.ToString();
+            string Softver = "Software Version: " + nfcSecondReply.NodeConfig.SoftwareVersion.ToString();
+            string WireVer = "Wirepas Version: " + nfcSecondReply.NodeConfig.WirepasVersion.Major.ToString() + "." + nfcSecondReply.NodeConfig.WirepasVersion.Devel.ToString() + "." + nfcSecondReply.NodeConfig.WirepasVersion.Maint.ToString() + "." + nfcSecondReply.NodeConfig.WirepasVersion.Minor.ToString();
+            string NodeConfig = "Node Configuration: " + nfcSecondReply.NodeConfig.NodeConfiguration.ToString();
+            string AppAreaID = "Application Area ID: " + nfcSecondReply.NodeConfig.ApplicationAreaID.ToString();
+            string HeadNodeRSSI = "Head Node RSSI: " + nfcSecondReply.NodeConfig.HeadNodeRSSI.ToString();
+            string BatVoltage = "Battery Voltage: " + nfcSecondReply.NodeConfig.BatteryVoltage.ToString();
 
-            Console.WriteLine("nodeID: " + nodeID);
-            Console.WriteLine("netChan: " + netChan);
-            Console.WriteLine("netID: " + netID);
-            Console.WriteLine("hardVersion: " + hardVersion);
-            Console.WriteLine("softVersion: " + softVersion);
-            Console.WriteLine("wirepasVersion: " + wirepasVersion);
-            Console.WriteLine("nodeConfigValue: " + nodeConfigValue);
-            Console.WriteLine("operMode: " + operMode);
-            Console.WriteLine("appAreaID: " + appAreaID);
-            Console.WriteLine("headNodeRSSI: " + headNodeRSSI);
-            Console.WriteLine("batteryVolt: " + batteryVolt);
-            Console.WriteLine("gatewayConnect: " + gatewayConnect);
+            string[] valueList = new string[] { NodeID, NetworkID, NetworkChannel, Softver, WireVer, NodeConfig, AppAreaID, HeadNodeRSSI, BatVoltage };
+
+
+            ReadFromNode readValues = new ReadFromNode();
+            readValues.DisplayValues(valueList);
 
             Session.InvalidateSession();
         }

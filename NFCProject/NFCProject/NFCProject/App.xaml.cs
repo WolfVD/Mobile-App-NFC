@@ -1,15 +1,18 @@
 ﻿using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using NFCProject.Pages;
 
 namespace NFCProject
 {
     public partial class App : Application
     {
+        public static ReadViewModel ViewModel { get; set; }
         public App()
         {
             InitializeComponent();
 
+            ViewModel = new ReadViewModel();
             MainPage = new MainPage();
 
         }

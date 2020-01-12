@@ -67,11 +67,6 @@ namespace NFCProject.Droid
 
         protected override void OnNewIntent(Intent intent)
         {
-            MainPage page = new MainPage();
-
-            currentPage = page.ReturnCurrentPage();
-            Console.WriteLine(currentPage);
-
             HandleNFC(intent);
         }
 
@@ -129,147 +124,157 @@ namespace NFCProject.Droid
                     {
                         trimmedResult[i] = encryptedNonce[i];
                     }
-
-                    if (currentPage == "Read From Node")
+                    try
                     {
-                        RX1_NFC_Request nfcRequest = new RX1_NFC_Request
+                        if (WriteToNode.onSaved == false)
                         {
-                            RequestType = RX1_NFC_Request.Types.NFCRequestType.GetNodeConfig,
-                            EncryptedNonce = ByteString.CopyFrom(trimmedResult),
-                            NullPayload = true
-                        };
 
-                        Ndef ndef = Ndef.Get(tag);
-                        ndef.Connect();
-
-                        byte[] bytes = nfcRequest.ToByteArray();
-                        NdefRecord newRecord = new NdefRecord(NdefRecord.TnfUnknown, new byte[0], new byte[0], bytes);
-                        NdefMessage newMessage = new NdefMessage(new NdefRecord[] { newRecord });
-                        ndef.WriteNdefMessage(newMessage);
-
-                        System.Threading.Thread.Sleep(1000); //Wait 1 second
-
-                        NdefMessage secondMessage = ndef.NdefMessage;
-                        NdefRecord[] secondRecords = secondMessage.GetRecords();
-
-                        RX1_NFC_Reply nfcSecondReply = RX1_NFC_Reply.Parser.ParseFrom(secondRecords[0].GetPayload());
-                        ndef.Close();
-
-                        string NodeID = "Node ID: " + nfcSecondReply.NodeConfig.NodeID.ToString();
-                        string NetworkID = "Network ID: " + nfcSecondReply.NodeConfig.NetworkID.ToString();
-                        string NetworkChannel = "Network Channel: " + nfcSecondReply.NodeConfig.NetworkChannel.ToString();
-                        string Softver = "Software Version: " + nfcSecondReply.NodeConfig.SoftwareVersion.ToString();
-                        string WireVer = "Wirepas Version: " + nfcSecondReply.NodeConfig.WirepasVersion.Major.ToString() + "." + nfcSecondReply.NodeConfig.WirepasVersion.Devel.ToString() + "." + nfcSecondReply.NodeConfig.WirepasVersion.Maint.ToString() + "." + nfcSecondReply.NodeConfig.WirepasVersion.Minor.ToString();
-                        string NodeConfig = "Node Configuration: " + nfcSecondReply.NodeConfig.NodeConfiguration.ToString();
-                        string AppAreaID = "Application Area ID: " + nfcSecondReply.NodeConfig.ApplicationAreaID.ToString();
-                        string HeadNodeRSSI = "Head Node RSSI: " + nfcSecondReply.NodeConfig.HeadNodeRSSI.ToString();
-                        string BatVoltage = "Battery Voltage: " + nfcSecondReply.NodeConfig.BatteryVoltage.ToString();
-
-                        string[] valueList = new string[] { NodeID, NetworkID, NetworkChannel, Softver, WireVer, NodeConfig, AppAreaID, HeadNodeRSSI, BatVoltage };
-                        Toast.MakeText(ApplicationContext, "Read Succesful", ToastLength.Long).Show();
-
-                        ReadFromNode readValues = new ReadFromNode();
-                        readValues.DisplayValues(valueList);
-
-                    }
-                    else
-                    {
-                        NodeConfiguration nodeConfiguration;
-                        NodeOperatingMode operatingMode;
-
-                        WriteToNode writeNodePage = new WriteToNode();
-
-                        bool[] checkedList = writeNodePage.ReturnChecked();
-
-                        string[] valueList = writeNodePage.ReturnValues();
-
-                        uint NetID = Convert.ToUInt32(valueList[0]);
-                        uint NetChan = Convert.ToUInt32(valueList[1]);
-                        string NodeConfig = valueList[2];
-                        string OperMode = valueList[3];
-                        ByteString EncKey = ByteString.CopyFrom(hexToByte(valueList[4]));
-                        ByteString AuthKey = ByteString.CopyFrom(hexToByte(valueList[5]));
-                        string UpdateRate = valueList[6];
-
-                        bool NetIDBool = checkedList[0];
-                        bool NetChanBool = checkedList[1];
-                        bool NodeConfigBool = checkedList[2];
-                        bool OperModeBool = checkedList[3];
-                        bool EncKeyBool = checkedList[4];
-                        bool AuthKeyBool = checkedList[5];
-                        bool UpdateRateBool = checkedList[6];
-
-                        #region fix garbage later
-                        if (NodeConfig == "0")
-                        {
-                            nodeConfiguration = NodeConfiguration.Desk1M;
-                        }
-                        else if (NodeConfig == "1")
-                        {
-                            nodeConfiguration = NodeConfiguration.Desk2M;
-                        }
-                        else if (NodeConfig == "2")
-                        {
-                            nodeConfiguration = NodeConfiguration.Ceiling1M;
-                        }
-                        else
-                        {
-                            nodeConfiguration = NodeConfiguration.Ceiling2M;
-                        }
-
-                        if (OperMode == "0")
-                        {
-                            operatingMode = NodeOperatingMode.Run;
-                        }
-                        else
-                        {
-                            operatingMode = NodeOperatingMode.Inventory;
-                        }
-                        #endregion fix garbage later
-
-                        RX1_NFC_Request nfcRequest = new RX1_NFC_Request
-                        {
-                            RequestType = RX1_NFC_Request.Types.NFCRequestType.SetNodeConfig,
-                            EncryptedNonce = ByteString.CopyFrom(trimmedResult),
-                            NodeConfig = new RX1_NFC_Config
+                            RX1_NFC_Request nfcRequest = new RX1_NFC_Request
                             {
-                                NetworkID = NetID,
-                                HasNetworkID = NetIDBool,
-                                NetworkChannel = NetChan,
-                                HasNetworkChannel = NetChanBool,
-                                NodeConfiguration = nodeConfiguration,
-                                HasNodeConfiguration = NodeConfigBool,
-                                OperatingMode = operatingMode,
-                                HasOperatingMode = OperModeBool,
-                                EncryptionKey = EncKey,
-                                HasEncryptionKey = EncKeyBool,
-                                AuthenticationKey = AuthKey,
-                                HasAuthenticationKey = AuthKeyBool
+                                RequestType = RX1_NFC_Request.Types.NFCRequestType.GetNodeConfig,
+                                EncryptedNonce = ByteString.CopyFrom(trimmedResult),
+                                NullPayload = true
+                            };
 
-                            },
-                            Chksum = calculateChksum(valueList[0], valueList[1], valueList[2], valueList[3], valueList[4], valueList[5], checkedList[0], checkedList[1], checkedList[2], checkedList[3], checkedList[4], checkedList[5])
+                            Ndef ndef = Ndef.Get(tag);
+                            ndef.Connect();
 
-                        };
+                            byte[] bytes = nfcRequest.ToByteArray();
+                            NdefRecord newRecord = new NdefRecord(NdefRecord.TnfUnknown, new byte[0], new byte[0], bytes);
+                            NdefMessage newMessage = new NdefMessage(new NdefRecord[] { newRecord });
+                            ndef.WriteNdefMessage(newMessage);
 
-                        Ndef ndef = Ndef.Get(tag);
-                        ndef.Connect();
+                            System.Threading.Thread.Sleep(1000); //Wait 1 second
 
-                        byte[] bytes = nfcRequest.ToByteArray();
-                        NdefRecord newRecord = new NdefRecord(NdefRecord.TnfUnknown, new byte[0], new byte[0], bytes);
-                        NdefMessage newMessage = new NdefMessage(new NdefRecord[] { newRecord });
-                        ndef.WriteNdefMessage(newMessage);
+                            NdefMessage secondMessage = ndef.NdefMessage;
+                            NdefRecord[] secondRecords = secondMessage.GetRecords();
 
-                        System.Threading.Thread.Sleep(1000); //Wait 1 second
+                            RX1_NFC_Reply nfcSecondReply = RX1_NFC_Reply.Parser.ParseFrom(secondRecords[0].GetPayload());
+                            ndef.Close();
 
-                        NdefMessage secondMessage = ndef.NdefMessage;
-                        NdefRecord[] secondRecords = secondMessage.GetRecords();
+                            string NodeID = "Node ID: " + nfcSecondReply.NodeConfig.NodeID.ToString();
+                            string NetworkID = "Network ID: " + nfcSecondReply.NodeConfig.NetworkID.ToString();
+                            string NetworkChannel = "Network Channel: " + nfcSecondReply.NodeConfig.NetworkChannel.ToString();
+                            string Softver = "Software Version: " + nfcSecondReply.NodeConfig.SoftwareVersion.ToString();
+                            string WireVer = "Wirepas Version: " + nfcSecondReply.NodeConfig.WirepasVersion.Major.ToString() + "." + nfcSecondReply.NodeConfig.WirepasVersion.Devel.ToString() + "." + nfcSecondReply.NodeConfig.WirepasVersion.Maint.ToString() + "." + nfcSecondReply.NodeConfig.WirepasVersion.Minor.ToString();
+                            string NodeConfig = "Node Configuration: " + nfcSecondReply.NodeConfig.NodeConfiguration.ToString();
+                            string AppAreaID = "Application Area ID: " + nfcSecondReply.NodeConfig.ApplicationAreaID.ToString();
+                            string HeadNodeRSSI = "Head Node RSSI: " + nfcSecondReply.NodeConfig.HeadNodeRSSI.ToString();
+                            string BatVoltage = "Battery Voltage: " + nfcSecondReply.NodeConfig.BatteryVoltage.ToString();
 
-                        RX1_NFC_Reply nfcSecondReply = RX1_NFC_Reply.Parser.ParseFrom(secondRecords[0].GetPayload());
+                            string[] valueList = new string[] { NodeID, NetworkID, NetworkChannel, Softver, WireVer, NodeConfig, AppAreaID, HeadNodeRSSI, BatVoltage };
+                            Toast.MakeText(ApplicationContext, "Read Succesful", ToastLength.Long).Show();
 
-                        if (nfcSecondReply.SetNodeConfigAcknowledge)
-                        {
-                            Toast.MakeText(ApplicationContext, "Write Succesful", ToastLength.Long).Show();
+                            ReadFromNode readValues = new ReadFromNode();
+                            readValues.DisplayValues(valueList);
+
                         }
+                        else
+                        {
+                            WriteToNode.onSaved = false;
+
+                            NodeConfiguration nodeConfiguration;
+                            NodeOperatingMode operatingMode;
+
+                            WriteToNode writeNodePage = new WriteToNode();
+
+                            bool[] checkedList = writeNodePage.ReturnChecked();
+
+                            string[] valueList = writeNodePage.ReturnValues();
+
+                            uint NetID = Convert.ToUInt32(valueList[0]);
+                            uint NetChan = Convert.ToUInt32(valueList[1]);
+                            string NodeConfig = valueList[2];
+                            string OperMode = valueList[3];
+                            ByteString EncKey = ByteString.CopyFrom(hexToByte(valueList[4]));
+                            ByteString AuthKey = ByteString.CopyFrom(hexToByte(valueList[5]));
+                            string UpdateRate = valueList[6];
+
+                            bool NetIDBool = checkedList[0];
+                            bool NetChanBool = checkedList[1];
+                            bool NodeConfigBool = checkedList[2];
+                            bool OperModeBool = checkedList[3];
+                            bool EncKeyBool = checkedList[4];
+                            bool AuthKeyBool = checkedList[5];
+                            bool UpdateRateBool = checkedList[6];
+
+                            #region fix garbage later
+                            if (NodeConfig == "0")
+                            {
+                                nodeConfiguration = NodeConfiguration.Desk1M;
+                            }
+                            else if (NodeConfig == "1")
+                            {
+                                nodeConfiguration = NodeConfiguration.Desk2M;
+                            }
+                            else if (NodeConfig == "2")
+                            {
+                                nodeConfiguration = NodeConfiguration.Ceiling1M;
+                            }
+                            else
+                            {
+                                nodeConfiguration = NodeConfiguration.Ceiling2M;
+                            }
+
+                            if (OperMode == "0")
+                            {
+                                operatingMode = NodeOperatingMode.Run;
+                            }
+                            else
+                            {
+                                operatingMode = NodeOperatingMode.Inventory;
+                            }
+                            #endregion fix garbage later
+
+                            RX1_NFC_Request nfcRequest = new RX1_NFC_Request
+                            {
+                                RequestType = RX1_NFC_Request.Types.NFCRequestType.SetNodeConfig,
+                                EncryptedNonce = ByteString.CopyFrom(trimmedResult),
+                                NodeConfig = new RX1_NFC_Config
+                                {
+                                    NetworkID = NetID,
+                                    HasNetworkID = NetIDBool,
+                                    NetworkChannel = NetChan,
+                                    HasNetworkChannel = NetChanBool,
+                                    NodeConfiguration = nodeConfiguration,
+                                    HasNodeConfiguration = NodeConfigBool,
+                                    OperatingMode = operatingMode,
+                                    HasOperatingMode = OperModeBool,
+                                    EncryptionKey = EncKey,
+                                    HasEncryptionKey = EncKeyBool,
+                                    AuthenticationKey = AuthKey,
+                                    HasAuthenticationKey = AuthKeyBool
+
+                                },
+                                Chksum = calculateChksum(valueList[0], valueList[1], valueList[2], valueList[3], valueList[4], valueList[5], checkedList[0], checkedList[1], checkedList[2], checkedList[3], checkedList[4], checkedList[5])
+
+                            };
+
+                            Ndef ndef = Ndef.Get(tag);
+                            ndef.Connect();
+
+                            byte[] bytes = nfcRequest.ToByteArray();
+                            NdefRecord newRecord = new NdefRecord(NdefRecord.TnfUnknown, new byte[0], new byte[0], bytes);
+                            NdefMessage newMessage = new NdefMessage(new NdefRecord[] { newRecord });
+                            ndef.WriteNdefMessage(newMessage);
+
+                            System.Threading.Thread.Sleep(1000); //Wait 1 second
+
+                            NdefMessage secondMessage = ndef.NdefMessage;
+                            NdefRecord[] secondRecords = secondMessage.GetRecords();
+
+                            RX1_NFC_Reply nfcSecondReply = RX1_NFC_Reply.Parser.ParseFrom(secondRecords[0].GetPayload());
+
+                            if (nfcSecondReply.SetNodeConfigAcknowledge)
+                            {
+                                Toast.MakeText(ApplicationContext, "Write Succesful", ToastLength.Long).Show();
+                            }
+                        }
+                    }
+                    catch
+                    {
+                        Toast.MakeText(ApplicationContext, "Could not communicate with NDEF Tag, please try again", ToastLength.Long).Show();
+                        Console.WriteLine("Yeet");
                     }
 
                 }

@@ -25,6 +25,8 @@ namespace NFCProject.Pages
         static bool AuthKeyOn;
         static bool UpdateRateOn;
 
+        public static bool onSaved = false;
+
         public WriteToNode()
         {
             InitializeComponent();
@@ -32,9 +34,9 @@ namespace NFCProject.Pages
 
         async void SaveValues(object sender, System.EventArgs e)
         {
-            bool answer = await DisplayAlert("Save Values", "Are you sure you want to write the given values to the node?", "Yes", "No");
+            onSaved = await DisplayAlert("Save Values", "Are you sure you want to write the given values to the node?", "Yes", "No");
 
-            if (answer == true) {
+            if (onSaved == true) {
 
                 if (NetIDBox.IsChecked) {
                     NetID = NetIDEntry.Text;
@@ -99,6 +101,8 @@ namespace NFCProject.Pages
             {
                 UpdateRateOn = value;
             }
+
+
         }
 
         public string[] ReturnValues()

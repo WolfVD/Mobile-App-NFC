@@ -17,10 +17,9 @@ namespace NFCProject
 
         }
 
-        public string ReturnCurrentPage()
+        protected override void OnCurrentPageChanged()
         {
-            return CurrentPage.Title;
-       
+            base.OnCurrentPageChanged();
         }
 
     }

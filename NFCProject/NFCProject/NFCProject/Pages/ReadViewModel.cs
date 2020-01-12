@@ -6,16 +6,20 @@ namespace NFCProject.Pages
 {
     public class ReadViewModel : BaseBind
     {
-        public ReadViewModel() {
-            NodeIDString = "Node ID: ";
+        public ReadViewModel()
+        {
+            NodeIDString = "Node ID (SN): ";
             NetworkIDString = "Network ID: ";
             NetChanString = "Network Channel: ";
+            HardVerString = "Hardware Version: ";
             SoftVerString = "Software Version: ";
             WireVerString = "Wirepas Version: ";
-            NodeConfigString = "Node Configuration: ";
+            NodeConfigString = "Configuration ID: ";
+            PowerTestString = "Power-On-Self-Test Result: ";
             AppAreaIDString = "Application Area ID: ";
             HeadNodeRSSIString = "Head Node RSSI: ";
             BatVoltageString = "Battery Voltage: ";
+            GatewaySNString = "Gateway SN: ";
         }
 
         private string nodeIDString;
@@ -35,6 +39,16 @@ namespace NFCProject.Pages
             set
             {
                 SetProperty(ref networkIDString, value);
+            }
+        }
+
+        private string hardVerString;
+        public string HardVerString
+        {
+            get { return hardVerString; }
+            set
+            {
+                SetProperty(ref hardVerString, value);
             }
         }
 
@@ -78,6 +92,16 @@ namespace NFCProject.Pages
             }
         }
 
+        private string powerTestString;
+        public string PowerTestString
+        {
+            get { return powerTestString; }
+            set
+            {
+                SetProperty(ref powerTestString, value);
+            }
+        }
+
         private string appAreaIDString;
         public string AppAreaIDString
         {
@@ -105,6 +129,16 @@ namespace NFCProject.Pages
             set
             {
                 SetProperty(ref batVoltageString, value);
+            }
+        }
+
+        private string gatewaySNString;
+        public string GatewaySNString
+        {
+            get { return gatewaySNString; }
+            set
+            {
+                SetProperty(ref gatewaySNString, value);
             }
         }
 

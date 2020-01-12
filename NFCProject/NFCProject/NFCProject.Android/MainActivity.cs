@@ -26,8 +26,6 @@ namespace NFCProject.Droid
         IntentFilter[] nfcIntentFiltersArray;
         private NfcAdapter nfcAdapter;
 
-        static string currentPage;
-
         byte[] trimmedResult;
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -99,36 +97,37 @@ namespace NFCProject.Droid
 
         protected void HandleNFC(Intent intent)
         {
-            var tag = intent.GetParcelableExtra(NfcAdapter.ExtraTag) as Tag;
-
-            IParcelable[] rawMsgs = intent.GetParcelableArrayExtra(NfcAdapter.ExtraNdefMessages);
-            if (rawMsgs != null)
+            try
             {
-                NdefMessage message = (NdefMessage)rawMsgs[0];
-                NdefRecord[] records = message.GetRecords();
-                if (records != null)
+                var tag = intent.GetParcelableExtra(NfcAdapter.ExtraTag) as Tag;
+
+                IParcelable[] rawMsgs = intent.GetParcelableArrayExtra(NfcAdapter.ExtraNdefMessages);
+                if (rawMsgs != null)
                 {
-                    RX1_NFC_Reply nfcReply = RX1_NFC_Reply.Parser.ParseFrom(records[0].GetPayload());
-                    byte[] nonce = nfcReply.Nonce.ToByteArray();
-
-                    byte[] Key = hexToByte("2b7e151628aed2a6abf7158809cf4f3c");
-                    byte[] IV = hexToByte("000102030405060708090a0b0c0d0e0f");
-
-                    CryptoHandler cryptoHandler = new CryptoHandler();
-
-                    byte[] encryptedNonce = cryptoHandler.Encrypt(nonce, Key, IV); //Encrypt the nonce using AES128 CBC encryption (with PKCS7Padding)
-
-                    trimmedResult = new byte[16];
-
-                    for (int i = 0; i < 16; i++)
+                    NdefMessage message = (NdefMessage)rawMsgs[0];
+                    Console.WriteLine(message);
+                    NdefRecord[] records = message.GetRecords();
+                    if (records != null)
                     {
-                        trimmedResult[i] = encryptedNonce[i];
-                    }
-                    try
-                    {
+                        RX1_NFC_Reply nfcReply = RX1_NFC_Reply.Parser.ParseFrom(records[0].GetPayload());
+                        byte[] nonce = nfcReply.Nonce.ToByteArray();
+
+                        byte[] Key = hexToByte("2b7e151628aed2a6abf7158809cf4f3c");
+                        byte[] IV = hexToByte("000102030405060708090a0b0c0d0e0f");
+
+                        CryptoHandler cryptoHandler = new CryptoHandler();
+
+                        byte[] encryptedNonce = cryptoHandler.Encrypt(nonce, Key, IV); //Encrypt the nonce using AES128 CBC encryption (with PKCS7Padding)
+
+                        trimmedResult = new byte[16];
+
+                        for (int i = 0; i < 16; i++)
+                        {
+                            trimmedResult[i] = encryptedNonce[i];
+                        }
+
                         if (WriteToNode.onSaved == false)
                         {
-
                             RX1_NFC_Request nfcRequest = new RX1_NFC_Request
                             {
                                 RequestType = RX1_NFC_Request.Types.NFCRequestType.GetNodeConfig,
@@ -152,15 +151,15 @@ namespace NFCProject.Droid
                             RX1_NFC_Reply nfcSecondReply = RX1_NFC_Reply.Parser.ParseFrom(secondRecords[0].GetPayload());
                             ndef.Close();
 
-                            string NodeID = "Node ID: " + nfcSecondReply.NodeConfig.NodeID.ToString();
+                            string NodeID = "Node ID (SN): " + nfcSecondReply.NodeConfig.NodeID.ToString();
                             string NetworkID = "Network ID: " + nfcSecondReply.NodeConfig.NetworkID.ToString();
                             string NetworkChannel = "Network Channel: " + nfcSecondReply.NodeConfig.NetworkChannel.ToString();
                             string Softver = "Software Version: " + nfcSecondReply.NodeConfig.SoftwareVersion.ToString();
                             string WireVer = "Wirepas Version: " + nfcSecondReply.NodeConfig.WirepasVersion.Major.ToString() + "." + nfcSecondReply.NodeConfig.WirepasVersion.Devel.ToString() + "." + nfcSecondReply.NodeConfig.WirepasVersion.Maint.ToString() + "." + nfcSecondReply.NodeConfig.WirepasVersion.Minor.ToString();
-                            string NodeConfig = "Node Configuration: " + nfcSecondReply.NodeConfig.NodeConfiguration.ToString();
+                            string NodeConfig = "Configuration ID: " + nfcSecondReply.NodeConfig.NodeConfiguration.ToString();
                             string AppAreaID = "Application Area ID: " + nfcSecondReply.NodeConfig.ApplicationAreaID.ToString();
                             string HeadNodeRSSI = "Head Node RSSI: " + nfcSecondReply.NodeConfig.HeadNodeRSSI.ToString();
-                            string BatVoltage = "Battery Voltage: " + nfcSecondReply.NodeConfig.BatteryVoltage.ToString();
+                            string BatVoltage = "Battery Voltage: " + (nfcSecondReply.NodeConfig.BatteryVoltage/1000).ToString() +" V";
 
                             string[] valueList = new string[] { NodeID, NetworkID, NetworkChannel, Softver, WireVer, NodeConfig, AppAreaID, HeadNodeRSSI, BatVoltage };
                             Toast.MakeText(ApplicationContext, "Read Succesful", ToastLength.Long).Show();
@@ -188,7 +187,6 @@ namespace NFCProject.Droid
                             string OperMode = valueList[3];
                             ByteString EncKey = ByteString.CopyFrom(hexToByte(valueList[4]));
                             ByteString AuthKey = ByteString.CopyFrom(hexToByte(valueList[5]));
-                            string UpdateRate = valueList[6];
 
                             bool NetIDBool = checkedList[0];
                             bool NetChanBool = checkedList[1];
@@ -196,9 +194,8 @@ namespace NFCProject.Droid
                             bool OperModeBool = checkedList[3];
                             bool EncKeyBool = checkedList[4];
                             bool AuthKeyBool = checkedList[5];
-                            bool UpdateRateBool = checkedList[6];
 
-                            #region fix garbage later
+                            #region optimize this (if possible)
                             if (NodeConfig == "0")
                             {
                                 nodeConfiguration = NodeConfiguration.Desk1M;
@@ -271,13 +268,15 @@ namespace NFCProject.Droid
                             }
                         }
                     }
-                    catch
-                    {
-                        Toast.MakeText(ApplicationContext, "Could not communicate with NDEF Tag, please try again", ToastLength.Long).Show();
-                        Console.WriteLine("Yeet");
-                    }
-
                 }
+                else
+                {
+                    Toast.MakeText(ApplicationContext, "The Tag did not contain a message.", ToastLength.Long).Show();
+                }
+            }
+            catch
+            {
+                Toast.MakeText(ApplicationContext, "Something went wrong, please try again.", ToastLength.Long).Show();
             }
         }
 

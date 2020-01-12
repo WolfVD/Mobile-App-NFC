@@ -15,7 +15,6 @@ namespace NFCProject.Pages
         static string OperMode = "1";
         static string EncKey = "6650208e3aac4f4043a9ae5a9a8761c1";
         static string AuthKey = "22de24ea7356c76e79126bff3491333f";
-        static string UpdateRate = "60";
 
         static bool NetIDOn;
         static bool NetChanOn;
@@ -23,13 +22,20 @@ namespace NFCProject.Pages
         static bool OperModeOn;
         static bool EncKeyOn;
         static bool AuthKeyOn;
-        static bool UpdateRateOn;
 
         public static bool onSaved = false;
 
         public WriteToNode()
         {
             InitializeComponent();
+
+            NodeConfigPicker.Items.Add("Desk1M");
+            NodeConfigPicker.Items.Add("Desk2M");
+            NodeConfigPicker.Items.Add("Ceiling1M");
+            NodeConfigPicker.Items.Add("Ceiling2M");
+
+            OperModePicker.Items.Add("Run");
+            OperModePicker.Items.Add("Inventory");
         }
 
         async void SaveValues(object sender, System.EventArgs e)
@@ -47,11 +53,11 @@ namespace NFCProject.Pages
                 }
                 if (NodeConfigBox.IsChecked)
                 {
-                    NodeConfig = NodeConfigEntry.Text;
+                    NodeConfig = NodeConfigPicker.SelectedIndex.ToString();
                 }
                 if (OperModeBox.IsChecked)
                 {
-                    OperMode = OperModeEntry.Text;
+                    OperMode = OperModePicker.SelectedIndex.ToString();
                 }
                 if (EncKeyBox.IsChecked)
                 {
@@ -60,10 +66,6 @@ namespace NFCProject.Pages
                 if (AuthKeyBox.IsChecked)
                 {
                     AuthKey = AuthKeyEntry.Text;
-                }
-                if (UpdateRateBox.IsChecked)
-                {
-                    UpdateRate = UpdateRateEntry.Text;
                 }
             }
 
@@ -97,24 +99,19 @@ namespace NFCProject.Pages
             {
                 AuthKeyOn = value;
             }
-            else if (sender == UpdateRateBox)
-            {
-                UpdateRateOn = value;
-            }
-
 
         }
 
         public string[] ReturnValues()
         {
-            string[] valueList = new string[] { NetID, NetChan, NodeConfig, OperMode, EncKey, AuthKey, UpdateRate };
+            string[] valueList = new string[] { NetID, NetChan, NodeConfig, OperMode, EncKey, AuthKey };
 
             return valueList;
         }
 
         public bool[] ReturnChecked()
         {
-            bool[] checkedList = new bool[] { NetIDOn, NetChanOn, NodeConfigOn, OperModeOn, EncKeyOn, AuthKeyOn, UpdateRateOn };
+            bool[] checkedList = new bool[] { NetIDOn, NetChanOn, NodeConfigOn, OperModeOn, EncKeyOn, AuthKeyOn };
 
             return checkedList;
         }

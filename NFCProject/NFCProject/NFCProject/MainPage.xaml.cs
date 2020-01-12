@@ -17,10 +17,5 @@ namespace NFCProject
 
         }
 
-        protected override void OnCurrentPageChanged()
-        {
-            base.OnCurrentPageChanged();
-        }
-
     }
 }

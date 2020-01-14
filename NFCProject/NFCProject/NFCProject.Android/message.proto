@@ -134,7 +134,7 @@ message RX1_NFC_Request {
          SET_NODE_CONFIG_MANUF = 2; //used in manufacturing only
    }
    NFCRequestType requestType = 1;
-   bytes encryptedNonce = 2; // [(nanopb).max_size = 16, (nanopb).fixed_length = true];
+   bytes encryptedNonce = 2; 
    oneof payload{
       bool nullPayload = 3;
       RX1_NFC_Config nodeConfig = 4;

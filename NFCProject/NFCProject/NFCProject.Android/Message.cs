@@ -2129,9 +2129,6 @@ namespace NFCProject.Droid {
 
     /// <summary>Field number for the "nonce" field.</summary>
     public const int NonceFieldNumber = 2;
-    /// <summary>
-    /// [(nanopb).max_size = 16, (nanopb).fixed_length = true];
-    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public pb::ByteString Nonce {
       get { return payloadCase_ == PayloadOneofCase.Nonce ? (pb::ByteString) payload_ : pb::ByteString.Empty; }
@@ -2539,9 +2536,6 @@ namespace NFCProject.Droid {
     /// <summary>Field number for the "encryptionKey" field.</summary>
     public const int EncryptionKeyFieldNumber = 10;
     private pb::ByteString encryptionKey_ = pb::ByteString.Empty;
-    /// <summary>
-    /// [(nanopb).max_size = 16, (nanopb).fixed_length = true];
-    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public pb::ByteString EncryptionKey {
       get { return encryptionKey_; }
@@ -2564,9 +2558,6 @@ namespace NFCProject.Droid {
     /// <summary>Field number for the "authenticationKey" field.</summary>
     public const int AuthenticationKeyFieldNumber = 12;
     private pb::ByteString authenticationKey_ = pb::ByteString.Empty;
-    /// <summary>
-    /// [(nanopb).max_size = 16, (nanopb).fixed_length = true];
-    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public pb::ByteString AuthenticationKey {
       get { return authenticationKey_; }
@@ -2894,9 +2885,6 @@ namespace NFCProject.Droid {
     /// <summary>Field number for the "encryptedNonce" field.</summary>
     public const int EncryptedNonceFieldNumber = 2;
     private pb::ByteString encryptedNonce_ = pb::ByteString.Empty;
-    /// <summary>
-    /// [(nanopb).max_size = 16, (nanopb).fixed_length = true];
-    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public pb::ByteString EncryptedNonce {
       get { return encryptedNonce_; }

@@ -34,19 +34,6 @@ namespace NFCProject.Pages
             ViewModel.SoftVerString = valueList[3];
             ViewModel.WireVerString = valueList[4];
             ViewModel.NodeConfigString = valueList[5];
-            if (valueList[5] == "0")
-            {
-                ViewModel.NodeConfigString = "Configuration ID: Desk1M";
-            } else if (valueList[5] == "1")
-            {
-                ViewModel.NodeConfigString = "Configuration ID: Desk2M";
-            } else if (valueList[5] == "2")
-            {
-                ViewModel.NodeConfigString = "Configuration ID: Ceiling1M";
-            } else
-            {
-                ViewModel.NodeConfigString = "Configuration ID: Ceiling2M";
-            }
             //ViewModel.PowerTestString = valueList[6];
             ViewModel.AppAreaIDString = valueList[6];
             ViewModel.HeadNodeRSSIString = valueList[7];

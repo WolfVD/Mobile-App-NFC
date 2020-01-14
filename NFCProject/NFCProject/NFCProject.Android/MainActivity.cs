@@ -10,6 +10,7 @@ using Google.Protobuf;
 using NFCProject.Pages;
 using NFCProject.Services;
 using System;
+using System.Text;
 
 namespace NFCProject.Droid
 {
@@ -105,7 +106,6 @@ namespace NFCProject.Droid
                 if (rawMsgs != null)
                 {
                     NdefMessage message = (NdefMessage)rawMsgs[0];
-                    Console.WriteLine(message);
                     NdefRecord[] records = message.GetRecords();
                     if (records != null)
                     {
@@ -159,7 +159,7 @@ namespace NFCProject.Droid
                             string NodeConfig = "Configuration ID: " + nfcSecondReply.NodeConfig.NodeConfiguration.ToString();
                             string AppAreaID = "Application Area ID: " + nfcSecondReply.NodeConfig.ApplicationAreaID.ToString();
                             string HeadNodeRSSI = "Head Node RSSI: " + nfcSecondReply.NodeConfig.HeadNodeRSSI.ToString();
-                            string BatVoltage = "Battery Voltage: " + (nfcSecondReply.NodeConfig.BatteryVoltage/1000).ToString() +" V";
+                            string BatVoltage = "Battery Voltage: " + (Convert.ToDouble(nfcSecondReply.NodeConfig.BatteryVoltage)/1000).ToString() +" V";
 
                             string[] valueList = new string[] { NodeID, NetworkID, NetworkChannel, Softver, WireVer, NodeConfig, AppAreaID, HeadNodeRSSI, BatVoltage };
                             Toast.MakeText(ApplicationContext, "Read Succesful", ToastLength.Long).Show();
@@ -196,6 +196,7 @@ namespace NFCProject.Droid
                             bool AuthKeyBool = checkedList[5];
 
                             #region optimize this (if possible)
+                            Console.WriteLine(NodeConfig);
                             if (NodeConfig == "0")
                             {
                                 nodeConfiguration = NodeConfiguration.Desk1M;
@@ -259,12 +260,14 @@ namespace NFCProject.Droid
 
                             NdefMessage secondMessage = ndef.NdefMessage;
                             NdefRecord[] secondRecords = secondMessage.GetRecords();
+                            Console.WriteLine(secondMessage);
 
                             RX1_NFC_Reply nfcSecondReply = RX1_NFC_Reply.Parser.ParseFrom(secondRecords[0].GetPayload());
 
                             if (nfcSecondReply.SetNodeConfigAcknowledge)
                             {
                                 Toast.MakeText(ApplicationContext, "Write Succesful", ToastLength.Long).Show();
+                                WriteToNode.onSaved = false;
                             }
                         }
                     }

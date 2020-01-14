@@ -105,7 +105,6 @@ namespace NFCProject.iOS
             string OperMode = valueList[3];
             ByteString EncKey = ByteString.CopyFrom(hexToByte(valueList[4]));
             ByteString AuthKey = ByteString.CopyFrom(hexToByte(valueList[5]));
-            string UpdateRate = valueList[6];
 
             bool NetIDBool = checkedList[0];
             bool NetChanBool = checkedList[1];
@@ -113,7 +112,6 @@ namespace NFCProject.iOS
             bool OperModeBool = checkedList[3];
             bool EncKeyBool = checkedList[4];
             bool AuthKeyBool = checkedList[5];
-            bool UpdateRateBool = checkedList[6];
 
             NodeConfiguration nodeConfiguration;
             NodeOperatingMode operatingMode;
@@ -193,12 +191,18 @@ namespace NFCProject.iOS
 
             byte[] bytes = readPayload.ToArray();
 
-            RX1_NFC_Reply nfcSecondReply;
-            nfcSecondReply = RX1_NFC_Reply.Parser.ParseFrom(bytes);
-
-            if (nfcSecondReply.SetNodeConfigAcknowledge)
+            try
             {
-                Console.WriteLine("Data Written to Node Successfully.  Node will apply settings in 5 seconds and subsequently reset");
+                RX1_NFC_Reply nfcSecondReply;
+                nfcSecondReply = RX1_NFC_Reply.Parser.ParseFrom(bytes);
+
+                if (nfcSecondReply.SetNodeConfigAcknowledge)
+                {
+                    Console.WriteLine("Data Written to Node Successfully.  Node will apply settings in 5 seconds and subsequently reset");
+                }
+            }
+            catch {
+                Console.WriteLine("Parsing failed");
             }
 
             Session.InvalidateSession();

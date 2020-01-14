@@ -41,80 +41,100 @@ namespace NFCProject.iOS
             
         }
 
+
         public void EncryptNonce(NFCNdefMessage message, NSError error) {
             NFCNdefPayload messageRecord = message.Records[0];
             Console.WriteLine(message);
 
+
             byte[] bytes = messageRecord.Payload.ToArray();
 
-            RX1_NFC_Reply nfcReply = RX1_NFC_Reply.Parser.ParseFrom(bytes);
-            byte[] nonce = nfcReply.Nonce.ToByteArray();
+            Console.WriteLine(BitConverter.ToString(bytes));
 
-            //Generate the key and IV for encryption
-            byte[] Key = hexToByte("2b7e151628aed2a6abf7158809cf4f3c");
-            byte[] IV = hexToByte("000102030405060708090a0b0c0d0e0f");
-
-            CryptoHandler cryptoHandler = new CryptoHandler();
-            byte [] encryptedNonce = cryptoHandler.Encrypt(nonce, Key, IV); //Encrypt the nonce using AES128 CBC encryption (with PKCS7Padding)
-
-            //Trim the encrypted nonce to a length of 16 bytes
-            byte[] trimmedResult = new byte[16];
-
-            for (int i = 0; i < 16; i++)
+            try
             {
-                trimmedResult[i] = encryptedNonce[i];
+                RX1_NFC_Reply nfcReply = RX1_NFC_Reply.Parser.ParseFrom(bytes);
+                byte[] nonce = nfcReply.Nonce.ToByteArray();
+
+
+                //Generate the key and IV for encryption
+                byte[] Key = hexToByte("2b7e151628aed2a6abf7158809cf4f3c");
+                byte[] IV = hexToByte("000102030405060708090a0b0c0d0e0f");
+
+                CryptoHandler cryptoHandler = new CryptoHandler();
+                byte[] encryptedNonce = cryptoHandler.Encrypt(nonce, Key, IV); //Encrypt the nonce using AES128 CBC encryption (with PKCS7Padding)
+
+                //Trim the encrypted nonce to a length of 16 bytes
+                byte[] trimmedResult = new byte[16];
+
+                for (int i = 0; i < 16; i++)
+                {
+                    trimmedResult[i] = encryptedNonce[i];
+                }
+
+
+                RX1_NFC_Request nfcRequest = new RX1_NFC_Request
+                {
+                    RequestType = RX1_NFC_Request.Types.NFCRequestType.GetNodeConfig,
+                    EncryptedNonce = ByteString.CopyFrom(trimmedResult),
+                    NullPayload = true
+                };
+
+                string nfcReplyPayload = nfcRequest.ToString(); //Convert to a request to a string so it can be written
+                Console.WriteLine(nfcReplyPayload);
+
+                //Create a payload/message and write it.
+                NFCNdefPayload writePayload = NFCNdefPayload.CreateWellKnownTypePayload(nfcReplyPayload, NSLocale.CurrentLocale);
+                NFCNdefMessage writeMessage = new NFCNdefMessage(new NFCNdefPayload[] { writePayload });
+                tag.WriteNdef(writeMessage, delegate { Console.WriteLine("Write succesful"); });
+
+                System.Threading.Thread.Sleep(1000); //Wait 1 second
+
+                //Read tag again to get node config
+                Action<NFCNdefMessage, NSError> readNodeConfig;
+                readNodeConfig = GetNodeConfig;
+                tag.ReadNdef(readNodeConfig);
             }
-
-
-            RX1_NFC_Request nfcRequest = new RX1_NFC_Request
+            catch
             {
-                RequestType = RX1_NFC_Request.Types.NFCRequestType.GetNodeConfig,
-                EncryptedNonce = ByteString.CopyFrom(trimmedResult),
-                NullPayload = true
-            };
-
-            string nfcReplyPayload = nfcRequest.ToString(); //Convert to a request to a string so it can be written
-            Console.WriteLine(nfcReplyPayload);
-
-            //Create a payload/message and write it.
-            NFCNdefPayload writePayload = NFCNdefPayload.CreateWellKnownTypePayload(nfcReplyPayload, NSLocale.CurrentLocale);
-            NFCNdefMessage writeMessage = new NFCNdefMessage(new NFCNdefPayload[] { writePayload });
-            tag.WriteNdef(writeMessage, delegate { Console.WriteLine("Write succesful"); });
-
-            System.Threading.Thread.Sleep(1000); //Wait 1 second
-
-            //Read tag again to get node config
-            Action<NFCNdefMessage, NSError> readNodeConfig;
-            readNodeConfig = GetNodeConfig;
-            tag.ReadNdef(readNodeConfig);
+                Console.WriteLine("Could not parse message");
+            }
 
         }
 
         public void GetNodeConfig(NFCNdefMessage message, NSError error) 
         {
             NSData messageRecord = message.Records[0].Payload;
+            Console.WriteLine(message);
 
             byte[] bytes = messageRecord.ToArray();
+            Console.WriteLine(BitConverter.ToString(bytes));
 
-            RX1_NFC_Reply nfcSecondReply = RX1_NFC_Reply.Parser.ParseFrom(bytes);
-            RX1_Uplink_Config nodeConfig = nfcSecondReply.NodeConfig;
-            Console.WriteLine(nodeConfig);
+            try
+            {
+                RX1_NFC_Reply nfcSecondReply = RX1_NFC_Reply.Parser.ParseFrom(bytes);
+                RX1_Uplink_Config nodeConfig = nfcSecondReply.NodeConfig;
+                Console.WriteLine(nodeConfig);
 
-            string NodeID = "Node ID: " + nfcSecondReply.NodeConfig.NodeID.ToString();
-            string NetworkID = "Network ID: " + nfcSecondReply.NodeConfig.NetworkID.ToString();
-            string NetworkChannel = "Network Channel: " + nfcSecondReply.NodeConfig.NetworkChannel.ToString();
-            string Softver = "Software Version: " + nfcSecondReply.NodeConfig.SoftwareVersion.ToString();
-            string WireVer = "Wirepas Version: " + nfcSecondReply.NodeConfig.WirepasVersion.Major.ToString() + "." + nfcSecondReply.NodeConfig.WirepasVersion.Devel.ToString() + "." + nfcSecondReply.NodeConfig.WirepasVersion.Maint.ToString() + "." + nfcSecondReply.NodeConfig.WirepasVersion.Minor.ToString();
-            string NodeConfig = "Node Configuration: " + nfcSecondReply.NodeConfig.NodeConfiguration.ToString();
-            string AppAreaID = "Application Area ID: " + nfcSecondReply.NodeConfig.ApplicationAreaID.ToString();
-            string HeadNodeRSSI = "Head Node RSSI: " + nfcSecondReply.NodeConfig.HeadNodeRSSI.ToString();
-            string BatVoltage = "Battery Voltage: " + nfcSecondReply.NodeConfig.BatteryVoltage.ToString();
+                string NodeID = "Node ID: " + nfcSecondReply.NodeConfig.NodeID.ToString();
+                string NetworkID = "Network ID: " + nfcSecondReply.NodeConfig.NetworkID.ToString();
+                string NetworkChannel = "Network Channel: " + nfcSecondReply.NodeConfig.NetworkChannel.ToString();
+                string Softver = "Software Version: " + nfcSecondReply.NodeConfig.SoftwareVersion.ToString();
+                string WireVer = "Wirepas Version: " + nfcSecondReply.NodeConfig.WirepasVersion.Major.ToString() + "." + nfcSecondReply.NodeConfig.WirepasVersion.Devel.ToString() + "." + nfcSecondReply.NodeConfig.WirepasVersion.Maint.ToString() + "." + nfcSecondReply.NodeConfig.WirepasVersion.Minor.ToString();
+                string NodeConfig = "Node Configuration: " + nfcSecondReply.NodeConfig.NodeConfiguration.ToString();
+                string AppAreaID = "Application Area ID: " + nfcSecondReply.NodeConfig.ApplicationAreaID.ToString();
+                string HeadNodeRSSI = "Head Node RSSI: " + nfcSecondReply.NodeConfig.HeadNodeRSSI.ToString();
+                string BatVoltage = "Battery Voltage: " + nfcSecondReply.NodeConfig.BatteryVoltage.ToString();
 
-            string[] valueList = new string[] { NodeID, NetworkID, NetworkChannel, Softver, WireVer, NodeConfig, AppAreaID, HeadNodeRSSI, BatVoltage };
+                string[] valueList = new string[] { NodeID, NetworkID, NetworkChannel, Softver, WireVer, NodeConfig, AppAreaID, HeadNodeRSSI, BatVoltage };
 
 
-            ReadFromNode readValues = new ReadFromNode();
-            readValues.DisplayValues(valueList);
+                ReadFromNode readValues = new ReadFromNode();
+                readValues.DisplayValues(valueList);
+            }
+            catch {
+                Console.WriteLine("Parsing failed");
+            }
 
             Session.InvalidateSession();
         }

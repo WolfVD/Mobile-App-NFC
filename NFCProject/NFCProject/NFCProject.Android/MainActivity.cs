@@ -248,6 +248,8 @@ namespace NFCProject.Droid
 
                             };
 
+                            Console.WriteLine(nfcRequest);
+
                             Ndef ndef = Ndef.Get(tag);
                             ndef.Connect();
 

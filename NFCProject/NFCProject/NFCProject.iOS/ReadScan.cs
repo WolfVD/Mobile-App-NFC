@@ -80,11 +80,11 @@ namespace NFCProject.iOS
                     NullPayload = true
                 };
 
-                string nfcReplyPayload = nfcRequest.ToString(); //Convert to a request to a string so it can be written
+                byte[] nfcReplyPayload = nfcRequest.ToByteArray(); //Convert to a request to a string so it can be written
                 Console.WriteLine(nfcReplyPayload);
 
                 //Create a payload/message and write it.
-                NFCNdefPayload writePayload = NFCNdefPayload.CreateWellKnownTypePayload(nfcReplyPayload, NSLocale.CurrentLocale);
+                NFCNdefPayload writePayload = new NFCNdefPayload(NFCTypeNameFormat.Unknown, NSData.FromArray(new byte[0]), NSData.FromArray(new byte[0]), NSData.FromArray(nfcReplyPayload));
                 NFCNdefMessage writeMessage = new NFCNdefMessage(new NFCNdefPayload[] { writePayload });
                 tag.WriteNdef(writeMessage, delegate { Console.WriteLine("Write succesful"); });
 

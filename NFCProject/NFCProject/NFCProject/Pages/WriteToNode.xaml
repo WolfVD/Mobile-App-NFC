@@ -24,38 +24,34 @@
 
             <CheckBox x:Name="NetIDBox" Grid.Row="0" Grid.Column="0" x:FieldModifier="public" CheckedChanged="CheckBoxChanged"/>
             <Label Text="Network ID" FontSize="20" LineBreakMode="WordWrap" VerticalOptions="Center" Grid.Row="0" Grid.Column="1"/>
-            <Entry x:Name="NetIDEntry" Text="1" Keyboard="Numeric" Grid.Row="0" Grid.Column="2"/>
+            <Entry x:Name="NetIDEntry" Text="1" Keyboard="Numeric" Grid.Row="0" Grid.Column="2" TextChanged="TextChanged"/>
 
             <CheckBox x:Name="NetChanBox" Grid.Row="1" Grid.Column="0" x:FieldModifier="public" CheckedChanged="CheckBoxChanged"/>
             <Label Text="Network Channel" FontSize="20" LineBreakMode="WordWrap" VerticalOptions="Center" Grid.Row="1" Grid.Column="1" />
-            <Entry x:Name="NetChanEntry" Text="1" Keyboard="Numeric" Grid.Row="1" Grid.Column="2" />
+            <Entry x:Name="NetChanEntry" Text="1" Keyboard="Numeric" Grid.Row="1" Grid.Column="2" TextChanged="TextChanged"/>
 
             <CheckBox x:Name="NodeConfigBox" Grid.Row="2" Grid.Column="0" x:FieldModifier="public" CheckedChanged="CheckBoxChanged"/>
             <Label Text="Node Configuration" FontSize="20" LineBreakMode="WordWrap" VerticalOptions="Center" Grid.Row="2" Grid.Column="1"/>
-            <Picker x:Name="NodeConfigPicker" Title="Configuration ID" Grid.Row="2" Grid.Column="2" />
+            <Picker x:Name="NodeConfigPicker" Title="Configuration ID" Grid.Row="2" Grid.Column="2" SelectedIndexChanged="SelectedIndexChanged"/>
 
             <CheckBox x:Name="OperModeBox" Grid.Row="3" Grid.Column="0" x:FieldModifier="public" CheckedChanged="CheckBoxChanged"/>
             <Label Text="Operating Mode" FontSize="20" LineBreakMode="WordWrap" Grid.Row="3" VerticalOptions="Center" Grid.Column="1"/>
-            <Picker x:Name="OperModePicker" Title="Operating Mode" Grid.Row="3" Grid.Column="2" />
+            <Picker x:Name="OperModePicker" Title="Operating Mode" Grid.Row="3" Grid.Column="2" SelectedIndexChanged="SelectedIndexChanged"/>
 
             <CheckBox x:Name="EncKeyBox" Grid.Row="4" Grid.Column="0" x:FieldModifier="public" CheckedChanged="CheckBoxChanged"/>
             <Label Text="Encryption Key" FontSize="20" LineBreakMode="WordWrap" VerticalOptions="Center" Grid.Row="4" Grid.Column="1"/>
-            <Entry x:Name="EncKeyEntry" Text="6650208e3aac4f4043a9ae5a9a8761c1" Grid.Row="4" Grid.Column="2"/>
+            <Entry x:Name="EncKeyEntry" Text="6650208e3aac4f4043a9ae5a9a8761c1" Grid.Row="4" Grid.Column="2" TextChanged="TextChanged"/>
 
             <CheckBox x:Name="AuthKeyBox" Grid.Row="5" Grid.Column="0" x:FieldModifier="public" CheckedChanged="CheckBoxChanged"/>
             <Label Text="Authentication Key" FontSize="20" LineBreakMode="WordWrap" VerticalOptions="Center" Grid.Row="5" Grid.Column="1"/>
-            <Entry x:Name="AuthKeyEntry" Text="22de24ea7356c76e79126bff3491333f" Grid.Row="5" Grid.Column="2"/>
+            <Entry x:Name="AuthKeyEntry" Text="22de24ea7356c76e79126bff3491333f" Grid.Row="5" Grid.Column="2" TextChanged="TextChanged"/>
 
         </Grid>
-        <Button Text="Scan" FontSize="20" HorizontalOptions="Start" Clicked="iosScan">
+        <Button Text="Scan" FontSize="20" HorizontalOptions="Start" Clicked="StartScan">
             <Button.IsVisible>
                 <OnPlatform x:TypeArguments="x:Boolean" iOS="true" Android="false"/>
             </Button.IsVisible>
         </Button>
-        <Button Text="Save"
-                VerticalOptions="End"
-                HorizontalOptions="Start"
-                Clicked="SaveValues"/>
     </StackLayout>
 
 </ContentPage>

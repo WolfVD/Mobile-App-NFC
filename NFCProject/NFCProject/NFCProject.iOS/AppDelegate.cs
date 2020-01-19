@@ -27,8 +27,7 @@ namespace NFCProject.iOS
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
 
-            DependencyService.Register<IReadScan, ReadScan>();
-            DependencyService.Register<IWriteScan, WriteScan>();
+            DependencyService.Register<IStartNFC, StartNFC>();
             return base.FinishedLaunching(app, options);
             }
 

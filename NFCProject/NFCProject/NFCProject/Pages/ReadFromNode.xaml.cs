@@ -1,9 +1,5 @@
-﻿using System;
-using System.IO;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using NFCProject.Services;
-using System.ComponentModel;
-using System.Windows.Input;
 
 namespace NFCProject.Pages
 {
@@ -18,10 +14,11 @@ namespace NFCProject.Pages
             BindingContext = ViewModel;
         }
 
-        async void iosScan(object sender, System.EventArgs e)
+        // A scan button on IOS is required because: 1. Only certain phones support background tag reading (Iphone XS and above with exceptions); 2. Background tag reading does not support the payload type that is used by the node
+        async void StartScan(object sender, System.EventArgs e) 
         {
-            IReadScan service = DependencyService.Get<IReadScan>(DependencyFetchTarget.NewInstance);
-            service.StartReadScan();
+            IStartNFC service = DependencyService.Get<IStartNFC>(DependencyFetchTarget.NewInstance);
+            service.StartScan();
 
         }
 
@@ -30,15 +27,12 @@ namespace NFCProject.Pages
             ViewModel.NodeIDString = valueList[0];
             ViewModel.NetworkIDString = valueList[1];
             ViewModel.NetChanString = valueList[2];
-            //ViewModel.HardVerString = valueList[3];
             ViewModel.SoftVerString = valueList[3];
             ViewModel.WireVerString = valueList[4];
             ViewModel.NodeConfigString = valueList[5];
-            //ViewModel.PowerTestString = valueList[6];
             ViewModel.AppAreaIDString = valueList[6];
             ViewModel.HeadNodeRSSIString = valueList[7];
             ViewModel.BatVoltageString = valueList[8];
-            //ViewModel.GatewaySNString = valueList[10];
 
         }
 

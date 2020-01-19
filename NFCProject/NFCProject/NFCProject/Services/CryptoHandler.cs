@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.IO;
+﻿using System.IO;
 using System.Security.Cryptography;
-using System.Threading.Tasks;
 
 namespace NFCProject.Services
 {

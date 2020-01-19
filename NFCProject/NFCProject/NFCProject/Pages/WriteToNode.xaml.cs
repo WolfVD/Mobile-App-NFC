@@ -1,8 +1,6 @@
 ﻿using Xamarin.Forms;
 using System;
-using System.IO;
 using NFCProject.Services;
-using System.Collections.Generic;
 
 namespace NFCProject.Pages
 {
@@ -11,10 +9,17 @@ namespace NFCProject.Pages
 
         static string NetID = "1";
         static string NetChan = "1";
-        static string NodeConfig = "1";
-        static string OperMode = "1";
+        static string NodeConfig = "0";
+        static string OperMode = "0";
         static string EncKey = "6650208e3aac4f4043a9ae5a9a8761c1";
         static string AuthKey = "22de24ea7356c76e79126bff3491333f";
+
+        static string NetIDFinal = "1";
+        static string NetChanFinal = "1";
+        static string NodeConfigFinal = "0";
+        static string OperModeFinal = "0";
+        static string EncKeyFinal = "6650208e3aac4f4043a9ae5a9a8761c1";
+        static string AuthKeyFinal = "22de24ea7356c76e79126bff3491333f";
 
         static bool NetIDOn;
         static bool NetChanOn;
@@ -38,37 +43,40 @@ namespace NFCProject.Pages
             OperModePicker.Items.Add("Inventory");
         }
 
-        async void SaveValues(object sender, System.EventArgs e)
+        private void TextChanged(object sender, TextChangedEventArgs e)
         {
-            onSaved = await DisplayAlert("Save Values", "Are you sure you want to write the given values to the node?", "Yes", "No");
-
-            if (onSaved == true) {
-
-                if (NetIDBox.IsChecked) {
-                    NetID = NetIDEntry.Text;
-                }
-                if (NetChanBox.IsChecked)
-                {
-                    NetChan = NetChanEntry.Text;
-                }
-                if (NodeConfigBox.IsChecked)
-                {
-                    NodeConfig = NodeConfigPicker.SelectedIndex.ToString();
-                }
-                if (OperModeBox.IsChecked)
-                {
-                    OperMode = OperModePicker.SelectedIndex.ToString();
-                }
-                if (EncKeyBox.IsChecked)
-                {
-                    EncKey = EncKeyEntry.Text;
-                }
-                if (AuthKeyBox.IsChecked)
-                {
-                    AuthKey = AuthKeyEntry.Text;
-                }
+            Entry entry = (Entry)sender;
+            
+            if (entry == NetIDEntry)
+            {
+                NetID = entry.Text;
+            }
+            else if (entry == NetChanEntry)
+            {
+                NetChan = entry.Text;
+            }
+            else if (entry == EncKeyEntry)
+            {
+                EncKey = entry.Text;
+            }
+            else if (entry == AuthKeyEntry)
+            {
+                AuthKey = entry.Text;
             }
 
+        }
+
+        private void SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Picker picker = (Picker)sender;
+            if (picker == NodeConfigPicker)
+            {
+                NodeConfig = picker.SelectedIndex.ToString();
+            }
+            else if (picker == OperModePicker)
+            {
+                OperMode = picker.SelectedIndex.ToString();
+            }
         }
 
         private void CheckBoxChanged(object sender, CheckedChangedEventArgs e)
@@ -104,7 +112,33 @@ namespace NFCProject.Pages
 
         public string[] ReturnValues()
         {
-            string[] valueList = new string[] { NetID, NetChan, NodeConfig, OperMode, EncKey, AuthKey };
+
+            if (NetIDOn)
+            {
+                NetIDFinal = NetID;
+            }
+            if (NetChanOn)
+            {
+                NetChanFinal = NetChan;
+            }
+            if (NodeConfigOn)
+            {
+                NodeConfigFinal = NodeConfig;
+            }
+            if (OperModeOn)
+            {
+                OperModeFinal = OperMode;
+            }
+            if (EncKeyOn)
+            {
+                EncKeyFinal = EncKey;
+            }
+            if (AuthKeyOn)
+            {
+                AuthKeyFinal = AuthKey;
+            }
+
+            string[] valueList = new string[] { NetIDFinal, NetChanFinal, NodeConfigFinal, OperModeFinal, EncKeyFinal, AuthKeyFinal };
 
             return valueList;
         }
@@ -116,10 +150,11 @@ namespace NFCProject.Pages
             return checkedList;
         }
 
-        async void iosScan(object sender, System.EventArgs e)
+        // A scan button on IOS is required because: 1. Only certain phones support background tag reading (Iphone XS and above with exceptions); 2. Background tag reading does not support the payload type that is used by the node
+        async void StartScan(object sender, System.EventArgs e) 
         {
-            IWriteScan service = DependencyService.Get<IWriteScan>(DependencyFetchTarget.NewInstance);
-            service.StartWriteScan();
+            IStartNFC service = DependencyService.Get<IStartNFC>(DependencyFetchTarget.NewInstance);
+            service.StartScan();
         }
     }
 }

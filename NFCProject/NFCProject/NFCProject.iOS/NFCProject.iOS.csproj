@@ -68,13 +68,10 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="WriteScan.cs" />
+    <Compile Include="StartNFC.cs" />
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
-    <Compile Include="Message.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <None Include="message.proto" />
-    <Compile Include="ReadScan.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />

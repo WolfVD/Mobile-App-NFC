@@ -28,19 +28,57 @@ namespace NFCProject.Pages
         static bool EncKeyOn;
         static bool AuthKeyOn;
 
-        public static bool onSaved = false;
+        public static bool checkBox1Checked = false;
+        public static bool checkBox2Checked = false;
+        public static bool checkBox3Checked = false;
+        public static bool checkBox4Checked = false;
+        public static bool checkBox5Checked = false;
 
         public WriteToNode()
         {
             InitializeComponent();
 
-            NodeConfigPicker.Items.Add("Desk1M");
-            NodeConfigPicker.Items.Add("Desk2M");
-            NodeConfigPicker.Items.Add("Ceiling1M");
-            NodeConfigPicker.Items.Add("Ceiling2M");
-
             OperModePicker.Items.Add("Run");
             OperModePicker.Items.Add("Inventory");
+
+            var tapGestureRecognizer = new TapGestureRecognizer();
+            tapGestureRecognizer.Tapped += (s, e) =>
+            {
+                DisplaySensorView();
+            };
+            NodeConfigClick.GestureRecognizers.Add(tapGestureRecognizer);
+        }
+
+        async void DisplaySensorView()
+        {
+            Grid grid = SensorView.GetView();
+            StackLayout stackLayout = new StackLayout();
+
+            Label title = new Label { Text = "Current Node Configuration", FontAttributes = FontAttributes.Bold, HorizontalTextAlignment = TextAlignment.Start, FontSize=20, VerticalTextAlignment=TextAlignment.Center, TranslationX=10, TranslationY=10 };
+            Label okLabel = new Label { Text = "OK", FontSize = 20, HorizontalTextAlignment = TextAlignment.Start, TranslationX = 10, TextColor=Color.HotPink, VerticalTextAlignment=TextAlignment.Start, VerticalOptions=LayoutOptions.Start };
+            var tapGestureRecognizer = new TapGestureRecognizer();
+            tapGestureRecognizer.Tapped += (s, e) =>
+            {
+                Navigation.PopModalAsync();
+            };
+            okLabel.GestureRecognizers.Add(tapGestureRecognizer);
+
+            grid.Children.Add(okLabel, 0, 5);
+
+            stackLayout.Children.Add(title);
+            stackLayout.Children.Add(grid);
+
+            ContentPage contentPage = new ContentPage
+            {
+                Content = stackLayout,
+            };
+
+            await Navigation.PushModalAsync(contentPage);
+        }
+
+        public static void ChangeConfig(int row, bool isChecked)
+        {
+            Console.WriteLine("Test");
         }
 
         private void TextChanged(object sender, TextChangedEventArgs e)
@@ -69,11 +107,8 @@ namespace NFCProject.Pages
         private void SelectedIndexChanged(object sender, EventArgs e)
         {
             Picker picker = (Picker)sender;
-            if (picker == NodeConfigPicker)
-            {
-                NodeConfig = picker.SelectedIndex.ToString();
-            }
-            else if (picker == OperModePicker)
+
+            if (picker == OperModePicker)
             {
                 OperMode = picker.SelectedIndex.ToString();
             }

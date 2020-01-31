@@ -5,23 +5,40 @@ namespace NFCProject.Services
 {
     public class CryptoHandler
     {
-        public byte[] Encrypt(byte[] data, byte[] Key, byte[] IV)
+        public byte[] Encrypt(byte[] data, byte[] key, byte[] iv)
         {
             using (var aes = Aes.Create())
             {
                 aes.KeySize = 128;
                 aes.BlockSize = 128;
-                aes.Padding = PaddingMode.PKCS7;
+                aes.Padding = PaddingMode.None;
 
-                aes.Key = Key;
-                aes.IV = IV;
+                aes.Key = key;
+                aes.IV = iv;
 
-                using (var encryptor = aes.CreateEncryptor(aes.Key, aes.IV)) {
+                using (var encryptor = aes.CreateEncryptor(aes.Key, aes.IV))
+                {
                     return PerformCryptography(data, encryptor);
                 }
-
             }
+        }
 
+        public byte[] Decrypt(byte[] data, byte[] key, byte[] iv)
+        {
+            using (var aes = Aes.Create())
+            {
+                aes.KeySize = 128;
+                aes.BlockSize = 128;
+                aes.Padding = PaddingMode.None;
+
+                aes.Key = key;
+                aes.IV = iv;
+
+                using (var decryptor = aes.CreateDecryptor(aes.Key, aes.IV))
+                {
+                    return PerformCryptography(data, decryptor);
+                }
+            }
         }
 
         private byte[] PerformCryptography(byte[] data, ICryptoTransform cryptoTransform)

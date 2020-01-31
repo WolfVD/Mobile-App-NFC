@@ -1,19 +1,71 @@
-﻿syntax = "proto3";
-package NFCProject;
+syntax = "proto3";
 
-enum MessageType {
-      NODE_LED_FLASH = 0;
-      /*Altough its possible to decode whether a message is unicast or broadcast they have been
-      specificed here to eliminate confusion and to make it easier for the decoding process*/
-      NODE_UNICAST_CONFIG = 1;
-      NODE_BROADCAST_CONFIG = 2;
-      NODE_REQUEST_CONFIG = 3;
+
+/*Data payload for the node*/
+message RLDataPayload {   
+   int32 sequence = 1; //increments by 1 during each message and restarts to 0 after 255
+   int32 als_lux = 2; //Encoded as lux
+   int32 audio_db = 3; // Encoded as dB. 
+   /*
+   * Temperature in DegC, resolution is 0.01 DegC.
+   * Output value of “2134” equals 21.34 DegC.
+   */
+   int32 temperature = 4; 
+   /**
+   * Humidity in %RH as unsigned 32 bit integer in Q22.10 format
+   * (22 integer and 10 fractional bits).
+   * Output value of “50532” represents 50532/1024 = 49.356 %RH
+   */
+   int32 humidity = 5; //Encoded as humidty * 1024 (result in %)
+   /*Pressure in Pa as unsigned 32 bit integer in Q24.8 format
+   * (24 integer bits and 8 fractional bits).
+   * Output value of “24674867” represents 24674867/256 = 96386.2 Pa = 963.862 hPa*/
+   int32 airPressure = 6; //Encoded as pressure(hPa) * 256 * 10
+   int32 battery = 7; //Encoded as VBat in mV ie. 3600 represent 3.6V
+   int32 gasResistance = 8; //Provided as ohms
+   int32 magneticField = 9;//Provided as uT
 }
-enum NodeConfiguration {
-         DESK_1M = 0;
-         DESK_2M = 1;
-         CEILING_1M = 2;
-         CEILING_2M = 3;
+
+
+message RLAccelPayload{   
+   /*Accel*/
+   int32 avgAccelX = 1;
+   int32 avgAccelY = 2;
+   int32 avgAccelZ = 3;
+   int32 minAccelX = 4;
+   int32 minAccelY = 5;
+   int32 minAccelZ = 6;
+   int32 maxAccelX = 7;
+   int32 maxAccelY = 8;
+   int32 maxAccelZ = 9;
+   /*Angular*/
+   int32 avgAngularX = 10;
+   int32 avgAngularY = 11;
+   int32 avgAngularZ = 12;
+   int32 minAngularX = 13;
+   int32 minAngularY = 14;
+   int32 minAngularZ = 15;
+   int32 maxAngularX = 16;
+   int32 maxAngularY = 17;
+   int32 maxAngularZ = 18;
+   /*Sequence*/
+   int32 sequence = 19;
+}
+
+/*Wirepas*/
+message WirepasVersion{
+   uint32 devel = 1;
+   uint32 maint = 2;
+   uint32 minor = 3;
+   uint32 major = 4;
+}
+
+/*Redlore Version*/
+message RedloreVersion{
+   uint32 devel = 1;
+   uint32 maint = 2;
+   uint32 minor = 3;
+   uint32 major = 4;
 }
 
 /*Node Operating Mode*/
@@ -22,122 +74,116 @@ enum NodeOperatingMode {
    INVENTORY = 1;
 }
 
-message RX1_Request {
+enum NodeRole{
+   NODE_ROLE_HEADNODE_ANCHOR = 0;
+   NODE_ROLE_SUBNODE_TRACKED = 1;
+}
 
-   MessageType messageType = 1;
-   int32 messageID = 2; //Random number to identify the message.  This will be sent back in the acknowledge
-   /*The following are not used in all messages*/
+/*config payload for the node*/
+message RLConfigPayload{
+   uint32 nodeID = 1;
+   uint32 networkID = 2;
+   uint32 networkChannel = 3;
+   uint32 hardwareVersion = 4;
+   RedloreVersion softwareVersion = 5;
+   WirepasVersion wirepasVersion = 6;
+   int32 nodeConfiguration = 7;
+   NodeOperatingMode operatingMode = 8;   
+   uint32 applicationAreaID = 9;   
+   uint32 headNodeRSSI = 10;
+   //bat vol
+   uint32 batteryVoltage = 11; //encoded as *100 ie 3.6 = 360
+   bool gatewayConnected = 12;
+   uint32 uplinkRate = 13;
+   NodeRole nodeRole = 14;
+   bool assetTrackingEnabled = 15;
+   uint32 sequence = 16;
+}
 
-   message Node_Config_Payload{
+message RLAcknowledgePayload {   
+   int32 messageID = 1; //Random number to identify the message.  This will be sent back in the acknowledge
+   /*The time at which the node plans to make the update calculated as an offset from the message sent timestamp*/
+   int32 updateTime = 2;
+}
+
+/*Payload Message*/
+message RLPayload{
+    oneof payload {
+        RLDataPayload dataPayload = 1;
+        RLConfigPayload configPayload = 2;
+        RLAcknowledgePayload acknowledgePayload = 3;
+        RLAccelPayload accelPayload = 4;
+      }
+}
+
+enum MessageType {
+      NODE_LED_FLASH = 0;
+      /*Altough its possible to decode whether a message is unicast or broadcast they have been
+      specificed here to eliminate confusion and to make it easier for the decoding process*/
+      NODE_UNICAST_CONFIG = 1;  
+      NODE_BROADCAST_CONFIG = 2;  
+      NODE_REQUEST_CONFIG = 3;
+}
+
+
+
+
+message NodeConfigRequest{
       /*Network ID*/
       int32 networkID = 1;
       bool hasNetworkID = 2;
       /*Network Channel*/
       int32 networkChannel = 3;
       bool hasNetworkChannel = 4;
-      /*Node Configuration*/
-
-      NodeConfiguration nodeConfiguration = 5;
+      /*Node Configuration*/      
+      int32 nodeConfiguration = 5;
       bool hasNodeConfiguration = 6;
-
+      /*Operating Mode*/
       NodeOperatingMode operatingMode = 7;
-      bool hasOperatingMode = 8;
+      bool hasOperatingMode = 8; 
       /*Feature Lock*/
       bool featureLock = 9;
       bool hasFeatureLock = 10;
+      /*Encryption Key*/
+      bool hasEncryptionKey = 11;
+      oneof encryptionKeyPayload {
+       bytes encryptionKey = 12;// [(nanopb).max_size = 16, (nanopb).fixed_length = true];
+       bool encryptionKeyNullPayload  = 13; //To use set as true.  This is used in messages that do not have a payload
+      }    
+      /*Authentication Key*/
+      bool hasAuthenticationKey = 14;
+      oneof authenticationKeyPayload {
+       bytes authenticationKey = 15;// [(nanopb).max_size = 16, (nanopb).fixed_length = true]; 
+       bool authenticationKeyNullPayload  = 16; //To use set as true.  This is used in messages that do not have a payload
+      }
+      /*Uplink Rate*/
+      int32 uplinkRate = 17; //in Seconds
+      bool hasUplinkRate = 18;    
+      /*Role*/
+      NodeRole nodeRole = 19;
+      bool hasNodeRole = 20;
+      /*WPE*/  
+      bool assetTrackingEnabled = 21;
+      bool hasAssetTrackingEnabled = 22;
       /*Delay*/
-      int32 delay = 11;
-   }
+      int32 delay = 23;   
+}
 
+message RemoteFunctionRequest {
+   MessageType messageType = 1; 
+   int32 messageID = 2; //Random number to identify the message.  This will be sent back in the acknowledge
+   /*The following are not used in all messages*/   
    /*It is up to the sender receiver to select the payload based on the type field*/
    oneof payload {
-      Node_Config_Payload nodeConfigPayload = 3;
+      NodeConfigRequest nodeConfigPayload = 3;      
       bool nullPayload  = 4; //To use set as true.  This is used in messages that do not have a payload
    }
 }
 
-message RX1_Acknowledge {
-   MessageType messageType = 1;
-   int32 messageID = 2; //Random number to identify the message.  This will be sent back in the acknowledge
-   /*The time at which the node plans to make the update calculated as an offset from the message sent timestamp*/
-   int32 updateTime = 3;
-}
 
-message RX1_Uplink_Config{
-   uint32 nodeID = 1;
-   uint32 networkID = 2;
-   uint32 networkChannel = 3;
-   uint32 hardwareVersion = 4;
-   uint32 softwareVersion = 5;
-   message WirepassVersion{
-      uint32 devel = 1;
-      uint32 maint = 2;
-      uint32 minor = 3;
-      uint32 major = 4;
-   }
-   WirepassVersion wirepasVersion = 6;
-   NodeConfiguration nodeConfiguration = 7;
-   NodeOperatingMode operatingMode = 8;
-   //App area id
-   uint32 applicationAreaID = 9;
-   //head node rssi
-   uint32 headNodeRSSI = 10;
-   //bat vol
-   uint32 batteryVoltage = 11; //encoded as *100 ie 3.6 = 360
-   //gateway sn
-   bool gatewayConnected = 12;
-   uint32 messageID = 13;
-}
 
-message RX_Uplink_Manufacturing_Results {
-   uint32 nodeID = 1;
-   uint32 pirCount = 2;
-   uint32 irTemp = 3;
-   uint32 ambientTemp = 4;
-   uint32 ambientLight = 5;
-   uint32 microphone = 6;
-   uint32 button = 7;
-   bool gatewayConnected = 8;
-   uint32 battery = 9;
-}
 
-message RX1_NFC_Reply {
-   bool authenticationResult = 1;
-   oneof payload{
-      bytes nonce = 2; // [(nanopb).max_size = 16, (nanopb).fixed_length = true];
-      bool nullPayload = 3;
-      RX1_Uplink_Config nodeConfig = 4;
-      RX_Uplink_Manufacturing_Results manufacturingTestResults = 5;
-      bool setNodeConfigAcknowledge = 6;
-   }
-}
 
-message RX1_NFC_Config {
-   bool hasNetworkID = 1;
-   uint32 networkID = 2;
-   bool hasNetworkChannel = 3;
-   uint32 networkChannel = 4;
-   bool hasNodeConfiguration = 5;
-   NodeConfiguration nodeConfiguration = 6;
-   bool hasOperatingMode = 7;
-   NodeOperatingMode operatingMode = 8;
-   bool hasEncryptionKey = 9;
-   bytes encryptionKey = 10; // [(nanopb).max_size = 16, (nanopb).fixed_length = true];
-   bool hasAuthenticationKey = 11;
-   bytes authenticationKey = 12; // [(nanopb).max_size = 16, (nanopb).fixed_length = true];
-}
 
-message RX1_NFC_Request {
-   enum NFCRequestType {
-         GET_NODE_CONFIG = 0;
-         SET_NODE_CONFIG = 1;
-         SET_NODE_CONFIG_MANUF = 2; //used in manufacturing only
-   }
-   NFCRequestType requestType = 1;
-   bytes encryptedNonce = 2; 
-   oneof payload{
-      bool nullPayload = 3;
-      RX1_NFC_Config nodeConfig = 4;
-   }
-   uint32 chksum = 5; //Used to validate nodeConfig
-}
+
+

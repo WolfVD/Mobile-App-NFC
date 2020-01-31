@@ -7,11 +7,12 @@ using Android.OS;
 using Android.Runtime;
 using Android.Widget;
 using NFCProject.Pages;
+using Google.Protobuf;
 using System;
 
 namespace NFCProject.Droid
 {
-    [Activity(Label = "NFCProject", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [Activity(Label = "NFCProject", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Portrait)]
     [IntentFilter(new[] { NfcAdapter.ActionTechDiscovered },
       Categories = new[] { Intent.CategoryDefault },
       DataScheme = "vnd.android.nfc",
@@ -77,52 +78,21 @@ namespace NFCProject.Droid
                     {
                         if (MainPage.currentPage == "Read From Node") //If current page is read page
                         {
-
-                            byte[] bytes = ReadNFC.EncryptNonceRead(records[0].GetPayload()); //Encrypt nonce and create reply
-
-                            //Write reply
-                            Ndef ndef = Ndef.Get(tag);
-                            ndef.Connect();
-
-                            NdefRecord newRecord = new NdefRecord(NdefRecord.TnfUnknown, new byte[0], new byte[0], bytes);
-                            NdefMessage newMessage = new NdefMessage(new NdefRecord[] { newRecord });
-                            ndef.WriteNdefMessage(newMessage);
-
-                            System.Threading.Thread.Sleep(1000); //Wait 1 second
-
-                            //Read node config
-                            NdefMessage secondMessage = ndef.NdefMessage;
-                            NdefRecord[] secondRecords = secondMessage.GetRecords();
-                            ndef.Close();
-
-                            ReadNFC.GetValues(secondRecords[0].GetPayload());
-
+                            ReadNFC.DisplayValues(records[0].GetPayload()); //Encrypt nonce and create reply
                         }
                         else //If current page is write page
                         {
-                            byte[] bytes = WriteNFC.EncryptNonceWrite(records[0].GetPayload()); //Encrypt nonce and create reply
 
-                            //Write reply
                             Ndef ndef = Ndef.Get(tag);
                             ndef.Connect();
+
+                            byte[] bytes = WriteNFC.CreateRequest();
 
                             NdefRecord newRecord = new NdefRecord(NdefRecord.TnfUnknown, new byte[0], new byte[0], bytes);
                             NdefMessage newMessage = new NdefMessage(new NdefRecord[] { newRecord });
                             ndef.WriteNdefMessage(newMessage);
-
-                            System.Threading.Thread.Sleep(1000); //Wait 1 second
-
-                            //Read write confirmation
-                            NdefMessage secondMessage = ndef.NdefMessage;
-                            NdefRecord[] secondRecords = secondMessage.GetRecords();
-
-                            RX1_NFC_Reply nfcSecondReply = RX1_NFC_Reply.Parser.ParseFrom(secondRecords[0].GetPayload());
-
-                            if (nfcSecondReply.SetNodeConfigAcknowledge)
-                            {
-                                Toast.MakeText(ApplicationContext, "Write Succesful", ToastLength.Long).Show();
-                                WriteToNode.onSaved = false;
-                            }
+                            ndef.Close();
+                            Toast.MakeText(ApplicationContext, "Write Succesful", ToastLength.Long).Show();
                         }
                     }
                 }

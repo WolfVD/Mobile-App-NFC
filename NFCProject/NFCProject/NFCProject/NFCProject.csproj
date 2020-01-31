@@ -26,4 +26,8 @@
       <DependentUpon>ReadFromNode.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Protobuf\" />
+  </ItemGroup>
 </Project>

@@ -9,3124 +9,3712 @@ using pb = global::Google.Protobuf;
 using pbc = global::Google.Protobuf.Collections;
 using pbr = global::Google.Protobuf.Reflection;
 using scg = global::System.Collections.Generic;
-namespace NFCProject {
+/// <summary>Holder for reflection information generated from message.proto</summary>
+public static partial class MessageReflection {
 
-  /// <summary>Holder for reflection information generated from message.proto</summary>
-  public static partial class MessageReflection {
-
-    #region Descriptor
-    /// <summary>File descriptor for message.proto</summary>
-    public static pbr::FileDescriptor Descriptor {
-      get { return descriptor; }
-    }
-    private static pbr::FileDescriptor descriptor;
-
-    static MessageReflection() {
-      byte[] descriptorData = global::System.Convert.FromBase64String(
-          string.Concat(
-            "Cg1tZXNzYWdlLnByb3RvEg5ORkNQcm9qZWN0LmlPUyKiBAoLUlgxX1JlcXVl",
-            "c3QSMAoLbWVzc2FnZVR5cGUYASABKA4yGy5ORkNQcm9qZWN0LmlPUy5NZXNz",
-            "YWdlVHlwZRIRCgltZXNzYWdlSUQYAiABKAUSTAoRbm9kZUNvbmZpZ1BheWxv",
-            "YWQYAyABKAsyLy5ORkNQcm9qZWN0LmlPUy5SWDFfUmVxdWVzdC5Ob2RlX0Nv",
-            "bmZpZ19QYXlsb2FkSAASFQoLbnVsbFBheWxvYWQYBCABKAhIABrdAgoTTm9k",
-            "ZV9Db25maWdfUGF5bG9hZBIRCgluZXR3b3JrSUQYASABKAUSFAoMaGFzTmV0",
-            "d29ya0lEGAIgASgIEhYKDm5ldHdvcmtDaGFubmVsGAMgASgFEhkKEWhhc05l",
-            "dHdvcmtDaGFubmVsGAQgASgIEjwKEW5vZGVDb25maWd1cmF0aW9uGAUgASgO",
-            "MiEuTkZDUHJvamVjdC5pT1MuTm9kZUNvbmZpZ3VyYXRpb24SHAoUaGFzTm9k",
-            "ZUNvbmZpZ3VyYXRpb24YBiABKAgSOAoNb3BlcmF0aW5nTW9kZRgHIAEoDjIh",
-            "Lk5GQ1Byb2plY3QuaU9TLk5vZGVPcGVyYXRpbmdNb2RlEhgKEGhhc09wZXJh",
-            "dGluZ01vZGUYCCABKAgSEwoLZmVhdHVyZUxvY2sYCSABKAgSFgoOaGFzRmVh",
-            "dHVyZUxvY2sYCiABKAgSDQoFZGVsYXkYCyABKAVCCQoHcGF5bG9hZCJqCg9S",
-            "WDFfQWNrbm93bGVkZ2USMAoLbWVzc2FnZVR5cGUYASABKA4yGy5ORkNQcm9q",
-            "ZWN0LmlPUy5NZXNzYWdlVHlwZRIRCgltZXNzYWdlSUQYAiABKAUSEgoKdXBk",
-            "YXRlVGltZRgDIAEoBSKIBAoRUlgxX1VwbGlua19Db25maWcSDgoGbm9kZUlE",
-            "GAEgASgNEhEKCW5ldHdvcmtJRBgCIAEoDRIWCg5uZXR3b3JrQ2hhbm5lbBgD",
-            "IAEoDRIXCg9oYXJkd2FyZVZlcnNpb24YBCABKA0SFwoPc29mdHdhcmVWZXJz",
-            "aW9uGAUgASgNEkkKDndpcmVwYXNWZXJzaW9uGAYgASgLMjEuTkZDUHJvamVj",
-            "dC5pT1MuUlgxX1VwbGlua19Db25maWcuV2lyZXBhc3NWZXJzaW9uEjwKEW5v",
-            "ZGVDb25maWd1cmF0aW9uGAcgASgOMiEuTkZDUHJvamVjdC5pT1MuTm9kZUNv",
-            "bmZpZ3VyYXRpb24SOAoNb3BlcmF0aW5nTW9kZRgIIAEoDjIhLk5GQ1Byb2pl",
-            "Y3QuaU9TLk5vZGVPcGVyYXRpbmdNb2RlEhkKEWFwcGxpY2F0aW9uQXJlYUlE",
-            "GAkgASgNEhQKDGhlYWROb2RlUlNTSRgKIAEoDRIWCg5iYXR0ZXJ5Vm9sdGFn",
-            "ZRgLIAEoDRIYChBnYXRld2F5Q29ubmVjdGVkGAwgASgIEhEKCW1lc3NhZ2VJ",
-            "RBgNIAEoDRpNCg9XaXJlcGFzc1ZlcnNpb24SDQoFZGV2ZWwYASABKA0SDQoF",
-            "bWFpbnQYAiABKA0SDQoFbWlub3IYAyABKA0SDQoFbWFqb3IYBCABKA0izQEK",
-            "H1JYX1VwbGlua19NYW51ZmFjdHVyaW5nX1Jlc3VsdHMSDgoGbm9kZUlEGAEg",
-            "ASgNEhAKCHBpckNvdW50GAIgASgNEg4KBmlyVGVtcBgDIAEoDRITCgthbWJp",
-            "ZW50VGVtcBgEIAEoDRIUCgxhbWJpZW50TGlnaHQYBSABKA0SEgoKbWljcm9w",
-            "aG9uZRgGIAEoDRIOCgZidXR0b24YByABKA0SGAoQZ2F0ZXdheUNvbm5lY3Rl",
-            "ZBgIIAEoCBIPCgdiYXR0ZXJ5GAkgASgNIpICCg1SWDFfTkZDX1JlcGx5EhwK",
-            "FGF1dGhlbnRpY2F0aW9uUmVzdWx0GAEgASgIEg8KBW5vbmNlGAIgASgMSAAS",
-            "FQoLbnVsbFBheWxvYWQYAyABKAhIABI3Cgpub2RlQ29uZmlnGAQgASgLMiEu",
-            "TkZDUHJvamVjdC5pT1MuUlgxX1VwbGlua19Db25maWdIABJTChhtYW51ZmFj",
-            "dHVyaW5nVGVzdFJlc3VsdHMYBSABKAsyLy5ORkNQcm9qZWN0LmlPUy5SWF9V",
-            "cGxpbmtfTWFudWZhY3R1cmluZ19SZXN1bHRzSAASIgoYc2V0Tm9kZUNvbmZp",
-            "Z0Fja25vd2xlZGdlGAYgASgISABCCQoHcGF5bG9hZCKGAwoOUlgxX05GQ19D",
-            "b25maWcSFAoMaGFzTmV0d29ya0lEGAEgASgIEhEKCW5ldHdvcmtJRBgCIAEo",
-            "DRIZChFoYXNOZXR3b3JrQ2hhbm5lbBgDIAEoCBIWCg5uZXR3b3JrQ2hhbm5l",
-            "bBgEIAEoDRIcChRoYXNOb2RlQ29uZmlndXJhdGlvbhgFIAEoCBI8ChFub2Rl",
-            "Q29uZmlndXJhdGlvbhgGIAEoDjIhLk5GQ1Byb2plY3QuaU9TLk5vZGVDb25m",
-            "aWd1cmF0aW9uEhgKEGhhc09wZXJhdGluZ01vZGUYByABKAgSOAoNb3BlcmF0",
-            "aW5nTW9kZRgIIAEoDjIhLk5GQ1Byb2plY3QuaU9TLk5vZGVPcGVyYXRpbmdN",
-            "b2RlEhgKEGhhc0VuY3J5cHRpb25LZXkYCSABKAgSFQoNZW5jcnlwdGlvbktl",
-            "eRgKIAEoDBIcChRoYXNBdXRoZW50aWNhdGlvbktleRgLIAEoCBIZChFhdXRo",
-            "ZW50aWNhdGlvbktleRgMIAEoDCKtAgoPUlgxX05GQ19SZXF1ZXN0EkMKC3Jl",
-            "cXVlc3RUeXBlGAEgASgOMi4uTkZDUHJvamVjdC5pT1MuUlgxX05GQ19SZXF1",
-            "ZXN0Lk5GQ1JlcXVlc3RUeXBlEhYKDmVuY3J5cHRlZE5vbmNlGAIgASgMEhUK",
-            "C251bGxQYXlsb2FkGAMgASgISAASNAoKbm9kZUNvbmZpZxgEIAEoCzIeLk5G",
-            "Q1Byb2plY3QuaU9TLlJYMV9ORkNfQ29uZmlnSAASDgoGY2hrc3VtGAUgASgN",
-            "IlUKDk5GQ1JlcXVlc3RUeXBlEhMKD0dFVF9OT0RFX0NPTkZJRxAAEhMKD1NF",
-            "VF9OT0RFX0NPTkZJRxABEhkKFVNFVF9OT0RFX0NPTkZJR19NQU5VRhACQgkK",
-            "B3BheWxvYWQqbgoLTWVzc2FnZVR5cGUSEgoOTk9ERV9MRURfRkxBU0gQABIX",
-            "ChNOT0RFX1VOSUNBU1RfQ09ORklHEAESGQoVTk9ERV9CUk9BRENBU1RfQ09O",
-            "RklHEAISFwoTTk9ERV9SRVFVRVNUX0NPTkZJRxADKk0KEU5vZGVDb25maWd1",
-            "cmF0aW9uEgsKB0RFU0tfMU0QABILCgdERVNLXzJNEAESDgoKQ0VJTElOR18x",
-            "TRACEg4KCkNFSUxJTkdfMk0QAyorChFOb2RlT3BlcmF0aW5nTW9kZRIHCgNS",
-            "VU4QABINCglJTlZFTlRPUlkQAWIGcHJvdG8z"));
-      descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
-          new pbr::FileDescriptor[] { },
-          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::NFCProject.MessageType), typeof(global::NFCProject.NodeConfiguration), typeof(global::NFCProject.NodeOperatingMode), }, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::NFCProject.RX1_Request), global::NFCProject.RX1_Request.Parser, new[]{ "MessageType", "MessageID", "NodeConfigPayload", "NullPayload" }, new[]{ "Payload" }, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::NFCProject.RX1_Request.Types.Node_Config_Payload), global::NFCProject.RX1_Request.Types.Node_Config_Payload.Parser, new[]{ "NetworkID", "HasNetworkID", "NetworkChannel", "HasNetworkChannel", "NodeConfiguration", "HasNodeConfiguration", "OperatingMode", "HasOperatingMode", "FeatureLock", "HasFeatureLock", "Delay" }, null, null, null, null)}),
-            new pbr::GeneratedClrTypeInfo(typeof(global::NFCProject.RX1_Acknowledge), global::NFCProject.RX1_Acknowledge.Parser, new[]{ "MessageType", "MessageID", "UpdateTime" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::NFCProject.RX1_Uplink_Config), global::NFCProject.RX1_Uplink_Config.Parser, new[]{ "NodeID", "NetworkID", "NetworkChannel", "HardwareVersion", "SoftwareVersion", "WirepasVersion", "NodeConfiguration", "OperatingMode", "ApplicationAreaID", "HeadNodeRSSI", "BatteryVoltage", "GatewayConnected", "MessageID" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::NFCProject.RX1_Uplink_Config.Types.WirepassVersion), global::NFCProject.RX1_Uplink_Config.Types.WirepassVersion.Parser, new[]{ "Devel", "Maint", "Minor", "Major" }, null, null, null, null)}),
-            new pbr::GeneratedClrTypeInfo(typeof(global::NFCProject.RX_Uplink_Manufacturing_Results), global::NFCProject.RX_Uplink_Manufacturing_Results.Parser, new[]{ "NodeID", "PirCount", "IrTemp", "AmbientTemp", "AmbientLight", "Microphone", "Button", "GatewayConnected", "Battery" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::NFCProject.RX1_NFC_Reply), global::NFCProject.RX1_NFC_Reply.Parser, new[]{ "AuthenticationResult", "Nonce", "NullPayload", "NodeConfig", "ManufacturingTestResults", "SetNodeConfigAcknowledge" }, new[]{ "Payload" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::NFCProject.RX1_NFC_Config), global::NFCProject.RX1_NFC_Config.Parser, new[]{ "HasNetworkID", "NetworkID", "HasNetworkChannel", "NetworkChannel", "HasNodeConfiguration", "NodeConfiguration", "HasOperatingMode", "OperatingMode", "HasEncryptionKey", "EncryptionKey", "HasAuthenticationKey", "AuthenticationKey" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::NFCProject.RX1_NFC_Request), global::NFCProject.RX1_NFC_Request.Parser, new[]{ "RequestType", "EncryptedNonce", "NullPayload", "NodeConfig", "Chksum" }, new[]{ "Payload" }, new[]{ typeof(global::NFCProject.RX1_NFC_Request.Types.NFCRequestType) }, null, null)
-          }));
-    }
-    #endregion
-
+  #region Descriptor
+  /// <summary>File descriptor for message.proto</summary>
+  public static pbr::FileDescriptor Descriptor {
+    get { return descriptor; }
   }
-  #region Enums
-  public enum MessageType {
-    [pbr::OriginalName("NODE_LED_FLASH")] NodeLedFlash = 0,
-    /// <summary>
-    ///Altough its possible to decode whether a message is unicast or broadcast they have been
-    ///specificed here to eliminate confusion and to make it easier for the decoding process
-    /// </summary>
-    [pbr::OriginalName("NODE_UNICAST_CONFIG")] NodeUnicastConfig = 1,
-    [pbr::OriginalName("NODE_BROADCAST_CONFIG")] NodeBroadcastConfig = 2,
-    [pbr::OriginalName("NODE_REQUEST_CONFIG")] NodeRequestConfig = 3,
+  private static pbr::FileDescriptor descriptor;
+
+  static MessageReflection() {
+    byte[] descriptorData = global::System.Convert.FromBase64String(
+        string.Concat(
+          "Cg1tZXNzYWdlLnByb3RvIr8BCg1STERhdGFQYXlsb2FkEhAKCHNlcXVlbmNl",
+          "GAEgASgFEg8KB2Fsc19sdXgYAiABKAUSEAoIYXVkaW9fZGIYAyABKAUSEwoL",
+          "dGVtcGVyYXR1cmUYBCABKAUSEAoIaHVtaWRpdHkYBSABKAUSEwoLYWlyUHJl",
+          "c3N1cmUYBiABKAUSDwoHYmF0dGVyeRgHIAEoBRIVCg1nYXNSZXNpc3RhbmNl",
+          "GAggASgFEhUKDW1hZ25ldGljRmllbGQYCSABKAUiigMKDlJMQWNjZWxQYXls",
+          "b2FkEhEKCWF2Z0FjY2VsWBgBIAEoBRIRCglhdmdBY2NlbFkYAiABKAUSEQoJ",
+          "YXZnQWNjZWxaGAMgASgFEhEKCW1pbkFjY2VsWBgEIAEoBRIRCgltaW5BY2Nl",
+          "bFkYBSABKAUSEQoJbWluQWNjZWxaGAYgASgFEhEKCW1heEFjY2VsWBgHIAEo",
+          "BRIRCgltYXhBY2NlbFkYCCABKAUSEQoJbWF4QWNjZWxaGAkgASgFEhMKC2F2",
+          "Z0FuZ3VsYXJYGAogASgFEhMKC2F2Z0FuZ3VsYXJZGAsgASgFEhMKC2F2Z0Fu",
+          "Z3VsYXJaGAwgASgFEhMKC21pbkFuZ3VsYXJYGA0gASgFEhMKC21pbkFuZ3Vs",
+          "YXJZGA4gASgFEhMKC21pbkFuZ3VsYXJaGA8gASgFEhMKC21heEFuZ3VsYXJY",
+          "GBAgASgFEhMKC21heEFuZ3VsYXJZGBEgASgFEhMKC21heEFuZ3VsYXJaGBIg",
+          "ASgFEhAKCHNlcXVlbmNlGBMgASgFIkwKDldpcmVwYXNWZXJzaW9uEg0KBWRl",
+          "dmVsGAEgASgNEg0KBW1haW50GAIgASgNEg0KBW1pbm9yGAMgASgNEg0KBW1h",
+          "am9yGAQgASgNIkwKDlJlZGxvcmVWZXJzaW9uEg0KBWRldmVsGAEgASgNEg0K",
+          "BW1haW50GAIgASgNEg0KBW1pbm9yGAMgASgNEg0KBW1ham9yGAQgASgNIsID",
+          "Cg9STENvbmZpZ1BheWxvYWQSDgoGbm9kZUlEGAEgASgNEhEKCW5ldHdvcmtJ",
+          "RBgCIAEoDRIWCg5uZXR3b3JrQ2hhbm5lbBgDIAEoDRIXCg9oYXJkd2FyZVZl",
+          "cnNpb24YBCABKA0SKAoPc29mdHdhcmVWZXJzaW9uGAUgASgLMg8uUmVkbG9y",
+          "ZVZlcnNpb24SJwoOd2lyZXBhc1ZlcnNpb24YBiABKAsyDy5XaXJlcGFzVmVy",
+          "c2lvbhIZChFub2RlQ29uZmlndXJhdGlvbhgHIAEoBRIpCg1vcGVyYXRpbmdN",
+          "b2RlGAggASgOMhIuTm9kZU9wZXJhdGluZ01vZGUSGQoRYXBwbGljYXRpb25B",
+          "cmVhSUQYCSABKA0SFAoMaGVhZE5vZGVSU1NJGAogASgNEhYKDmJhdHRlcnlW",
+          "b2x0YWdlGAsgASgNEhgKEGdhdGV3YXlDb25uZWN0ZWQYDCABKAgSEgoKdXBs",
+          "aW5rUmF0ZRgNIAEoDRIbCghub2RlUm9sZRgOIAEoDjIJLk5vZGVSb2xlEhwK",
+          "FGFzc2V0VHJhY2tpbmdFbmFibGVkGA8gASgIEhAKCHNlcXVlbmNlGBAgASgN",
+          "Ij0KFFJMQWNrbm93bGVkZ2VQYXlsb2FkEhEKCW1lc3NhZ2VJRBgBIAEoBRIS",
+          "Cgp1cGRhdGVUaW1lGAIgASgFIsYBCglSTFBheWxvYWQSJQoLZGF0YVBheWxv",
+          "YWQYASABKAsyDi5STERhdGFQYXlsb2FkSAASKQoNY29uZmlnUGF5bG9hZBgC",
+          "IAEoCzIQLlJMQ29uZmlnUGF5bG9hZEgAEjMKEmFja25vd2xlZGdlUGF5bG9h",
+          "ZBgDIAEoCzIVLlJMQWNrbm93bGVkZ2VQYXlsb2FkSAASJwoMYWNjZWxQYXls",
+          "b2FkGAQgASgLMg8uUkxBY2NlbFBheWxvYWRIAEIJCgdwYXlsb2FkIrMFChFO",
+          "b2RlQ29uZmlnUmVxdWVzdBIRCgluZXR3b3JrSUQYASABKAUSFAoMaGFzTmV0",
+          "d29ya0lEGAIgASgIEhYKDm5ldHdvcmtDaGFubmVsGAMgASgFEhkKEWhhc05l",
+          "dHdvcmtDaGFubmVsGAQgASgIEhkKEW5vZGVDb25maWd1cmF0aW9uGAUgASgF",
+          "EhwKFGhhc05vZGVDb25maWd1cmF0aW9uGAYgASgIEikKDW9wZXJhdGluZ01v",
+          "ZGUYByABKA4yEi5Ob2RlT3BlcmF0aW5nTW9kZRIYChBoYXNPcGVyYXRpbmdN",
+          "b2RlGAggASgIEhMKC2ZlYXR1cmVMb2NrGAkgASgIEhYKDmhhc0ZlYXR1cmVM",
+          "b2NrGAogASgIEhgKEGhhc0VuY3J5cHRpb25LZXkYCyABKAgSFwoNZW5jcnlw",
+          "dGlvbktleRgMIAEoDEgAEiIKGGVuY3J5cHRpb25LZXlOdWxsUGF5bG9hZBgN",
+          "IAEoCEgAEhwKFGhhc0F1dGhlbnRpY2F0aW9uS2V5GA4gASgIEhsKEWF1dGhl",
+          "bnRpY2F0aW9uS2V5GA8gASgMSAESJgocYXV0aGVudGljYXRpb25LZXlOdWxs",
+          "UGF5bG9hZBgQIAEoCEgBEhIKCnVwbGlua1JhdGUYESABKAUSFQoNaGFzVXBs",
+          "aW5rUmF0ZRgSIAEoCBIbCghub2RlUm9sZRgTIAEoDjIJLk5vZGVSb2xlEhMK",
+          "C2hhc05vZGVSb2xlGBQgASgIEhwKFGFzc2V0VHJhY2tpbmdFbmFibGVkGBUg",
+          "ASgIEh8KF2hhc0Fzc2V0VHJhY2tpbmdFbmFibGVkGBYgASgIEg0KBWRlbGF5",
+          "GBcgASgFQhYKFGVuY3J5cHRpb25LZXlQYXlsb2FkQhoKGGF1dGhlbnRpY2F0",
+          "aW9uS2V5UGF5bG9hZCKgAQoVUmVtb3RlRnVuY3Rpb25SZXF1ZXN0EiEKC21l",
+          "c3NhZ2VUeXBlGAEgASgOMgwuTWVzc2FnZVR5cGUSEQoJbWVzc2FnZUlEGAIg",
+          "ASgFEi8KEW5vZGVDb25maWdQYXlsb2FkGAMgASgLMhIuTm9kZUNvbmZpZ1Jl",
+          "cXVlc3RIABIVCgtudWxsUGF5bG9hZBgEIAEoCEgAQgkKB3BheWxvYWQqKwoR",
+          "Tm9kZU9wZXJhdGluZ01vZGUSBwoDUlVOEAASDQoJSU5WRU5UT1JZEAEqSAoI",
+          "Tm9kZVJvbGUSHQoZTk9ERV9ST0xFX0hFQUROT0RFX0FOQ0hPUhAAEh0KGU5P",
+          "REVfUk9MRV9TVUJOT0RFX1RSQUNLRUQQASpuCgtNZXNzYWdlVHlwZRISCg5O",
+          "T0RFX0xFRF9GTEFTSBAAEhcKE05PREVfVU5JQ0FTVF9DT05GSUcQARIZChVO",
+          "T0RFX0JST0FEQ0FTVF9DT05GSUcQAhIXChNOT0RFX1JFUVVFU1RfQ09ORklH",
+          "EANiBnByb3RvMw=="));
+    descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
+        new pbr::FileDescriptor[] { },
+        new pbr::GeneratedClrTypeInfo(new[] {typeof(global::NodeOperatingMode), typeof(global::NodeRole), typeof(global::MessageType), }, null, new pbr::GeneratedClrTypeInfo[] {
+          new pbr::GeneratedClrTypeInfo(typeof(global::RLDataPayload), global::RLDataPayload.Parser, new[]{ "Sequence", "AlsLux", "AudioDb", "Temperature", "Humidity", "AirPressure", "Battery", "GasResistance", "MagneticField" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::RLAccelPayload), global::RLAccelPayload.Parser, new[]{ "AvgAccelX", "AvgAccelY", "AvgAccelZ", "MinAccelX", "MinAccelY", "MinAccelZ", "MaxAccelX", "MaxAccelY", "MaxAccelZ", "AvgAngularX", "AvgAngularY", "AvgAngularZ", "MinAngularX", "MinAngularY", "MinAngularZ", "MaxAngularX", "MaxAngularY", "MaxAngularZ", "Sequence" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::WirepasVersion), global::WirepasVersion.Parser, new[]{ "Devel", "Maint", "Minor", "Major" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::RedloreVersion), global::RedloreVersion.Parser, new[]{ "Devel", "Maint", "Minor", "Major" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::RLConfigPayload), global::RLConfigPayload.Parser, new[]{ "NodeID", "NetworkID", "NetworkChannel", "HardwareVersion", "SoftwareVersion", "WirepasVersion", "NodeConfiguration", "OperatingMode", "ApplicationAreaID", "HeadNodeRSSI", "BatteryVoltage", "GatewayConnected", "UplinkRate", "NodeRole", "AssetTrackingEnabled", "Sequence" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::RLAcknowledgePayload), global::RLAcknowledgePayload.Parser, new[]{ "MessageID", "UpdateTime" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::RLPayload), global::RLPayload.Parser, new[]{ "DataPayload", "ConfigPayload", "AcknowledgePayload", "AccelPayload" }, new[]{ "Payload" }, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::NodeConfigRequest), global::NodeConfigRequest.Parser, new[]{ "NetworkID", "HasNetworkID", "NetworkChannel", "HasNetworkChannel", "NodeConfiguration", "HasNodeConfiguration", "OperatingMode", "HasOperatingMode", "FeatureLock", "HasFeatureLock", "HasEncryptionKey", "EncryptionKey", "EncryptionKeyNullPayload", "HasAuthenticationKey", "AuthenticationKey", "AuthenticationKeyNullPayload", "UplinkRate", "HasUplinkRate", "NodeRole", "HasNodeRole", "AssetTrackingEnabled", "HasAssetTrackingEnabled", "Delay" }, new[]{ "EncryptionKeyPayload", "AuthenticationKeyPayload" }, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::RemoteFunctionRequest), global::RemoteFunctionRequest.Parser, new[]{ "MessageType", "MessageID", "NodeConfigPayload", "NullPayload" }, new[]{ "Payload" }, null, null, null)
+        }));
   }
-
-  public enum NodeConfiguration {
-    [pbr::OriginalName("DESK_1M")] Desk1M = 0,
-    [pbr::OriginalName("DESK_2M")] Desk2M = 1,
-    [pbr::OriginalName("CEILING_1M")] Ceiling1M = 2,
-    [pbr::OriginalName("CEILING_2M")] Ceiling2M = 3,
-  }
-
-  /// <summary>
-  ///Node Operating Mode
-  /// </summary>
-  public enum NodeOperatingMode {
-    [pbr::OriginalName("RUN")] Run = 0,
-    [pbr::OriginalName("INVENTORY")] Inventory = 1,
-  }
-
-  #endregion
-
-  #region Messages
-  public sealed partial class RX1_Request : pb::IMessage<RX1_Request> {
-    private static readonly pb::MessageParser<RX1_Request> _parser = new pb::MessageParser<RX1_Request>(() => new RX1_Request());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<RX1_Request> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::NFCProject.MessageReflection.Descriptor.MessageTypes[0]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public RX1_Request() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public RX1_Request(RX1_Request other) : this() {
-      messageType_ = other.messageType_;
-      messageID_ = other.messageID_;
-      switch (other.PayloadCase) {
-        case PayloadOneofCase.NodeConfigPayload:
-          NodeConfigPayload = other.NodeConfigPayload.Clone();
-          break;
-        case PayloadOneofCase.NullPayload:
-          NullPayload = other.NullPayload;
-          break;
-      }
-
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public RX1_Request Clone() {
-      return new RX1_Request(this);
-    }
-
-    /// <summary>Field number for the "messageType" field.</summary>
-    public const int MessageTypeFieldNumber = 1;
-    private global::NFCProject.MessageType messageType_ = global::NFCProject.MessageType.NodeLedFlash;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::NFCProject.MessageType MessageType {
-      get { return messageType_; }
-      set {
-        messageType_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "messageID" field.</summary>
-    public const int MessageIDFieldNumber = 2;
-    private int messageID_;
-    /// <summary>
-    ///Random number to identify the message.  This will be sent back in the acknowledge
-    /// </summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int MessageID {
-      get { return messageID_; }
-      set {
-        messageID_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "nodeConfigPayload" field.</summary>
-    public const int NodeConfigPayloadFieldNumber = 3;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::NFCProject.RX1_Request.Types.Node_Config_Payload NodeConfigPayload {
-      get { return payloadCase_ == PayloadOneofCase.NodeConfigPayload ? (global::NFCProject.RX1_Request.Types.Node_Config_Payload) payload_ : null; }
-      set {
-        payload_ = value;
-        payloadCase_ = value == null ? PayloadOneofCase.None : PayloadOneofCase.NodeConfigPayload;
-      }
-    }
-
-    /// <summary>Field number for the "nullPayload" field.</summary>
-    public const int NullPayloadFieldNumber = 4;
-    /// <summary>
-    ///To use set as true.  This is used in messages that do not have a payload
-    /// </summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool NullPayload {
-      get { return payloadCase_ == PayloadOneofCase.NullPayload ? (bool) payload_ : false; }
-      set {
-        payload_ = value;
-        payloadCase_ = PayloadOneofCase.NullPayload;
-      }
-    }
-
-    private object payload_;
-    /// <summary>Enum of possible cases for the "payload" oneof.</summary>
-    public enum PayloadOneofCase {
-      None = 0,
-      NodeConfigPayload = 3,
-      NullPayload = 4,
-    }
-    private PayloadOneofCase payloadCase_ = PayloadOneofCase.None;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public PayloadOneofCase PayloadCase {
-      get { return payloadCase_; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void ClearPayload() {
-      payloadCase_ = PayloadOneofCase.None;
-      payload_ = null;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override bool Equals(object other) {
-      return Equals(other as RX1_Request);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(RX1_Request other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (MessageType != other.MessageType) return false;
-      if (MessageID != other.MessageID) return false;
-      if (!object.Equals(NodeConfigPayload, other.NodeConfigPayload)) return false;
-      if (NullPayload != other.NullPayload) return false;
-      if (PayloadCase != other.PayloadCase) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (MessageType != global::NFCProject.MessageType.NodeLedFlash) hash ^= MessageType.GetHashCode();
-      if (MessageID != 0) hash ^= MessageID.GetHashCode();
-      if (payloadCase_ == PayloadOneofCase.NodeConfigPayload) hash ^= NodeConfigPayload.GetHashCode();
-      if (payloadCase_ == PayloadOneofCase.NullPayload) hash ^= NullPayload.GetHashCode();
-      hash ^= (int) payloadCase_;
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void WriteTo(pb::CodedOutputStream output) {
-      if (MessageType != global::NFCProject.MessageType.NodeLedFlash) {
-        output.WriteRawTag(8);
-        output.WriteEnum((int) MessageType);
-      }
-      if (MessageID != 0) {
-        output.WriteRawTag(16);
-        output.WriteInt32(MessageID);
-      }
-      if (payloadCase_ == PayloadOneofCase.NodeConfigPayload) {
-        output.WriteRawTag(26);
-        output.WriteMessage(NodeConfigPayload);
-      }
-      if (payloadCase_ == PayloadOneofCase.NullPayload) {
-        output.WriteRawTag(32);
-        output.WriteBool(NullPayload);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int CalculateSize() {
-      int size = 0;
-      if (MessageType != global::NFCProject.MessageType.NodeLedFlash) {
-        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) MessageType);
-      }
-      if (MessageID != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(MessageID);
-      }
-      if (payloadCase_ == PayloadOneofCase.NodeConfigPayload) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(NodeConfigPayload);
-      }
-      if (payloadCase_ == PayloadOneofCase.NullPayload) {
-        size += 1 + 1;
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(RX1_Request other) {
-      if (other == null) {
-        return;
-      }
-      if (other.MessageType != global::NFCProject.MessageType.NodeLedFlash) {
-        MessageType = other.MessageType;
-      }
-      if (other.MessageID != 0) {
-        MessageID = other.MessageID;
-      }
-      switch (other.PayloadCase) {
-        case PayloadOneofCase.NodeConfigPayload:
-          if (NodeConfigPayload == null) {
-            NodeConfigPayload = new global::NFCProject.RX1_Request.Types.Node_Config_Payload();
-          }
-          NodeConfigPayload.MergeFrom(other.NodeConfigPayload);
-          break;
-        case PayloadOneofCase.NullPayload:
-          NullPayload = other.NullPayload;
-          break;
-      }
-
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(pb::CodedInputStream input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 8: {
-            MessageType = (global::NFCProject.MessageType) input.ReadEnum();
-            break;
-          }
-          case 16: {
-            MessageID = input.ReadInt32();
-            break;
-          }
-          case 26: {
-            global::NFCProject.RX1_Request.Types.Node_Config_Payload subBuilder = new global::NFCProject.RX1_Request.Types.Node_Config_Payload();
-            if (payloadCase_ == PayloadOneofCase.NodeConfigPayload) {
-              subBuilder.MergeFrom(NodeConfigPayload);
-            }
-            input.ReadMessage(subBuilder);
-            NodeConfigPayload = subBuilder;
-            break;
-          }
-          case 32: {
-            NullPayload = input.ReadBool();
-            break;
-          }
-        }
-      }
-    }
-
-    #region Nested types
-    /// <summary>Container for nested types declared in the RX1_Request message type.</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static partial class Types {
-      public sealed partial class Node_Config_Payload : pb::IMessage<Node_Config_Payload> {
-        private static readonly pb::MessageParser<Node_Config_Payload> _parser = new pb::MessageParser<Node_Config_Payload>(() => new Node_Config_Payload());
-        private pb::UnknownFieldSet _unknownFields;
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-        public static pb::MessageParser<Node_Config_Payload> Parser { get { return _parser; } }
-
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-        public static pbr::MessageDescriptor Descriptor {
-          get { return global::NFCProject.RX1_Request.Descriptor.NestedTypes[0]; }
-        }
-
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-        pbr::MessageDescriptor pb::IMessage.Descriptor {
-          get { return Descriptor; }
-        }
-
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-        public Node_Config_Payload() {
-          OnConstruction();
-        }
-
-        partial void OnConstruction();
-
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-        public Node_Config_Payload(Node_Config_Payload other) : this() {
-          networkID_ = other.networkID_;
-          hasNetworkID_ = other.hasNetworkID_;
-          networkChannel_ = other.networkChannel_;
-          hasNetworkChannel_ = other.hasNetworkChannel_;
-          nodeConfiguration_ = other.nodeConfiguration_;
-          hasNodeConfiguration_ = other.hasNodeConfiguration_;
-          operatingMode_ = other.operatingMode_;
-          hasOperatingMode_ = other.hasOperatingMode_;
-          featureLock_ = other.featureLock_;
-          hasFeatureLock_ = other.hasFeatureLock_;
-          delay_ = other.delay_;
-          _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-        }
-
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-        public Node_Config_Payload Clone() {
-          return new Node_Config_Payload(this);
-        }
-
-        /// <summary>Field number for the "networkID" field.</summary>
-        public const int NetworkIDFieldNumber = 1;
-        private int networkID_;
-        /// <summary>
-        ///Network ID
-        /// </summary>
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-        public int NetworkID {
-          get { return networkID_; }
-          set {
-            networkID_ = value;
-          }
-        }
-
-        /// <summary>Field number for the "hasNetworkID" field.</summary>
-        public const int HasNetworkIDFieldNumber = 2;
-        private bool hasNetworkID_;
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-        public bool HasNetworkID {
-          get { return hasNetworkID_; }
-          set {
-            hasNetworkID_ = value;
-          }
-        }
-
-        /// <summary>Field number for the "networkChannel" field.</summary>
-        public const int NetworkChannelFieldNumber = 3;
-        private int networkChannel_;
-        /// <summary>
-        ///Network Channel
-        /// </summary>
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-        public int NetworkChannel {
-          get { return networkChannel_; }
-          set {
-            networkChannel_ = value;
-          }
-        }
-
-        /// <summary>Field number for the "hasNetworkChannel" field.</summary>
-        public const int HasNetworkChannelFieldNumber = 4;
-        private bool hasNetworkChannel_;
-        /// <summary>
-        ///Node Configuration
-        /// </summary>
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-        public bool HasNetworkChannel {
-          get { return hasNetworkChannel_; }
-          set {
-            hasNetworkChannel_ = value;
-          }
-        }
-
-        /// <summary>Field number for the "nodeConfiguration" field.</summary>
-        public const int NodeConfigurationFieldNumber = 5;
-        private global::NFCProject.NodeConfiguration nodeConfiguration_ = global::NFCProject.NodeConfiguration.Desk1M;
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-        public global::NFCProject.NodeConfiguration NodeConfiguration {
-          get { return nodeConfiguration_; }
-          set {
-            nodeConfiguration_ = value;
-          }
-        }
-
-        /// <summary>Field number for the "hasNodeConfiguration" field.</summary>
-        public const int HasNodeConfigurationFieldNumber = 6;
-        private bool hasNodeConfiguration_;
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-        public bool HasNodeConfiguration {
-          get { return hasNodeConfiguration_; }
-          set {
-            hasNodeConfiguration_ = value;
-          }
-        }
-
-        /// <summary>Field number for the "operatingMode" field.</summary>
-        public const int OperatingModeFieldNumber = 7;
-        private global::NFCProject.NodeOperatingMode operatingMode_ = global::NFCProject.NodeOperatingMode.Run;
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-        public global::NFCProject.NodeOperatingMode OperatingMode {
-          get { return operatingMode_; }
-          set {
-            operatingMode_ = value;
-          }
-        }
-
-        /// <summary>Field number for the "hasOperatingMode" field.</summary>
-        public const int HasOperatingModeFieldNumber = 8;
-        private bool hasOperatingMode_;
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-        public bool HasOperatingMode {
-          get { return hasOperatingMode_; }
-          set {
-            hasOperatingMode_ = value;
-          }
-        }
-
-        /// <summary>Field number for the "featureLock" field.</summary>
-        public const int FeatureLockFieldNumber = 9;
-        private bool featureLock_;
-        /// <summary>
-        ///Feature Lock
-        /// </summary>
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-        public bool FeatureLock {
-          get { return featureLock_; }
-          set {
-            featureLock_ = value;
-          }
-        }
-
-        /// <summary>Field number for the "hasFeatureLock" field.</summary>
-        public const int HasFeatureLockFieldNumber = 10;
-        private bool hasFeatureLock_;
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-        public bool HasFeatureLock {
-          get { return hasFeatureLock_; }
-          set {
-            hasFeatureLock_ = value;
-          }
-        }
-
-        /// <summary>Field number for the "delay" field.</summary>
-        public const int DelayFieldNumber = 11;
-        private int delay_;
-        /// <summary>
-        ///Delay
-        /// </summary>
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-        public int Delay {
-          get { return delay_; }
-          set {
-            delay_ = value;
-          }
-        }
-
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-        public override bool Equals(object other) {
-          return Equals(other as Node_Config_Payload);
-        }
-
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-        public bool Equals(Node_Config_Payload other) {
-          if (ReferenceEquals(other, null)) {
-            return false;
-          }
-          if (ReferenceEquals(other, this)) {
-            return true;
-          }
-          if (NetworkID != other.NetworkID) return false;
-          if (HasNetworkID != other.HasNetworkID) return false;
-          if (NetworkChannel != other.NetworkChannel) return false;
-          if (HasNetworkChannel != other.HasNetworkChannel) return false;
-          if (NodeConfiguration != other.NodeConfiguration) return false;
-          if (HasNodeConfiguration != other.HasNodeConfiguration) return false;
-          if (OperatingMode != other.OperatingMode) return false;
-          if (HasOperatingMode != other.HasOperatingMode) return false;
-          if (FeatureLock != other.FeatureLock) return false;
-          if (HasFeatureLock != other.HasFeatureLock) return false;
-          if (Delay != other.Delay) return false;
-          return Equals(_unknownFields, other._unknownFields);
-        }
-
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-        public override int GetHashCode() {
-          int hash = 1;
-          if (NetworkID != 0) hash ^= NetworkID.GetHashCode();
-          if (HasNetworkID != false) hash ^= HasNetworkID.GetHashCode();
-          if (NetworkChannel != 0) hash ^= NetworkChannel.GetHashCode();
-          if (HasNetworkChannel != false) hash ^= HasNetworkChannel.GetHashCode();
-          if (NodeConfiguration != global::NFCProject.NodeConfiguration.Desk1M) hash ^= NodeConfiguration.GetHashCode();
-          if (HasNodeConfiguration != false) hash ^= HasNodeConfiguration.GetHashCode();
-          if (OperatingMode != global::NFCProject.NodeOperatingMode.Run) hash ^= OperatingMode.GetHashCode();
-          if (HasOperatingMode != false) hash ^= HasOperatingMode.GetHashCode();
-          if (FeatureLock != false) hash ^= FeatureLock.GetHashCode();
-          if (HasFeatureLock != false) hash ^= HasFeatureLock.GetHashCode();
-          if (Delay != 0) hash ^= Delay.GetHashCode();
-          if (_unknownFields != null) {
-            hash ^= _unknownFields.GetHashCode();
-          }
-          return hash;
-        }
-
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-        public override string ToString() {
-          return pb::JsonFormatter.ToDiagnosticString(this);
-        }
-
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-        public void WriteTo(pb::CodedOutputStream output) {
-          if (NetworkID != 0) {
-            output.WriteRawTag(8);
-            output.WriteInt32(NetworkID);
-          }
-          if (HasNetworkID != false) {
-            output.WriteRawTag(16);
-            output.WriteBool(HasNetworkID);
-          }
-          if (NetworkChannel != 0) {
-            output.WriteRawTag(24);
-            output.WriteInt32(NetworkChannel);
-          }
-          if (HasNetworkChannel != false) {
-            output.WriteRawTag(32);
-            output.WriteBool(HasNetworkChannel);
-          }
-          if (NodeConfiguration != global::NFCProject.NodeConfiguration.Desk1M) {
-            output.WriteRawTag(40);
-            output.WriteEnum((int) NodeConfiguration);
-          }
-          if (HasNodeConfiguration != false) {
-            output.WriteRawTag(48);
-            output.WriteBool(HasNodeConfiguration);
-          }
-          if (OperatingMode != global::NFCProject.NodeOperatingMode.Run) {
-            output.WriteRawTag(56);
-            output.WriteEnum((int) OperatingMode);
-          }
-          if (HasOperatingMode != false) {
-            output.WriteRawTag(64);
-            output.WriteBool(HasOperatingMode);
-          }
-          if (FeatureLock != false) {
-            output.WriteRawTag(72);
-            output.WriteBool(FeatureLock);
-          }
-          if (HasFeatureLock != false) {
-            output.WriteRawTag(80);
-            output.WriteBool(HasFeatureLock);
-          }
-          if (Delay != 0) {
-            output.WriteRawTag(88);
-            output.WriteInt32(Delay);
-          }
-          if (_unknownFields != null) {
-            _unknownFields.WriteTo(output);
-          }
-        }
-
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-        public int CalculateSize() {
-          int size = 0;
-          if (NetworkID != 0) {
-            size += 1 + pb::CodedOutputStream.ComputeInt32Size(NetworkID);
-          }
-          if (HasNetworkID != false) {
-            size += 1 + 1;
-          }
-          if (NetworkChannel != 0) {
-            size += 1 + pb::CodedOutputStream.ComputeInt32Size(NetworkChannel);
-          }
-          if (HasNetworkChannel != false) {
-            size += 1 + 1;
-          }
-          if (NodeConfiguration != global::NFCProject.NodeConfiguration.Desk1M) {
-            size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) NodeConfiguration);
-          }
-          if (HasNodeConfiguration != false) {
-            size += 1 + 1;
-          }
-          if (OperatingMode != global::NFCProject.NodeOperatingMode.Run) {
-            size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) OperatingMode);
-          }
-          if (HasOperatingMode != false) {
-            size += 1 + 1;
-          }
-          if (FeatureLock != false) {
-            size += 1 + 1;
-          }
-          if (HasFeatureLock != false) {
-            size += 1 + 1;
-          }
-          if (Delay != 0) {
-            size += 1 + pb::CodedOutputStream.ComputeInt32Size(Delay);
-          }
-          if (_unknownFields != null) {
-            size += _unknownFields.CalculateSize();
-          }
-          return size;
-        }
-
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-        public void MergeFrom(Node_Config_Payload other) {
-          if (other == null) {
-            return;
-          }
-          if (other.NetworkID != 0) {
-            NetworkID = other.NetworkID;
-          }
-          if (other.HasNetworkID != false) {
-            HasNetworkID = other.HasNetworkID;
-          }
-          if (other.NetworkChannel != 0) {
-            NetworkChannel = other.NetworkChannel;
-          }
-          if (other.HasNetworkChannel != false) {
-            HasNetworkChannel = other.HasNetworkChannel;
-          }
-          if (other.NodeConfiguration != global::NFCProject.NodeConfiguration.Desk1M) {
-            NodeConfiguration = other.NodeConfiguration;
-          }
-          if (other.HasNodeConfiguration != false) {
-            HasNodeConfiguration = other.HasNodeConfiguration;
-          }
-          if (other.OperatingMode != global::NFCProject.NodeOperatingMode.Run) {
-            OperatingMode = other.OperatingMode;
-          }
-          if (other.HasOperatingMode != false) {
-            HasOperatingMode = other.HasOperatingMode;
-          }
-          if (other.FeatureLock != false) {
-            FeatureLock = other.FeatureLock;
-          }
-          if (other.HasFeatureLock != false) {
-            HasFeatureLock = other.HasFeatureLock;
-          }
-          if (other.Delay != 0) {
-            Delay = other.Delay;
-          }
-          _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-        }
-
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-        public void MergeFrom(pb::CodedInputStream input) {
-          uint tag;
-          while ((tag = input.ReadTag()) != 0) {
-            switch(tag) {
-              default:
-                _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-                break;
-              case 8: {
-                NetworkID = input.ReadInt32();
-                break;
-              }
-              case 16: {
-                HasNetworkID = input.ReadBool();
-                break;
-              }
-              case 24: {
-                NetworkChannel = input.ReadInt32();
-                break;
-              }
-              case 32: {
-                HasNetworkChannel = input.ReadBool();
-                break;
-              }
-              case 40: {
-                NodeConfiguration = (global::NFCProject.NodeConfiguration) input.ReadEnum();
-                break;
-              }
-              case 48: {
-                HasNodeConfiguration = input.ReadBool();
-                break;
-              }
-              case 56: {
-                OperatingMode = (global::NFCProject.NodeOperatingMode) input.ReadEnum();
-                break;
-              }
-              case 64: {
-                HasOperatingMode = input.ReadBool();
-                break;
-              }
-              case 72: {
-                FeatureLock = input.ReadBool();
-                break;
-              }
-              case 80: {
-                HasFeatureLock = input.ReadBool();
-                break;
-              }
-              case 88: {
-                Delay = input.ReadInt32();
-                break;
-              }
-            }
-          }
-        }
-
-      }
-
-    }
-    #endregion
-
-  }
-
-  public sealed partial class RX1_Acknowledge : pb::IMessage<RX1_Acknowledge> {
-    private static readonly pb::MessageParser<RX1_Acknowledge> _parser = new pb::MessageParser<RX1_Acknowledge>(() => new RX1_Acknowledge());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<RX1_Acknowledge> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::NFCProject.MessageReflection.Descriptor.MessageTypes[1]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public RX1_Acknowledge() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public RX1_Acknowledge(RX1_Acknowledge other) : this() {
-      messageType_ = other.messageType_;
-      messageID_ = other.messageID_;
-      updateTime_ = other.updateTime_;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public RX1_Acknowledge Clone() {
-      return new RX1_Acknowledge(this);
-    }
-
-    /// <summary>Field number for the "messageType" field.</summary>
-    public const int MessageTypeFieldNumber = 1;
-    private global::NFCProject.MessageType messageType_ = global::NFCProject.MessageType.NodeLedFlash;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::NFCProject.MessageType MessageType {
-      get { return messageType_; }
-      set {
-        messageType_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "messageID" field.</summary>
-    public const int MessageIDFieldNumber = 2;
-    private int messageID_;
-    /// <summary>
-    ///Random number to identify the message.  This will be sent back in the acknowledge
-    /// </summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int MessageID {
-      get { return messageID_; }
-      set {
-        messageID_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "updateTime" field.</summary>
-    public const int UpdateTimeFieldNumber = 3;
-    private int updateTime_;
-    /// <summary>
-    ///The time at which the node plans to make the update calculated as an offset from the message sent timestamp
-    /// </summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int UpdateTime {
-      get { return updateTime_; }
-      set {
-        updateTime_ = value;
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override bool Equals(object other) {
-      return Equals(other as RX1_Acknowledge);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(RX1_Acknowledge other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (MessageType != other.MessageType) return false;
-      if (MessageID != other.MessageID) return false;
-      if (UpdateTime != other.UpdateTime) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (MessageType != global::NFCProject.MessageType.NodeLedFlash) hash ^= MessageType.GetHashCode();
-      if (MessageID != 0) hash ^= MessageID.GetHashCode();
-      if (UpdateTime != 0) hash ^= UpdateTime.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void WriteTo(pb::CodedOutputStream output) {
-      if (MessageType != global::NFCProject.MessageType.NodeLedFlash) {
-        output.WriteRawTag(8);
-        output.WriteEnum((int) MessageType);
-      }
-      if (MessageID != 0) {
-        output.WriteRawTag(16);
-        output.WriteInt32(MessageID);
-      }
-      if (UpdateTime != 0) {
-        output.WriteRawTag(24);
-        output.WriteInt32(UpdateTime);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int CalculateSize() {
-      int size = 0;
-      if (MessageType != global::NFCProject.MessageType.NodeLedFlash) {
-        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) MessageType);
-      }
-      if (MessageID != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(MessageID);
-      }
-      if (UpdateTime != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(UpdateTime);
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(RX1_Acknowledge other) {
-      if (other == null) {
-        return;
-      }
-      if (other.MessageType != global::NFCProject.MessageType.NodeLedFlash) {
-        MessageType = other.MessageType;
-      }
-      if (other.MessageID != 0) {
-        MessageID = other.MessageID;
-      }
-      if (other.UpdateTime != 0) {
-        UpdateTime = other.UpdateTime;
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(pb::CodedInputStream input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 8: {
-            MessageType = (global::NFCProject.MessageType) input.ReadEnum();
-            break;
-          }
-          case 16: {
-            MessageID = input.ReadInt32();
-            break;
-          }
-          case 24: {
-            UpdateTime = input.ReadInt32();
-            break;
-          }
-        }
-      }
-    }
-
-  }
-
-  public sealed partial class RX1_Uplink_Config : pb::IMessage<RX1_Uplink_Config> {
-    private static readonly pb::MessageParser<RX1_Uplink_Config> _parser = new pb::MessageParser<RX1_Uplink_Config>(() => new RX1_Uplink_Config());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<RX1_Uplink_Config> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::NFCProject.MessageReflection.Descriptor.MessageTypes[2]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public RX1_Uplink_Config() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public RX1_Uplink_Config(RX1_Uplink_Config other) : this() {
-      nodeID_ = other.nodeID_;
-      networkID_ = other.networkID_;
-      networkChannel_ = other.networkChannel_;
-      hardwareVersion_ = other.hardwareVersion_;
-      softwareVersion_ = other.softwareVersion_;
-      wirepasVersion_ = other.wirepasVersion_ != null ? other.wirepasVersion_.Clone() : null;
-      nodeConfiguration_ = other.nodeConfiguration_;
-      operatingMode_ = other.operatingMode_;
-      applicationAreaID_ = other.applicationAreaID_;
-      headNodeRSSI_ = other.headNodeRSSI_;
-      batteryVoltage_ = other.batteryVoltage_;
-      gatewayConnected_ = other.gatewayConnected_;
-      messageID_ = other.messageID_;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public RX1_Uplink_Config Clone() {
-      return new RX1_Uplink_Config(this);
-    }
-
-    /// <summary>Field number for the "nodeID" field.</summary>
-    public const int NodeIDFieldNumber = 1;
-    private uint nodeID_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public uint NodeID {
-      get { return nodeID_; }
-      set {
-        nodeID_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "networkID" field.</summary>
-    public const int NetworkIDFieldNumber = 2;
-    private uint networkID_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public uint NetworkID {
-      get { return networkID_; }
-      set {
-        networkID_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "networkChannel" field.</summary>
-    public const int NetworkChannelFieldNumber = 3;
-    private uint networkChannel_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public uint NetworkChannel {
-      get { return networkChannel_; }
-      set {
-        networkChannel_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "hardwareVersion" field.</summary>
-    public const int HardwareVersionFieldNumber = 4;
-    private uint hardwareVersion_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public uint HardwareVersion {
-      get { return hardwareVersion_; }
-      set {
-        hardwareVersion_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "softwareVersion" field.</summary>
-    public const int SoftwareVersionFieldNumber = 5;
-    private uint softwareVersion_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public uint SoftwareVersion {
-      get { return softwareVersion_; }
-      set {
-        softwareVersion_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "wirepasVersion" field.</summary>
-    public const int WirepasVersionFieldNumber = 6;
-    private global::NFCProject.RX1_Uplink_Config.Types.WirepassVersion wirepasVersion_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::NFCProject.RX1_Uplink_Config.Types.WirepassVersion WirepasVersion {
-      get { return wirepasVersion_; }
-      set {
-        wirepasVersion_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "nodeConfiguration" field.</summary>
-    public const int NodeConfigurationFieldNumber = 7;
-    private global::NFCProject.NodeConfiguration nodeConfiguration_ = global::NFCProject.NodeConfiguration.Desk1M;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::NFCProject.NodeConfiguration NodeConfiguration {
-      get { return nodeConfiguration_; }
-      set {
-        nodeConfiguration_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "operatingMode" field.</summary>
-    public const int OperatingModeFieldNumber = 8;
-    private global::NFCProject.NodeOperatingMode operatingMode_ = global::NFCProject.NodeOperatingMode.Run;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::NFCProject.NodeOperatingMode OperatingMode {
-      get { return operatingMode_; }
-      set {
-        operatingMode_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "applicationAreaID" field.</summary>
-    public const int ApplicationAreaIDFieldNumber = 9;
-    private uint applicationAreaID_;
-    /// <summary>
-    ///App area id
-    /// </summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public uint ApplicationAreaID {
-      get { return applicationAreaID_; }
-      set {
-        applicationAreaID_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "headNodeRSSI" field.</summary>
-    public const int HeadNodeRSSIFieldNumber = 10;
-    private uint headNodeRSSI_;
-    /// <summary>
-    ///head node rssi
-    /// </summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public uint HeadNodeRSSI {
-      get { return headNodeRSSI_; }
-      set {
-        headNodeRSSI_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "batteryVoltage" field.</summary>
-    public const int BatteryVoltageFieldNumber = 11;
-    private uint batteryVoltage_;
-    /// <summary>
-    ///bat vol
-    /// </summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public uint BatteryVoltage {
-      get { return batteryVoltage_; }
-      set {
-        batteryVoltage_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "gatewayConnected" field.</summary>
-    public const int GatewayConnectedFieldNumber = 12;
-    private bool gatewayConnected_;
-    /// <summary>
-    ///gateway sn
-    /// </summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool GatewayConnected {
-      get { return gatewayConnected_; }
-      set {
-        gatewayConnected_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "messageID" field.</summary>
-    public const int MessageIDFieldNumber = 13;
-    private uint messageID_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public uint MessageID {
-      get { return messageID_; }
-      set {
-        messageID_ = value;
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override bool Equals(object other) {
-      return Equals(other as RX1_Uplink_Config);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(RX1_Uplink_Config other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (NodeID != other.NodeID) return false;
-      if (NetworkID != other.NetworkID) return false;
-      if (NetworkChannel != other.NetworkChannel) return false;
-      if (HardwareVersion != other.HardwareVersion) return false;
-      if (SoftwareVersion != other.SoftwareVersion) return false;
-      if (!object.Equals(WirepasVersion, other.WirepasVersion)) return false;
-      if (NodeConfiguration != other.NodeConfiguration) return false;
-      if (OperatingMode != other.OperatingMode) return false;
-      if (ApplicationAreaID != other.ApplicationAreaID) return false;
-      if (HeadNodeRSSI != other.HeadNodeRSSI) return false;
-      if (BatteryVoltage != other.BatteryVoltage) return false;
-      if (GatewayConnected != other.GatewayConnected) return false;
-      if (MessageID != other.MessageID) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (NodeID != 0) hash ^= NodeID.GetHashCode();
-      if (NetworkID != 0) hash ^= NetworkID.GetHashCode();
-      if (NetworkChannel != 0) hash ^= NetworkChannel.GetHashCode();
-      if (HardwareVersion != 0) hash ^= HardwareVersion.GetHashCode();
-      if (SoftwareVersion != 0) hash ^= SoftwareVersion.GetHashCode();
-      if (wirepasVersion_ != null) hash ^= WirepasVersion.GetHashCode();
-      if (NodeConfiguration != global::NFCProject.NodeConfiguration.Desk1M) hash ^= NodeConfiguration.GetHashCode();
-      if (OperatingMode != global::NFCProject.NodeOperatingMode.Run) hash ^= OperatingMode.GetHashCode();
-      if (ApplicationAreaID != 0) hash ^= ApplicationAreaID.GetHashCode();
-      if (HeadNodeRSSI != 0) hash ^= HeadNodeRSSI.GetHashCode();
-      if (BatteryVoltage != 0) hash ^= BatteryVoltage.GetHashCode();
-      if (GatewayConnected != false) hash ^= GatewayConnected.GetHashCode();
-      if (MessageID != 0) hash ^= MessageID.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void WriteTo(pb::CodedOutputStream output) {
-      if (NodeID != 0) {
-        output.WriteRawTag(8);
-        output.WriteUInt32(NodeID);
-      }
-      if (NetworkID != 0) {
-        output.WriteRawTag(16);
-        output.WriteUInt32(NetworkID);
-      }
-      if (NetworkChannel != 0) {
-        output.WriteRawTag(24);
-        output.WriteUInt32(NetworkChannel);
-      }
-      if (HardwareVersion != 0) {
-        output.WriteRawTag(32);
-        output.WriteUInt32(HardwareVersion);
-      }
-      if (SoftwareVersion != 0) {
-        output.WriteRawTag(40);
-        output.WriteUInt32(SoftwareVersion);
-      }
-      if (wirepasVersion_ != null) {
-        output.WriteRawTag(50);
-        output.WriteMessage(WirepasVersion);
-      }
-      if (NodeConfiguration != global::NFCProject.NodeConfiguration.Desk1M) {
-        output.WriteRawTag(56);
-        output.WriteEnum((int) NodeConfiguration);
-      }
-      if (OperatingMode != global::NFCProject.NodeOperatingMode.Run) {
-        output.WriteRawTag(64);
-        output.WriteEnum((int) OperatingMode);
-      }
-      if (ApplicationAreaID != 0) {
-        output.WriteRawTag(72);
-        output.WriteUInt32(ApplicationAreaID);
-      }
-      if (HeadNodeRSSI != 0) {
-        output.WriteRawTag(80);
-        output.WriteUInt32(HeadNodeRSSI);
-      }
-      if (BatteryVoltage != 0) {
-        output.WriteRawTag(88);
-        output.WriteUInt32(BatteryVoltage);
-      }
-      if (GatewayConnected != false) {
-        output.WriteRawTag(96);
-        output.WriteBool(GatewayConnected);
-      }
-      if (MessageID != 0) {
-        output.WriteRawTag(104);
-        output.WriteUInt32(MessageID);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int CalculateSize() {
-      int size = 0;
-      if (NodeID != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(NodeID);
-      }
-      if (NetworkID != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(NetworkID);
-      }
-      if (NetworkChannel != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(NetworkChannel);
-      }
-      if (HardwareVersion != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(HardwareVersion);
-      }
-      if (SoftwareVersion != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(SoftwareVersion);
-      }
-      if (wirepasVersion_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(WirepasVersion);
-      }
-      if (NodeConfiguration != global::NFCProject.NodeConfiguration.Desk1M) {
-        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) NodeConfiguration);
-      }
-      if (OperatingMode != global::NFCProject.NodeOperatingMode.Run) {
-        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) OperatingMode);
-      }
-      if (ApplicationAreaID != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(ApplicationAreaID);
-      }
-      if (HeadNodeRSSI != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(HeadNodeRSSI);
-      }
-      if (BatteryVoltage != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(BatteryVoltage);
-      }
-      if (GatewayConnected != false) {
-        size += 1 + 1;
-      }
-      if (MessageID != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(MessageID);
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(RX1_Uplink_Config other) {
-      if (other == null) {
-        return;
-      }
-      if (other.NodeID != 0) {
-        NodeID = other.NodeID;
-      }
-      if (other.NetworkID != 0) {
-        NetworkID = other.NetworkID;
-      }
-      if (other.NetworkChannel != 0) {
-        NetworkChannel = other.NetworkChannel;
-      }
-      if (other.HardwareVersion != 0) {
-        HardwareVersion = other.HardwareVersion;
-      }
-      if (other.SoftwareVersion != 0) {
-        SoftwareVersion = other.SoftwareVersion;
-      }
-      if (other.wirepasVersion_ != null) {
-        if (wirepasVersion_ == null) {
-          WirepasVersion = new global::NFCProject.RX1_Uplink_Config.Types.WirepassVersion();
-        }
-        WirepasVersion.MergeFrom(other.WirepasVersion);
-      }
-      if (other.NodeConfiguration != global::NFCProject.NodeConfiguration.Desk1M) {
-        NodeConfiguration = other.NodeConfiguration;
-      }
-      if (other.OperatingMode != global::NFCProject.NodeOperatingMode.Run) {
-        OperatingMode = other.OperatingMode;
-      }
-      if (other.ApplicationAreaID != 0) {
-        ApplicationAreaID = other.ApplicationAreaID;
-      }
-      if (other.HeadNodeRSSI != 0) {
-        HeadNodeRSSI = other.HeadNodeRSSI;
-      }
-      if (other.BatteryVoltage != 0) {
-        BatteryVoltage = other.BatteryVoltage;
-      }
-      if (other.GatewayConnected != false) {
-        GatewayConnected = other.GatewayConnected;
-      }
-      if (other.MessageID != 0) {
-        MessageID = other.MessageID;
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(pb::CodedInputStream input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 8: {
-            NodeID = input.ReadUInt32();
-            break;
-          }
-          case 16: {
-            NetworkID = input.ReadUInt32();
-            break;
-          }
-          case 24: {
-            NetworkChannel = input.ReadUInt32();
-            break;
-          }
-          case 32: {
-            HardwareVersion = input.ReadUInt32();
-            break;
-          }
-          case 40: {
-            SoftwareVersion = input.ReadUInt32();
-            break;
-          }
-          case 50: {
-            if (wirepasVersion_ == null) {
-              WirepasVersion = new global::NFCProject.RX1_Uplink_Config.Types.WirepassVersion();
-            }
-            input.ReadMessage(WirepasVersion);
-            break;
-          }
-          case 56: {
-            NodeConfiguration = (global::NFCProject.NodeConfiguration) input.ReadEnum();
-            break;
-          }
-          case 64: {
-            OperatingMode = (global::NFCProject.NodeOperatingMode) input.ReadEnum();
-            break;
-          }
-          case 72: {
-            ApplicationAreaID = input.ReadUInt32();
-            break;
-          }
-          case 80: {
-            HeadNodeRSSI = input.ReadUInt32();
-            break;
-          }
-          case 88: {
-            BatteryVoltage = input.ReadUInt32();
-            break;
-          }
-          case 96: {
-            GatewayConnected = input.ReadBool();
-            break;
-          }
-          case 104: {
-            MessageID = input.ReadUInt32();
-            break;
-          }
-        }
-      }
-    }
-
-    #region Nested types
-    /// <summary>Container for nested types declared in the RX1_Uplink_Config message type.</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static partial class Types {
-      public sealed partial class WirepassVersion : pb::IMessage<WirepassVersion> {
-        private static readonly pb::MessageParser<WirepassVersion> _parser = new pb::MessageParser<WirepassVersion>(() => new WirepassVersion());
-        private pb::UnknownFieldSet _unknownFields;
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-        public static pb::MessageParser<WirepassVersion> Parser { get { return _parser; } }
-
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-        public static pbr::MessageDescriptor Descriptor {
-          get { return global::NFCProject.RX1_Uplink_Config.Descriptor.NestedTypes[0]; }
-        }
-
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-        pbr::MessageDescriptor pb::IMessage.Descriptor {
-          get { return Descriptor; }
-        }
-
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-        public WirepassVersion() {
-          OnConstruction();
-        }
-
-        partial void OnConstruction();
-
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-        public WirepassVersion(WirepassVersion other) : this() {
-          devel_ = other.devel_;
-          maint_ = other.maint_;
-          minor_ = other.minor_;
-          major_ = other.major_;
-          _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-        }
-
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-        public WirepassVersion Clone() {
-          return new WirepassVersion(this);
-        }
-
-        /// <summary>Field number for the "devel" field.</summary>
-        public const int DevelFieldNumber = 1;
-        private uint devel_;
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-        public uint Devel {
-          get { return devel_; }
-          set {
-            devel_ = value;
-          }
-        }
-
-        /// <summary>Field number for the "maint" field.</summary>
-        public const int MaintFieldNumber = 2;
-        private uint maint_;
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-        public uint Maint {
-          get { return maint_; }
-          set {
-            maint_ = value;
-          }
-        }
-
-        /// <summary>Field number for the "minor" field.</summary>
-        public const int MinorFieldNumber = 3;
-        private uint minor_;
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-        public uint Minor {
-          get { return minor_; }
-          set {
-            minor_ = value;
-          }
-        }
-
-        /// <summary>Field number for the "major" field.</summary>
-        public const int MajorFieldNumber = 4;
-        private uint major_;
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-        public uint Major {
-          get { return major_; }
-          set {
-            major_ = value;
-          }
-        }
-
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-        public override bool Equals(object other) {
-          return Equals(other as WirepassVersion);
-        }
-
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-        public bool Equals(WirepassVersion other) {
-          if (ReferenceEquals(other, null)) {
-            return false;
-          }
-          if (ReferenceEquals(other, this)) {
-            return true;
-          }
-          if (Devel != other.Devel) return false;
-          if (Maint != other.Maint) return false;
-          if (Minor != other.Minor) return false;
-          if (Major != other.Major) return false;
-          return Equals(_unknownFields, other._unknownFields);
-        }
-
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-        public override int GetHashCode() {
-          int hash = 1;
-          if (Devel != 0) hash ^= Devel.GetHashCode();
-          if (Maint != 0) hash ^= Maint.GetHashCode();
-          if (Minor != 0) hash ^= Minor.GetHashCode();
-          if (Major != 0) hash ^= Major.GetHashCode();
-          if (_unknownFields != null) {
-            hash ^= _unknownFields.GetHashCode();
-          }
-          return hash;
-        }
-
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-        public override string ToString() {
-          return pb::JsonFormatter.ToDiagnosticString(this);
-        }
-
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-        public void WriteTo(pb::CodedOutputStream output) {
-          if (Devel != 0) {
-            output.WriteRawTag(8);
-            output.WriteUInt32(Devel);
-          }
-          if (Maint != 0) {
-            output.WriteRawTag(16);
-            output.WriteUInt32(Maint);
-          }
-          if (Minor != 0) {
-            output.WriteRawTag(24);
-            output.WriteUInt32(Minor);
-          }
-          if (Major != 0) {
-            output.WriteRawTag(32);
-            output.WriteUInt32(Major);
-          }
-          if (_unknownFields != null) {
-            _unknownFields.WriteTo(output);
-          }
-        }
-
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-        public int CalculateSize() {
-          int size = 0;
-          if (Devel != 0) {
-            size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Devel);
-          }
-          if (Maint != 0) {
-            size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Maint);
-          }
-          if (Minor != 0) {
-            size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Minor);
-          }
-          if (Major != 0) {
-            size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Major);
-          }
-          if (_unknownFields != null) {
-            size += _unknownFields.CalculateSize();
-          }
-          return size;
-        }
-
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-        public void MergeFrom(WirepassVersion other) {
-          if (other == null) {
-            return;
-          }
-          if (other.Devel != 0) {
-            Devel = other.Devel;
-          }
-          if (other.Maint != 0) {
-            Maint = other.Maint;
-          }
-          if (other.Minor != 0) {
-            Minor = other.Minor;
-          }
-          if (other.Major != 0) {
-            Major = other.Major;
-          }
-          _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-        }
-
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-        public void MergeFrom(pb::CodedInputStream input) {
-          uint tag;
-          while ((tag = input.ReadTag()) != 0) {
-            switch(tag) {
-              default:
-                _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-                break;
-              case 8: {
-                Devel = input.ReadUInt32();
-                break;
-              }
-              case 16: {
-                Maint = input.ReadUInt32();
-                break;
-              }
-              case 24: {
-                Minor = input.ReadUInt32();
-                break;
-              }
-              case 32: {
-                Major = input.ReadUInt32();
-                break;
-              }
-            }
-          }
-        }
-
-      }
-
-    }
-    #endregion
-
-  }
-
-  public sealed partial class RX_Uplink_Manufacturing_Results : pb::IMessage<RX_Uplink_Manufacturing_Results> {
-    private static readonly pb::MessageParser<RX_Uplink_Manufacturing_Results> _parser = new pb::MessageParser<RX_Uplink_Manufacturing_Results>(() => new RX_Uplink_Manufacturing_Results());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<RX_Uplink_Manufacturing_Results> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::NFCProject.MessageReflection.Descriptor.MessageTypes[3]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public RX_Uplink_Manufacturing_Results() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public RX_Uplink_Manufacturing_Results(RX_Uplink_Manufacturing_Results other) : this() {
-      nodeID_ = other.nodeID_;
-      pirCount_ = other.pirCount_;
-      irTemp_ = other.irTemp_;
-      ambientTemp_ = other.ambientTemp_;
-      ambientLight_ = other.ambientLight_;
-      microphone_ = other.microphone_;
-      button_ = other.button_;
-      gatewayConnected_ = other.gatewayConnected_;
-      battery_ = other.battery_;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public RX_Uplink_Manufacturing_Results Clone() {
-      return new RX_Uplink_Manufacturing_Results(this);
-    }
-
-    /// <summary>Field number for the "nodeID" field.</summary>
-    public const int NodeIDFieldNumber = 1;
-    private uint nodeID_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public uint NodeID {
-      get { return nodeID_; }
-      set {
-        nodeID_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "pirCount" field.</summary>
-    public const int PirCountFieldNumber = 2;
-    private uint pirCount_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public uint PirCount {
-      get { return pirCount_; }
-      set {
-        pirCount_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "irTemp" field.</summary>
-    public const int IrTempFieldNumber = 3;
-    private uint irTemp_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public uint IrTemp {
-      get { return irTemp_; }
-      set {
-        irTemp_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "ambientTemp" field.</summary>
-    public const int AmbientTempFieldNumber = 4;
-    private uint ambientTemp_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public uint AmbientTemp {
-      get { return ambientTemp_; }
-      set {
-        ambientTemp_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "ambientLight" field.</summary>
-    public const int AmbientLightFieldNumber = 5;
-    private uint ambientLight_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public uint AmbientLight {
-      get { return ambientLight_; }
-      set {
-        ambientLight_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "microphone" field.</summary>
-    public const int MicrophoneFieldNumber = 6;
-    private uint microphone_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public uint Microphone {
-      get { return microphone_; }
-      set {
-        microphone_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "button" field.</summary>
-    public const int ButtonFieldNumber = 7;
-    private uint button_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public uint Button {
-      get { return button_; }
-      set {
-        button_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "gatewayConnected" field.</summary>
-    public const int GatewayConnectedFieldNumber = 8;
-    private bool gatewayConnected_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool GatewayConnected {
-      get { return gatewayConnected_; }
-      set {
-        gatewayConnected_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "battery" field.</summary>
-    public const int BatteryFieldNumber = 9;
-    private uint battery_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public uint Battery {
-      get { return battery_; }
-      set {
-        battery_ = value;
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override bool Equals(object other) {
-      return Equals(other as RX_Uplink_Manufacturing_Results);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(RX_Uplink_Manufacturing_Results other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (NodeID != other.NodeID) return false;
-      if (PirCount != other.PirCount) return false;
-      if (IrTemp != other.IrTemp) return false;
-      if (AmbientTemp != other.AmbientTemp) return false;
-      if (AmbientLight != other.AmbientLight) return false;
-      if (Microphone != other.Microphone) return false;
-      if (Button != other.Button) return false;
-      if (GatewayConnected != other.GatewayConnected) return false;
-      if (Battery != other.Battery) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (NodeID != 0) hash ^= NodeID.GetHashCode();
-      if (PirCount != 0) hash ^= PirCount.GetHashCode();
-      if (IrTemp != 0) hash ^= IrTemp.GetHashCode();
-      if (AmbientTemp != 0) hash ^= AmbientTemp.GetHashCode();
-      if (AmbientLight != 0) hash ^= AmbientLight.GetHashCode();
-      if (Microphone != 0) hash ^= Microphone.GetHashCode();
-      if (Button != 0) hash ^= Button.GetHashCode();
-      if (GatewayConnected != false) hash ^= GatewayConnected.GetHashCode();
-      if (Battery != 0) hash ^= Battery.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void WriteTo(pb::CodedOutputStream output) {
-      if (NodeID != 0) {
-        output.WriteRawTag(8);
-        output.WriteUInt32(NodeID);
-      }
-      if (PirCount != 0) {
-        output.WriteRawTag(16);
-        output.WriteUInt32(PirCount);
-      }
-      if (IrTemp != 0) {
-        output.WriteRawTag(24);
-        output.WriteUInt32(IrTemp);
-      }
-      if (AmbientTemp != 0) {
-        output.WriteRawTag(32);
-        output.WriteUInt32(AmbientTemp);
-      }
-      if (AmbientLight != 0) {
-        output.WriteRawTag(40);
-        output.WriteUInt32(AmbientLight);
-      }
-      if (Microphone != 0) {
-        output.WriteRawTag(48);
-        output.WriteUInt32(Microphone);
-      }
-      if (Button != 0) {
-        output.WriteRawTag(56);
-        output.WriteUInt32(Button);
-      }
-      if (GatewayConnected != false) {
-        output.WriteRawTag(64);
-        output.WriteBool(GatewayConnected);
-      }
-      if (Battery != 0) {
-        output.WriteRawTag(72);
-        output.WriteUInt32(Battery);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int CalculateSize() {
-      int size = 0;
-      if (NodeID != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(NodeID);
-      }
-      if (PirCount != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(PirCount);
-      }
-      if (IrTemp != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(IrTemp);
-      }
-      if (AmbientTemp != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(AmbientTemp);
-      }
-      if (AmbientLight != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(AmbientLight);
-      }
-      if (Microphone != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Microphone);
-      }
-      if (Button != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Button);
-      }
-      if (GatewayConnected != false) {
-        size += 1 + 1;
-      }
-      if (Battery != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Battery);
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(RX_Uplink_Manufacturing_Results other) {
-      if (other == null) {
-        return;
-      }
-      if (other.NodeID != 0) {
-        NodeID = other.NodeID;
-      }
-      if (other.PirCount != 0) {
-        PirCount = other.PirCount;
-      }
-      if (other.IrTemp != 0) {
-        IrTemp = other.IrTemp;
-      }
-      if (other.AmbientTemp != 0) {
-        AmbientTemp = other.AmbientTemp;
-      }
-      if (other.AmbientLight != 0) {
-        AmbientLight = other.AmbientLight;
-      }
-      if (other.Microphone != 0) {
-        Microphone = other.Microphone;
-      }
-      if (other.Button != 0) {
-        Button = other.Button;
-      }
-      if (other.GatewayConnected != false) {
-        GatewayConnected = other.GatewayConnected;
-      }
-      if (other.Battery != 0) {
-        Battery = other.Battery;
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(pb::CodedInputStream input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 8: {
-            NodeID = input.ReadUInt32();
-            break;
-          }
-          case 16: {
-            PirCount = input.ReadUInt32();
-            break;
-          }
-          case 24: {
-            IrTemp = input.ReadUInt32();
-            break;
-          }
-          case 32: {
-            AmbientTemp = input.ReadUInt32();
-            break;
-          }
-          case 40: {
-            AmbientLight = input.ReadUInt32();
-            break;
-          }
-          case 48: {
-            Microphone = input.ReadUInt32();
-            break;
-          }
-          case 56: {
-            Button = input.ReadUInt32();
-            break;
-          }
-          case 64: {
-            GatewayConnected = input.ReadBool();
-            break;
-          }
-          case 72: {
-            Battery = input.ReadUInt32();
-            break;
-          }
-        }
-      }
-    }
-
-  }
-
-  public sealed partial class RX1_NFC_Reply : pb::IMessage<RX1_NFC_Reply> {
-    private static readonly pb::MessageParser<RX1_NFC_Reply> _parser = new pb::MessageParser<RX1_NFC_Reply>(() => new RX1_NFC_Reply());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<RX1_NFC_Reply> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::NFCProject.MessageReflection.Descriptor.MessageTypes[4]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public RX1_NFC_Reply() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public RX1_NFC_Reply(RX1_NFC_Reply other) : this() {
-      authenticationResult_ = other.authenticationResult_;
-      switch (other.PayloadCase) {
-        case PayloadOneofCase.Nonce:
-          Nonce = other.Nonce;
-          break;
-        case PayloadOneofCase.NullPayload:
-          NullPayload = other.NullPayload;
-          break;
-        case PayloadOneofCase.NodeConfig:
-          NodeConfig = other.NodeConfig.Clone();
-          break;
-        case PayloadOneofCase.ManufacturingTestResults:
-          ManufacturingTestResults = other.ManufacturingTestResults.Clone();
-          break;
-        case PayloadOneofCase.SetNodeConfigAcknowledge:
-          SetNodeConfigAcknowledge = other.SetNodeConfigAcknowledge;
-          break;
-      }
-
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public RX1_NFC_Reply Clone() {
-      return new RX1_NFC_Reply(this);
-    }
-
-    /// <summary>Field number for the "authenticationResult" field.</summary>
-    public const int AuthenticationResultFieldNumber = 1;
-    private bool authenticationResult_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool AuthenticationResult {
-      get { return authenticationResult_; }
-      set {
-        authenticationResult_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "nonce" field.</summary>
-    public const int NonceFieldNumber = 2;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public pb::ByteString Nonce {
-      get { return payloadCase_ == PayloadOneofCase.Nonce ? (pb::ByteString) payload_ : pb::ByteString.Empty; }
-      set {
-        payload_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
-        payloadCase_ = PayloadOneofCase.Nonce;
-      }
-    }
-
-    /// <summary>Field number for the "nullPayload" field.</summary>
-    public const int NullPayloadFieldNumber = 3;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool NullPayload {
-      get { return payloadCase_ == PayloadOneofCase.NullPayload ? (bool) payload_ : false; }
-      set {
-        payload_ = value;
-        payloadCase_ = PayloadOneofCase.NullPayload;
-      }
-    }
-
-    /// <summary>Field number for the "nodeConfig" field.</summary>
-    public const int NodeConfigFieldNumber = 4;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::NFCProject.RX1_Uplink_Config NodeConfig {
-      get { return payloadCase_ == PayloadOneofCase.NodeConfig ? (global::NFCProject.RX1_Uplink_Config) payload_ : null; }
-      set {
-        payload_ = value;
-        payloadCase_ = value == null ? PayloadOneofCase.None : PayloadOneofCase.NodeConfig;
-      }
-    }
-
-    /// <summary>Field number for the "manufacturingTestResults" field.</summary>
-    public const int ManufacturingTestResultsFieldNumber = 5;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::NFCProject.RX_Uplink_Manufacturing_Results ManufacturingTestResults {
-      get { return payloadCase_ == PayloadOneofCase.ManufacturingTestResults ? (global::NFCProject.RX_Uplink_Manufacturing_Results) payload_ : null; }
-      set {
-        payload_ = value;
-        payloadCase_ = value == null ? PayloadOneofCase.None : PayloadOneofCase.ManufacturingTestResults;
-      }
-    }
-
-    /// <summary>Field number for the "setNodeConfigAcknowledge" field.</summary>
-    public const int SetNodeConfigAcknowledgeFieldNumber = 6;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool SetNodeConfigAcknowledge {
-      get { return payloadCase_ == PayloadOneofCase.SetNodeConfigAcknowledge ? (bool) payload_ : false; }
-      set {
-        payload_ = value;
-        payloadCase_ = PayloadOneofCase.SetNodeConfigAcknowledge;
-      }
-    }
-
-    private object payload_;
-    /// <summary>Enum of possible cases for the "payload" oneof.</summary>
-    public enum PayloadOneofCase {
-      None = 0,
-      Nonce = 2,
-      NullPayload = 3,
-      NodeConfig = 4,
-      ManufacturingTestResults = 5,
-      SetNodeConfigAcknowledge = 6,
-    }
-    private PayloadOneofCase payloadCase_ = PayloadOneofCase.None;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public PayloadOneofCase PayloadCase {
-      get { return payloadCase_; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void ClearPayload() {
-      payloadCase_ = PayloadOneofCase.None;
-      payload_ = null;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override bool Equals(object other) {
-      return Equals(other as RX1_NFC_Reply);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(RX1_NFC_Reply other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (AuthenticationResult != other.AuthenticationResult) return false;
-      if (Nonce != other.Nonce) return false;
-      if (NullPayload != other.NullPayload) return false;
-      if (!object.Equals(NodeConfig, other.NodeConfig)) return false;
-      if (!object.Equals(ManufacturingTestResults, other.ManufacturingTestResults)) return false;
-      if (SetNodeConfigAcknowledge != other.SetNodeConfigAcknowledge) return false;
-      if (PayloadCase != other.PayloadCase) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (AuthenticationResult != false) hash ^= AuthenticationResult.GetHashCode();
-      if (payloadCase_ == PayloadOneofCase.Nonce) hash ^= Nonce.GetHashCode();
-      if (payloadCase_ == PayloadOneofCase.NullPayload) hash ^= NullPayload.GetHashCode();
-      if (payloadCase_ == PayloadOneofCase.NodeConfig) hash ^= NodeConfig.GetHashCode();
-      if (payloadCase_ == PayloadOneofCase.ManufacturingTestResults) hash ^= ManufacturingTestResults.GetHashCode();
-      if (payloadCase_ == PayloadOneofCase.SetNodeConfigAcknowledge) hash ^= SetNodeConfigAcknowledge.GetHashCode();
-      hash ^= (int) payloadCase_;
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void WriteTo(pb::CodedOutputStream output) {
-      if (AuthenticationResult != false) {
-        output.WriteRawTag(8);
-        output.WriteBool(AuthenticationResult);
-      }
-      if (payloadCase_ == PayloadOneofCase.Nonce) {
-        output.WriteRawTag(18);
-        output.WriteBytes(Nonce);
-      }
-      if (payloadCase_ == PayloadOneofCase.NullPayload) {
-        output.WriteRawTag(24);
-        output.WriteBool(NullPayload);
-      }
-      if (payloadCase_ == PayloadOneofCase.NodeConfig) {
-        output.WriteRawTag(34);
-        output.WriteMessage(NodeConfig);
-      }
-      if (payloadCase_ == PayloadOneofCase.ManufacturingTestResults) {
-        output.WriteRawTag(42);
-        output.WriteMessage(ManufacturingTestResults);
-      }
-      if (payloadCase_ == PayloadOneofCase.SetNodeConfigAcknowledge) {
-        output.WriteRawTag(48);
-        output.WriteBool(SetNodeConfigAcknowledge);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int CalculateSize() {
-      int size = 0;
-      if (AuthenticationResult != false) {
-        size += 1 + 1;
-      }
-      if (payloadCase_ == PayloadOneofCase.Nonce) {
-        size += 1 + pb::CodedOutputStream.ComputeBytesSize(Nonce);
-      }
-      if (payloadCase_ == PayloadOneofCase.NullPayload) {
-        size += 1 + 1;
-      }
-      if (payloadCase_ == PayloadOneofCase.NodeConfig) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(NodeConfig);
-      }
-      if (payloadCase_ == PayloadOneofCase.ManufacturingTestResults) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(ManufacturingTestResults);
-      }
-      if (payloadCase_ == PayloadOneofCase.SetNodeConfigAcknowledge) {
-        size += 1 + 1;
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(RX1_NFC_Reply other) {
-      if (other == null) {
-        return;
-      }
-      if (other.AuthenticationResult != false) {
-        AuthenticationResult = other.AuthenticationResult;
-      }
-      switch (other.PayloadCase) {
-        case PayloadOneofCase.Nonce:
-          Nonce = other.Nonce;
-          break;
-        case PayloadOneofCase.NullPayload:
-          NullPayload = other.NullPayload;
-          break;
-        case PayloadOneofCase.NodeConfig:
-          if (NodeConfig == null) {
-            NodeConfig = new global::NFCProject.RX1_Uplink_Config();
-          }
-          NodeConfig.MergeFrom(other.NodeConfig);
-          break;
-        case PayloadOneofCase.ManufacturingTestResults:
-          if (ManufacturingTestResults == null) {
-            ManufacturingTestResults = new global::NFCProject.RX_Uplink_Manufacturing_Results();
-          }
-          ManufacturingTestResults.MergeFrom(other.ManufacturingTestResults);
-          break;
-        case PayloadOneofCase.SetNodeConfigAcknowledge:
-          SetNodeConfigAcknowledge = other.SetNodeConfigAcknowledge;
-          break;
-      }
-
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(pb::CodedInputStream input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 8: {
-            AuthenticationResult = input.ReadBool();
-            break;
-          }
-          case 18: {
-            Nonce = input.ReadBytes();
-            break;
-          }
-          case 24: {
-            NullPayload = input.ReadBool();
-            break;
-          }
-          case 34: {
-            global::NFCProject.RX1_Uplink_Config subBuilder = new global::NFCProject.RX1_Uplink_Config();
-            if (payloadCase_ == PayloadOneofCase.NodeConfig) {
-              subBuilder.MergeFrom(NodeConfig);
-            }
-            input.ReadMessage(subBuilder);
-            NodeConfig = subBuilder;
-            break;
-          }
-          case 42: {
-            global::NFCProject.RX_Uplink_Manufacturing_Results subBuilder = new global::NFCProject.RX_Uplink_Manufacturing_Results();
-            if (payloadCase_ == PayloadOneofCase.ManufacturingTestResults) {
-              subBuilder.MergeFrom(ManufacturingTestResults);
-            }
-            input.ReadMessage(subBuilder);
-            ManufacturingTestResults = subBuilder;
-            break;
-          }
-          case 48: {
-            SetNodeConfigAcknowledge = input.ReadBool();
-            break;
-          }
-        }
-      }
-    }
-
-  }
-
-  public sealed partial class RX1_NFC_Config : pb::IMessage<RX1_NFC_Config> {
-    private static readonly pb::MessageParser<RX1_NFC_Config> _parser = new pb::MessageParser<RX1_NFC_Config>(() => new RX1_NFC_Config());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<RX1_NFC_Config> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::NFCProject.MessageReflection.Descriptor.MessageTypes[5]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public RX1_NFC_Config() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public RX1_NFC_Config(RX1_NFC_Config other) : this() {
-      hasNetworkID_ = other.hasNetworkID_;
-      networkID_ = other.networkID_;
-      hasNetworkChannel_ = other.hasNetworkChannel_;
-      networkChannel_ = other.networkChannel_;
-      hasNodeConfiguration_ = other.hasNodeConfiguration_;
-      nodeConfiguration_ = other.nodeConfiguration_;
-      hasOperatingMode_ = other.hasOperatingMode_;
-      operatingMode_ = other.operatingMode_;
-      hasEncryptionKey_ = other.hasEncryptionKey_;
-      encryptionKey_ = other.encryptionKey_;
-      hasAuthenticationKey_ = other.hasAuthenticationKey_;
-      authenticationKey_ = other.authenticationKey_;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public RX1_NFC_Config Clone() {
-      return new RX1_NFC_Config(this);
-    }
-
-    /// <summary>Field number for the "hasNetworkID" field.</summary>
-    public const int HasNetworkIDFieldNumber = 1;
-    private bool hasNetworkID_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool HasNetworkID {
-      get { return hasNetworkID_; }
-      set {
-        hasNetworkID_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "networkID" field.</summary>
-    public const int NetworkIDFieldNumber = 2;
-    private uint networkID_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public uint NetworkID {
-      get { return networkID_; }
-      set {
-        networkID_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "hasNetworkChannel" field.</summary>
-    public const int HasNetworkChannelFieldNumber = 3;
-    private bool hasNetworkChannel_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool HasNetworkChannel {
-      get { return hasNetworkChannel_; }
-      set {
-        hasNetworkChannel_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "networkChannel" field.</summary>
-    public const int NetworkChannelFieldNumber = 4;
-    private uint networkChannel_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public uint NetworkChannel {
-      get { return networkChannel_; }
-      set {
-        networkChannel_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "hasNodeConfiguration" field.</summary>
-    public const int HasNodeConfigurationFieldNumber = 5;
-    private bool hasNodeConfiguration_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool HasNodeConfiguration {
-      get { return hasNodeConfiguration_; }
-      set {
-        hasNodeConfiguration_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "nodeConfiguration" field.</summary>
-    public const int NodeConfigurationFieldNumber = 6;
-    private global::NFCProject.NodeConfiguration nodeConfiguration_ = global::NFCProject.NodeConfiguration.Desk1M;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::NFCProject.NodeConfiguration NodeConfiguration {
-      get { return nodeConfiguration_; }
-      set {
-        nodeConfiguration_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "hasOperatingMode" field.</summary>
-    public const int HasOperatingModeFieldNumber = 7;
-    private bool hasOperatingMode_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool HasOperatingMode {
-      get { return hasOperatingMode_; }
-      set {
-        hasOperatingMode_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "operatingMode" field.</summary>
-    public const int OperatingModeFieldNumber = 8;
-    private global::NFCProject.NodeOperatingMode operatingMode_ = global::NFCProject.NodeOperatingMode.Run;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::NFCProject.NodeOperatingMode OperatingMode {
-      get { return operatingMode_; }
-      set {
-        operatingMode_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "hasEncryptionKey" field.</summary>
-    public const int HasEncryptionKeyFieldNumber = 9;
-    private bool hasEncryptionKey_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool HasEncryptionKey {
-      get { return hasEncryptionKey_; }
-      set {
-        hasEncryptionKey_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "encryptionKey" field.</summary>
-    public const int EncryptionKeyFieldNumber = 10;
-    private pb::ByteString encryptionKey_ = pb::ByteString.Empty;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public pb::ByteString EncryptionKey {
-      get { return encryptionKey_; }
-      set {
-        encryptionKey_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
-      }
-    }
-
-    /// <summary>Field number for the "hasAuthenticationKey" field.</summary>
-    public const int HasAuthenticationKeyFieldNumber = 11;
-    private bool hasAuthenticationKey_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool HasAuthenticationKey {
-      get { return hasAuthenticationKey_; }
-      set {
-        hasAuthenticationKey_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "authenticationKey" field.</summary>
-    public const int AuthenticationKeyFieldNumber = 12;
-    private pb::ByteString authenticationKey_ = pb::ByteString.Empty;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public pb::ByteString AuthenticationKey {
-      get { return authenticationKey_; }
-      set {
-        authenticationKey_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override bool Equals(object other) {
-      return Equals(other as RX1_NFC_Config);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(RX1_NFC_Config other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (HasNetworkID != other.HasNetworkID) return false;
-      if (NetworkID != other.NetworkID) return false;
-      if (HasNetworkChannel != other.HasNetworkChannel) return false;
-      if (NetworkChannel != other.NetworkChannel) return false;
-      if (HasNodeConfiguration != other.HasNodeConfiguration) return false;
-      if (NodeConfiguration != other.NodeConfiguration) return false;
-      if (HasOperatingMode != other.HasOperatingMode) return false;
-      if (OperatingMode != other.OperatingMode) return false;
-      if (HasEncryptionKey != other.HasEncryptionKey) return false;
-      if (EncryptionKey != other.EncryptionKey) return false;
-      if (HasAuthenticationKey != other.HasAuthenticationKey) return false;
-      if (AuthenticationKey != other.AuthenticationKey) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (HasNetworkID != false) hash ^= HasNetworkID.GetHashCode();
-      if (NetworkID != 0) hash ^= NetworkID.GetHashCode();
-      if (HasNetworkChannel != false) hash ^= HasNetworkChannel.GetHashCode();
-      if (NetworkChannel != 0) hash ^= NetworkChannel.GetHashCode();
-      if (HasNodeConfiguration != false) hash ^= HasNodeConfiguration.GetHashCode();
-      if (NodeConfiguration != global::NFCProject.NodeConfiguration.Desk1M) hash ^= NodeConfiguration.GetHashCode();
-      if (HasOperatingMode != false) hash ^= HasOperatingMode.GetHashCode();
-      if (OperatingMode != global::NFCProject.NodeOperatingMode.Run) hash ^= OperatingMode.GetHashCode();
-      if (HasEncryptionKey != false) hash ^= HasEncryptionKey.GetHashCode();
-      if (EncryptionKey.Length != 0) hash ^= EncryptionKey.GetHashCode();
-      if (HasAuthenticationKey != false) hash ^= HasAuthenticationKey.GetHashCode();
-      if (AuthenticationKey.Length != 0) hash ^= AuthenticationKey.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void WriteTo(pb::CodedOutputStream output) {
-      if (HasNetworkID != false) {
-        output.WriteRawTag(8);
-        output.WriteBool(HasNetworkID);
-      }
-      if (NetworkID != 0) {
-        output.WriteRawTag(16);
-        output.WriteUInt32(NetworkID);
-      }
-      if (HasNetworkChannel != false) {
-        output.WriteRawTag(24);
-        output.WriteBool(HasNetworkChannel);
-      }
-      if (NetworkChannel != 0) {
-        output.WriteRawTag(32);
-        output.WriteUInt32(NetworkChannel);
-      }
-      if (HasNodeConfiguration != false) {
-        output.WriteRawTag(40);
-        output.WriteBool(HasNodeConfiguration);
-      }
-      if (NodeConfiguration != global::NFCProject.NodeConfiguration.Desk1M) {
-        output.WriteRawTag(48);
-        output.WriteEnum((int) NodeConfiguration);
-      }
-      if (HasOperatingMode != false) {
-        output.WriteRawTag(56);
-        output.WriteBool(HasOperatingMode);
-      }
-      if (OperatingMode != global::NFCProject.NodeOperatingMode.Run) {
-        output.WriteRawTag(64);
-        output.WriteEnum((int) OperatingMode);
-      }
-      if (HasEncryptionKey != false) {
-        output.WriteRawTag(72);
-        output.WriteBool(HasEncryptionKey);
-      }
-      if (EncryptionKey.Length != 0) {
-        output.WriteRawTag(82);
-        output.WriteBytes(EncryptionKey);
-      }
-      if (HasAuthenticationKey != false) {
-        output.WriteRawTag(88);
-        output.WriteBool(HasAuthenticationKey);
-      }
-      if (AuthenticationKey.Length != 0) {
-        output.WriteRawTag(98);
-        output.WriteBytes(AuthenticationKey);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int CalculateSize() {
-      int size = 0;
-      if (HasNetworkID != false) {
-        size += 1 + 1;
-      }
-      if (NetworkID != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(NetworkID);
-      }
-      if (HasNetworkChannel != false) {
-        size += 1 + 1;
-      }
-      if (NetworkChannel != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(NetworkChannel);
-      }
-      if (HasNodeConfiguration != false) {
-        size += 1 + 1;
-      }
-      if (NodeConfiguration != global::NFCProject.NodeConfiguration.Desk1M) {
-        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) NodeConfiguration);
-      }
-      if (HasOperatingMode != false) {
-        size += 1 + 1;
-      }
-      if (OperatingMode != global::NFCProject.NodeOperatingMode.Run) {
-        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) OperatingMode);
-      }
-      if (HasEncryptionKey != false) {
-        size += 1 + 1;
-      }
-      if (EncryptionKey.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeBytesSize(EncryptionKey);
-      }
-      if (HasAuthenticationKey != false) {
-        size += 1 + 1;
-      }
-      if (AuthenticationKey.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeBytesSize(AuthenticationKey);
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(RX1_NFC_Config other) {
-      if (other == null) {
-        return;
-      }
-      if (other.HasNetworkID != false) {
-        HasNetworkID = other.HasNetworkID;
-      }
-      if (other.NetworkID != 0) {
-        NetworkID = other.NetworkID;
-      }
-      if (other.HasNetworkChannel != false) {
-        HasNetworkChannel = other.HasNetworkChannel;
-      }
-      if (other.NetworkChannel != 0) {
-        NetworkChannel = other.NetworkChannel;
-      }
-      if (other.HasNodeConfiguration != false) {
-        HasNodeConfiguration = other.HasNodeConfiguration;
-      }
-      if (other.NodeConfiguration != global::NFCProject.NodeConfiguration.Desk1M) {
-        NodeConfiguration = other.NodeConfiguration;
-      }
-      if (other.HasOperatingMode != false) {
-        HasOperatingMode = other.HasOperatingMode;
-      }
-      if (other.OperatingMode != global::NFCProject.NodeOperatingMode.Run) {
-        OperatingMode = other.OperatingMode;
-      }
-      if (other.HasEncryptionKey != false) {
-        HasEncryptionKey = other.HasEncryptionKey;
-      }
-      if (other.EncryptionKey.Length != 0) {
-        EncryptionKey = other.EncryptionKey;
-      }
-      if (other.HasAuthenticationKey != false) {
-        HasAuthenticationKey = other.HasAuthenticationKey;
-      }
-      if (other.AuthenticationKey.Length != 0) {
-        AuthenticationKey = other.AuthenticationKey;
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(pb::CodedInputStream input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 8: {
-            HasNetworkID = input.ReadBool();
-            break;
-          }
-          case 16: {
-            NetworkID = input.ReadUInt32();
-            break;
-          }
-          case 24: {
-            HasNetworkChannel = input.ReadBool();
-            break;
-          }
-          case 32: {
-            NetworkChannel = input.ReadUInt32();
-            break;
-          }
-          case 40: {
-            HasNodeConfiguration = input.ReadBool();
-            break;
-          }
-          case 48: {
-            NodeConfiguration = (global::NFCProject.NodeConfiguration) input.ReadEnum();
-            break;
-          }
-          case 56: {
-            HasOperatingMode = input.ReadBool();
-            break;
-          }
-          case 64: {
-            OperatingMode = (global::NFCProject.NodeOperatingMode) input.ReadEnum();
-            break;
-          }
-          case 72: {
-            HasEncryptionKey = input.ReadBool();
-            break;
-          }
-          case 82: {
-            EncryptionKey = input.ReadBytes();
-            break;
-          }
-          case 88: {
-            HasAuthenticationKey = input.ReadBool();
-            break;
-          }
-          case 98: {
-            AuthenticationKey = input.ReadBytes();
-            break;
-          }
-        }
-      }
-    }
-
-  }
-
-  public sealed partial class RX1_NFC_Request : pb::IMessage<RX1_NFC_Request> {
-    private static readonly pb::MessageParser<RX1_NFC_Request> _parser = new pb::MessageParser<RX1_NFC_Request>(() => new RX1_NFC_Request());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<RX1_NFC_Request> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::NFCProject.MessageReflection.Descriptor.MessageTypes[6]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public RX1_NFC_Request() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public RX1_NFC_Request(RX1_NFC_Request other) : this() {
-      requestType_ = other.requestType_;
-      encryptedNonce_ = other.encryptedNonce_;
-      chksum_ = other.chksum_;
-      switch (other.PayloadCase) {
-        case PayloadOneofCase.NullPayload:
-          NullPayload = other.NullPayload;
-          break;
-        case PayloadOneofCase.NodeConfig:
-          NodeConfig = other.NodeConfig.Clone();
-          break;
-      }
-
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public RX1_NFC_Request Clone() {
-      return new RX1_NFC_Request(this);
-    }
-
-    /// <summary>Field number for the "requestType" field.</summary>
-    public const int RequestTypeFieldNumber = 1;
-    private global::NFCProject.RX1_NFC_Request.Types.NFCRequestType requestType_ = global::NFCProject.RX1_NFC_Request.Types.NFCRequestType.GetNodeConfig;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::NFCProject.RX1_NFC_Request.Types.NFCRequestType RequestType {
-      get { return requestType_; }
-      set {
-        requestType_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "encryptedNonce" field.</summary>
-    public const int EncryptedNonceFieldNumber = 2;
-    private pb::ByteString encryptedNonce_ = pb::ByteString.Empty;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public pb::ByteString EncryptedNonce {
-      get { return encryptedNonce_; }
-      set {
-        encryptedNonce_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
-      }
-    }
-
-    /// <summary>Field number for the "nullPayload" field.</summary>
-    public const int NullPayloadFieldNumber = 3;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool NullPayload {
-      get { return payloadCase_ == PayloadOneofCase.NullPayload ? (bool) payload_ : false; }
-      set {
-        payload_ = value;
-        payloadCase_ = PayloadOneofCase.NullPayload;
-      }
-    }
-
-    /// <summary>Field number for the "nodeConfig" field.</summary>
-    public const int NodeConfigFieldNumber = 4;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::NFCProject.RX1_NFC_Config NodeConfig {
-      get { return payloadCase_ == PayloadOneofCase.NodeConfig ? (global::NFCProject.RX1_NFC_Config) payload_ : null; }
-      set {
-        payload_ = value;
-        payloadCase_ = value == null ? PayloadOneofCase.None : PayloadOneofCase.NodeConfig;
-      }
-    }
-
-    /// <summary>Field number for the "chksum" field.</summary>
-    public const int ChksumFieldNumber = 5;
-    private uint chksum_;
-    /// <summary>
-    ///Used to validate nodeConfig
-    /// </summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public uint Chksum {
-      get { return chksum_; }
-      set {
-        chksum_ = value;
-      }
-    }
-
-    private object payload_;
-    /// <summary>Enum of possible cases for the "payload" oneof.</summary>
-    public enum PayloadOneofCase {
-      None = 0,
-      NullPayload = 3,
-      NodeConfig = 4,
-    }
-    private PayloadOneofCase payloadCase_ = PayloadOneofCase.None;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public PayloadOneofCase PayloadCase {
-      get { return payloadCase_; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void ClearPayload() {
-      payloadCase_ = PayloadOneofCase.None;
-      payload_ = null;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override bool Equals(object other) {
-      return Equals(other as RX1_NFC_Request);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(RX1_NFC_Request other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (RequestType != other.RequestType) return false;
-      if (EncryptedNonce != other.EncryptedNonce) return false;
-      if (NullPayload != other.NullPayload) return false;
-      if (!object.Equals(NodeConfig, other.NodeConfig)) return false;
-      if (Chksum != other.Chksum) return false;
-      if (PayloadCase != other.PayloadCase) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (RequestType != global::NFCProject.RX1_NFC_Request.Types.NFCRequestType.GetNodeConfig) hash ^= RequestType.GetHashCode();
-      if (EncryptedNonce.Length != 0) hash ^= EncryptedNonce.GetHashCode();
-      if (payloadCase_ == PayloadOneofCase.NullPayload) hash ^= NullPayload.GetHashCode();
-      if (payloadCase_ == PayloadOneofCase.NodeConfig) hash ^= NodeConfig.GetHashCode();
-      if (Chksum != 0) hash ^= Chksum.GetHashCode();
-      hash ^= (int) payloadCase_;
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void WriteTo(pb::CodedOutputStream output) {
-      if (RequestType != global::NFCProject.RX1_NFC_Request.Types.NFCRequestType.GetNodeConfig) {
-        output.WriteRawTag(8);
-        output.WriteEnum((int) RequestType);
-      }
-      if (EncryptedNonce.Length != 0) {
-        output.WriteRawTag(18);
-        output.WriteBytes(EncryptedNonce);
-      }
-      if (payloadCase_ == PayloadOneofCase.NullPayload) {
-        output.WriteRawTag(24);
-        output.WriteBool(NullPayload);
-      }
-      if (payloadCase_ == PayloadOneofCase.NodeConfig) {
-        output.WriteRawTag(34);
-        output.WriteMessage(NodeConfig);
-      }
-      if (Chksum != 0) {
-        output.WriteRawTag(40);
-        output.WriteUInt32(Chksum);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int CalculateSize() {
-      int size = 0;
-      if (RequestType != global::NFCProject.RX1_NFC_Request.Types.NFCRequestType.GetNodeConfig) {
-        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) RequestType);
-      }
-      if (EncryptedNonce.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeBytesSize(EncryptedNonce);
-      }
-      if (payloadCase_ == PayloadOneofCase.NullPayload) {
-        size += 1 + 1;
-      }
-      if (payloadCase_ == PayloadOneofCase.NodeConfig) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(NodeConfig);
-      }
-      if (Chksum != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Chksum);
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(RX1_NFC_Request other) {
-      if (other == null) {
-        return;
-      }
-      if (other.RequestType != global::NFCProject.RX1_NFC_Request.Types.NFCRequestType.GetNodeConfig) {
-        RequestType = other.RequestType;
-      }
-      if (other.EncryptedNonce.Length != 0) {
-        EncryptedNonce = other.EncryptedNonce;
-      }
-      if (other.Chksum != 0) {
-        Chksum = other.Chksum;
-      }
-      switch (other.PayloadCase) {
-        case PayloadOneofCase.NullPayload:
-          NullPayload = other.NullPayload;
-          break;
-        case PayloadOneofCase.NodeConfig:
-          if (NodeConfig == null) {
-            NodeConfig = new global::NFCProject.RX1_NFC_Config();
-          }
-          NodeConfig.MergeFrom(other.NodeConfig);
-          break;
-      }
-
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(pb::CodedInputStream input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 8: {
-            RequestType = (global::NFCProject.RX1_NFC_Request.Types.NFCRequestType) input.ReadEnum();
-            break;
-          }
-          case 18: {
-            EncryptedNonce = input.ReadBytes();
-            break;
-          }
-          case 24: {
-            NullPayload = input.ReadBool();
-            break;
-          }
-          case 34: {
-            global::NFCProject.RX1_NFC_Config subBuilder = new global::NFCProject.RX1_NFC_Config();
-            if (payloadCase_ == PayloadOneofCase.NodeConfig) {
-              subBuilder.MergeFrom(NodeConfig);
-            }
-            input.ReadMessage(subBuilder);
-            NodeConfig = subBuilder;
-            break;
-          }
-          case 40: {
-            Chksum = input.ReadUInt32();
-            break;
-          }
-        }
-      }
-    }
-
-    #region Nested types
-    /// <summary>Container for nested types declared in the RX1_NFC_Request message type.</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static partial class Types {
-      public enum NFCRequestType {
-        [pbr::OriginalName("GET_NODE_CONFIG")] GetNodeConfig = 0,
-        [pbr::OriginalName("SET_NODE_CONFIG")] SetNodeConfig = 1,
-        /// <summary>
-        ///used in manufacturing only
-        /// </summary>
-        [pbr::OriginalName("SET_NODE_CONFIG_MANUF")] SetNodeConfigManuf = 2,
-      }
-
-    }
-    #endregion
-
-  }
-
   #endregion
 
 }
+#region Enums
+/// <summary>
+///Node Operating Mode
+/// </summary>
+public enum NodeOperatingMode {
+  [pbr::OriginalName("RUN")] Run = 0,
+  [pbr::OriginalName("INVENTORY")] Inventory = 1,
+}
+
+public enum NodeRole {
+  [pbr::OriginalName("NODE_ROLE_HEADNODE_ANCHOR")] HeadnodeAnchor = 0,
+  [pbr::OriginalName("NODE_ROLE_SUBNODE_TRACKED")] SubnodeTracked = 1,
+}
+
+public enum MessageType {
+  [pbr::OriginalName("NODE_LED_FLASH")] NodeLedFlash = 0,
+  /// <summary>
+  ///Altough its possible to decode whether a message is unicast or broadcast they have been
+  ///specificed here to eliminate confusion and to make it easier for the decoding process
+  /// </summary>
+  [pbr::OriginalName("NODE_UNICAST_CONFIG")] NodeUnicastConfig = 1,
+  [pbr::OriginalName("NODE_BROADCAST_CONFIG")] NodeBroadcastConfig = 2,
+  [pbr::OriginalName("NODE_REQUEST_CONFIG")] NodeRequestConfig = 3,
+}
+
+#endregion
+
+#region Messages
+/// <summary>
+///Data payload for the node
+/// </summary>
+public sealed partial class RLDataPayload : pb::IMessage<RLDataPayload> {
+  private static readonly pb::MessageParser<RLDataPayload> _parser = new pb::MessageParser<RLDataPayload>(() => new RLDataPayload());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pb::MessageParser<RLDataPayload> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::MessageReflection.Descriptor.MessageTypes[0]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public RLDataPayload() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public RLDataPayload(RLDataPayload other) : this() {
+    sequence_ = other.sequence_;
+    alsLux_ = other.alsLux_;
+    audioDb_ = other.audioDb_;
+    temperature_ = other.temperature_;
+    humidity_ = other.humidity_;
+    airPressure_ = other.airPressure_;
+    battery_ = other.battery_;
+    gasResistance_ = other.gasResistance_;
+    magneticField_ = other.magneticField_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public RLDataPayload Clone() {
+    return new RLDataPayload(this);
+  }
+
+  /// <summary>Field number for the "sequence" field.</summary>
+  public const int SequenceFieldNumber = 1;
+  private int sequence_;
+  /// <summary>
+  ///increments by 1 during each message and restarts to 0 after 255
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int Sequence {
+    get { return sequence_; }
+    set {
+      sequence_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "als_lux" field.</summary>
+  public const int AlsLuxFieldNumber = 2;
+  private int alsLux_;
+  /// <summary>
+  ///Encoded as lux
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int AlsLux {
+    get { return alsLux_; }
+    set {
+      alsLux_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "audio_db" field.</summary>
+  public const int AudioDbFieldNumber = 3;
+  private int audioDb_;
+  /// <summary>
+  /// Encoded as dB. 
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int AudioDb {
+    get { return audioDb_; }
+    set {
+      audioDb_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "temperature" field.</summary>
+  public const int TemperatureFieldNumber = 4;
+  private int temperature_;
+  /// <summary>
+  ///
+  /// Temperature in DegC, resolution is 0.01 DegC.
+  /// Output value of “2134” equals 21.34 DegC.
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int Temperature {
+    get { return temperature_; }
+    set {
+      temperature_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "humidity" field.</summary>
+  public const int HumidityFieldNumber = 5;
+  private int humidity_;
+  /// <summary>
+  ///*
+  /// Humidity in %RH as unsigned 32 bit integer in Q22.10 format
+  /// (22 integer and 10 fractional bits).
+  /// Output value of “50532” represents 50532/1024 = 49.356 %RH
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int Humidity {
+    get { return humidity_; }
+    set {
+      humidity_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "airPressure" field.</summary>
+  public const int AirPressureFieldNumber = 6;
+  private int airPressure_;
+  /// <summary>
+  ///Pressure in Pa as unsigned 32 bit integer in Q24.8 format
+  /// (24 integer bits and 8 fractional bits).
+  /// Output value of “24674867” represents 24674867/256 = 96386.2 Pa = 963.862 hPa
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int AirPressure {
+    get { return airPressure_; }
+    set {
+      airPressure_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "battery" field.</summary>
+  public const int BatteryFieldNumber = 7;
+  private int battery_;
+  /// <summary>
+  ///Encoded as VBat in mV ie. 3600 represent 3.6V
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int Battery {
+    get { return battery_; }
+    set {
+      battery_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "gasResistance" field.</summary>
+  public const int GasResistanceFieldNumber = 8;
+  private int gasResistance_;
+  /// <summary>
+  ///Provided as ohms
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int GasResistance {
+    get { return gasResistance_; }
+    set {
+      gasResistance_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "magneticField" field.</summary>
+  public const int MagneticFieldFieldNumber = 9;
+  private int magneticField_;
+  /// <summary>
+  ///Provided as uT
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int MagneticField {
+    get { return magneticField_; }
+    set {
+      magneticField_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override bool Equals(object other) {
+    return Equals(other as RLDataPayload);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool Equals(RLDataPayload other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (Sequence != other.Sequence) return false;
+    if (AlsLux != other.AlsLux) return false;
+    if (AudioDb != other.AudioDb) return false;
+    if (Temperature != other.Temperature) return false;
+    if (Humidity != other.Humidity) return false;
+    if (AirPressure != other.AirPressure) return false;
+    if (Battery != other.Battery) return false;
+    if (GasResistance != other.GasResistance) return false;
+    if (MagneticField != other.MagneticField) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (Sequence != 0) hash ^= Sequence.GetHashCode();
+    if (AlsLux != 0) hash ^= AlsLux.GetHashCode();
+    if (AudioDb != 0) hash ^= AudioDb.GetHashCode();
+    if (Temperature != 0) hash ^= Temperature.GetHashCode();
+    if (Humidity != 0) hash ^= Humidity.GetHashCode();
+    if (AirPressure != 0) hash ^= AirPressure.GetHashCode();
+    if (Battery != 0) hash ^= Battery.GetHashCode();
+    if (GasResistance != 0) hash ^= GasResistance.GetHashCode();
+    if (MagneticField != 0) hash ^= MagneticField.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void WriteTo(pb::CodedOutputStream output) {
+    if (Sequence != 0) {
+      output.WriteRawTag(8);
+      output.WriteInt32(Sequence);
+    }
+    if (AlsLux != 0) {
+      output.WriteRawTag(16);
+      output.WriteInt32(AlsLux);
+    }
+    if (AudioDb != 0) {
+      output.WriteRawTag(24);
+      output.WriteInt32(AudioDb);
+    }
+    if (Temperature != 0) {
+      output.WriteRawTag(32);
+      output.WriteInt32(Temperature);
+    }
+    if (Humidity != 0) {
+      output.WriteRawTag(40);
+      output.WriteInt32(Humidity);
+    }
+    if (AirPressure != 0) {
+      output.WriteRawTag(48);
+      output.WriteInt32(AirPressure);
+    }
+    if (Battery != 0) {
+      output.WriteRawTag(56);
+      output.WriteInt32(Battery);
+    }
+    if (GasResistance != 0) {
+      output.WriteRawTag(64);
+      output.WriteInt32(GasResistance);
+    }
+    if (MagneticField != 0) {
+      output.WriteRawTag(72);
+      output.WriteInt32(MagneticField);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int CalculateSize() {
+    int size = 0;
+    if (Sequence != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(Sequence);
+    }
+    if (AlsLux != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(AlsLux);
+    }
+    if (AudioDb != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(AudioDb);
+    }
+    if (Temperature != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(Temperature);
+    }
+    if (Humidity != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(Humidity);
+    }
+    if (AirPressure != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(AirPressure);
+    }
+    if (Battery != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(Battery);
+    }
+    if (GasResistance != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(GasResistance);
+    }
+    if (MagneticField != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(MagneticField);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(RLDataPayload other) {
+    if (other == null) {
+      return;
+    }
+    if (other.Sequence != 0) {
+      Sequence = other.Sequence;
+    }
+    if (other.AlsLux != 0) {
+      AlsLux = other.AlsLux;
+    }
+    if (other.AudioDb != 0) {
+      AudioDb = other.AudioDb;
+    }
+    if (other.Temperature != 0) {
+      Temperature = other.Temperature;
+    }
+    if (other.Humidity != 0) {
+      Humidity = other.Humidity;
+    }
+    if (other.AirPressure != 0) {
+      AirPressure = other.AirPressure;
+    }
+    if (other.Battery != 0) {
+      Battery = other.Battery;
+    }
+    if (other.GasResistance != 0) {
+      GasResistance = other.GasResistance;
+    }
+    if (other.MagneticField != 0) {
+      MagneticField = other.MagneticField;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(pb::CodedInputStream input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          Sequence = input.ReadInt32();
+          break;
+        }
+        case 16: {
+          AlsLux = input.ReadInt32();
+          break;
+        }
+        case 24: {
+          AudioDb = input.ReadInt32();
+          break;
+        }
+        case 32: {
+          Temperature = input.ReadInt32();
+          break;
+        }
+        case 40: {
+          Humidity = input.ReadInt32();
+          break;
+        }
+        case 48: {
+          AirPressure = input.ReadInt32();
+          break;
+        }
+        case 56: {
+          Battery = input.ReadInt32();
+          break;
+        }
+        case 64: {
+          GasResistance = input.ReadInt32();
+          break;
+        }
+        case 72: {
+          MagneticField = input.ReadInt32();
+          break;
+        }
+      }
+    }
+  }
+
+}
+
+public sealed partial class RLAccelPayload : pb::IMessage<RLAccelPayload> {
+  private static readonly pb::MessageParser<RLAccelPayload> _parser = new pb::MessageParser<RLAccelPayload>(() => new RLAccelPayload());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pb::MessageParser<RLAccelPayload> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::MessageReflection.Descriptor.MessageTypes[1]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public RLAccelPayload() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public RLAccelPayload(RLAccelPayload other) : this() {
+    avgAccelX_ = other.avgAccelX_;
+    avgAccelY_ = other.avgAccelY_;
+    avgAccelZ_ = other.avgAccelZ_;
+    minAccelX_ = other.minAccelX_;
+    minAccelY_ = other.minAccelY_;
+    minAccelZ_ = other.minAccelZ_;
+    maxAccelX_ = other.maxAccelX_;
+    maxAccelY_ = other.maxAccelY_;
+    maxAccelZ_ = other.maxAccelZ_;
+    avgAngularX_ = other.avgAngularX_;
+    avgAngularY_ = other.avgAngularY_;
+    avgAngularZ_ = other.avgAngularZ_;
+    minAngularX_ = other.minAngularX_;
+    minAngularY_ = other.minAngularY_;
+    minAngularZ_ = other.minAngularZ_;
+    maxAngularX_ = other.maxAngularX_;
+    maxAngularY_ = other.maxAngularY_;
+    maxAngularZ_ = other.maxAngularZ_;
+    sequence_ = other.sequence_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public RLAccelPayload Clone() {
+    return new RLAccelPayload(this);
+  }
+
+  /// <summary>Field number for the "avgAccelX" field.</summary>
+  public const int AvgAccelXFieldNumber = 1;
+  private int avgAccelX_;
+  /// <summary>
+  ///Accel
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int AvgAccelX {
+    get { return avgAccelX_; }
+    set {
+      avgAccelX_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "avgAccelY" field.</summary>
+  public const int AvgAccelYFieldNumber = 2;
+  private int avgAccelY_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int AvgAccelY {
+    get { return avgAccelY_; }
+    set {
+      avgAccelY_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "avgAccelZ" field.</summary>
+  public const int AvgAccelZFieldNumber = 3;
+  private int avgAccelZ_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int AvgAccelZ {
+    get { return avgAccelZ_; }
+    set {
+      avgAccelZ_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "minAccelX" field.</summary>
+  public const int MinAccelXFieldNumber = 4;
+  private int minAccelX_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int MinAccelX {
+    get { return minAccelX_; }
+    set {
+      minAccelX_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "minAccelY" field.</summary>
+  public const int MinAccelYFieldNumber = 5;
+  private int minAccelY_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int MinAccelY {
+    get { return minAccelY_; }
+    set {
+      minAccelY_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "minAccelZ" field.</summary>
+  public const int MinAccelZFieldNumber = 6;
+  private int minAccelZ_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int MinAccelZ {
+    get { return minAccelZ_; }
+    set {
+      minAccelZ_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "maxAccelX" field.</summary>
+  public const int MaxAccelXFieldNumber = 7;
+  private int maxAccelX_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int MaxAccelX {
+    get { return maxAccelX_; }
+    set {
+      maxAccelX_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "maxAccelY" field.</summary>
+  public const int MaxAccelYFieldNumber = 8;
+  private int maxAccelY_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int MaxAccelY {
+    get { return maxAccelY_; }
+    set {
+      maxAccelY_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "maxAccelZ" field.</summary>
+  public const int MaxAccelZFieldNumber = 9;
+  private int maxAccelZ_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int MaxAccelZ {
+    get { return maxAccelZ_; }
+    set {
+      maxAccelZ_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "avgAngularX" field.</summary>
+  public const int AvgAngularXFieldNumber = 10;
+  private int avgAngularX_;
+  /// <summary>
+  ///Angular
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int AvgAngularX {
+    get { return avgAngularX_; }
+    set {
+      avgAngularX_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "avgAngularY" field.</summary>
+  public const int AvgAngularYFieldNumber = 11;
+  private int avgAngularY_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int AvgAngularY {
+    get { return avgAngularY_; }
+    set {
+      avgAngularY_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "avgAngularZ" field.</summary>
+  public const int AvgAngularZFieldNumber = 12;
+  private int avgAngularZ_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int AvgAngularZ {
+    get { return avgAngularZ_; }
+    set {
+      avgAngularZ_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "minAngularX" field.</summary>
+  public const int MinAngularXFieldNumber = 13;
+  private int minAngularX_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int MinAngularX {
+    get { return minAngularX_; }
+    set {
+      minAngularX_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "minAngularY" field.</summary>
+  public const int MinAngularYFieldNumber = 14;
+  private int minAngularY_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int MinAngularY {
+    get { return minAngularY_; }
+    set {
+      minAngularY_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "minAngularZ" field.</summary>
+  public const int MinAngularZFieldNumber = 15;
+  private int minAngularZ_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int MinAngularZ {
+    get { return minAngularZ_; }
+    set {
+      minAngularZ_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "maxAngularX" field.</summary>
+  public const int MaxAngularXFieldNumber = 16;
+  private int maxAngularX_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int MaxAngularX {
+    get { return maxAngularX_; }
+    set {
+      maxAngularX_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "maxAngularY" field.</summary>
+  public const int MaxAngularYFieldNumber = 17;
+  private int maxAngularY_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int MaxAngularY {
+    get { return maxAngularY_; }
+    set {
+      maxAngularY_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "maxAngularZ" field.</summary>
+  public const int MaxAngularZFieldNumber = 18;
+  private int maxAngularZ_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int MaxAngularZ {
+    get { return maxAngularZ_; }
+    set {
+      maxAngularZ_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "sequence" field.</summary>
+  public const int SequenceFieldNumber = 19;
+  private int sequence_;
+  /// <summary>
+  ///Sequence
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int Sequence {
+    get { return sequence_; }
+    set {
+      sequence_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override bool Equals(object other) {
+    return Equals(other as RLAccelPayload);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool Equals(RLAccelPayload other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (AvgAccelX != other.AvgAccelX) return false;
+    if (AvgAccelY != other.AvgAccelY) return false;
+    if (AvgAccelZ != other.AvgAccelZ) return false;
+    if (MinAccelX != other.MinAccelX) return false;
+    if (MinAccelY != other.MinAccelY) return false;
+    if (MinAccelZ != other.MinAccelZ) return false;
+    if (MaxAccelX != other.MaxAccelX) return false;
+    if (MaxAccelY != other.MaxAccelY) return false;
+    if (MaxAccelZ != other.MaxAccelZ) return false;
+    if (AvgAngularX != other.AvgAngularX) return false;
+    if (AvgAngularY != other.AvgAngularY) return false;
+    if (AvgAngularZ != other.AvgAngularZ) return false;
+    if (MinAngularX != other.MinAngularX) return false;
+    if (MinAngularY != other.MinAngularY) return false;
+    if (MinAngularZ != other.MinAngularZ) return false;
+    if (MaxAngularX != other.MaxAngularX) return false;
+    if (MaxAngularY != other.MaxAngularY) return false;
+    if (MaxAngularZ != other.MaxAngularZ) return false;
+    if (Sequence != other.Sequence) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (AvgAccelX != 0) hash ^= AvgAccelX.GetHashCode();
+    if (AvgAccelY != 0) hash ^= AvgAccelY.GetHashCode();
+    if (AvgAccelZ != 0) hash ^= AvgAccelZ.GetHashCode();
+    if (MinAccelX != 0) hash ^= MinAccelX.GetHashCode();
+    if (MinAccelY != 0) hash ^= MinAccelY.GetHashCode();
+    if (MinAccelZ != 0) hash ^= MinAccelZ.GetHashCode();
+    if (MaxAccelX != 0) hash ^= MaxAccelX.GetHashCode();
+    if (MaxAccelY != 0) hash ^= MaxAccelY.GetHashCode();
+    if (MaxAccelZ != 0) hash ^= MaxAccelZ.GetHashCode();
+    if (AvgAngularX != 0) hash ^= AvgAngularX.GetHashCode();
+    if (AvgAngularY != 0) hash ^= AvgAngularY.GetHashCode();
+    if (AvgAngularZ != 0) hash ^= AvgAngularZ.GetHashCode();
+    if (MinAngularX != 0) hash ^= MinAngularX.GetHashCode();
+    if (MinAngularY != 0) hash ^= MinAngularY.GetHashCode();
+    if (MinAngularZ != 0) hash ^= MinAngularZ.GetHashCode();
+    if (MaxAngularX != 0) hash ^= MaxAngularX.GetHashCode();
+    if (MaxAngularY != 0) hash ^= MaxAngularY.GetHashCode();
+    if (MaxAngularZ != 0) hash ^= MaxAngularZ.GetHashCode();
+    if (Sequence != 0) hash ^= Sequence.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void WriteTo(pb::CodedOutputStream output) {
+    if (AvgAccelX != 0) {
+      output.WriteRawTag(8);
+      output.WriteInt32(AvgAccelX);
+    }
+    if (AvgAccelY != 0) {
+      output.WriteRawTag(16);
+      output.WriteInt32(AvgAccelY);
+    }
+    if (AvgAccelZ != 0) {
+      output.WriteRawTag(24);
+      output.WriteInt32(AvgAccelZ);
+    }
+    if (MinAccelX != 0) {
+      output.WriteRawTag(32);
+      output.WriteInt32(MinAccelX);
+    }
+    if (MinAccelY != 0) {
+      output.WriteRawTag(40);
+      output.WriteInt32(MinAccelY);
+    }
+    if (MinAccelZ != 0) {
+      output.WriteRawTag(48);
+      output.WriteInt32(MinAccelZ);
+    }
+    if (MaxAccelX != 0) {
+      output.WriteRawTag(56);
+      output.WriteInt32(MaxAccelX);
+    }
+    if (MaxAccelY != 0) {
+      output.WriteRawTag(64);
+      output.WriteInt32(MaxAccelY);
+    }
+    if (MaxAccelZ != 0) {
+      output.WriteRawTag(72);
+      output.WriteInt32(MaxAccelZ);
+    }
+    if (AvgAngularX != 0) {
+      output.WriteRawTag(80);
+      output.WriteInt32(AvgAngularX);
+    }
+    if (AvgAngularY != 0) {
+      output.WriteRawTag(88);
+      output.WriteInt32(AvgAngularY);
+    }
+    if (AvgAngularZ != 0) {
+      output.WriteRawTag(96);
+      output.WriteInt32(AvgAngularZ);
+    }
+    if (MinAngularX != 0) {
+      output.WriteRawTag(104);
+      output.WriteInt32(MinAngularX);
+    }
+    if (MinAngularY != 0) {
+      output.WriteRawTag(112);
+      output.WriteInt32(MinAngularY);
+    }
+    if (MinAngularZ != 0) {
+      output.WriteRawTag(120);
+      output.WriteInt32(MinAngularZ);
+    }
+    if (MaxAngularX != 0) {
+      output.WriteRawTag(128, 1);
+      output.WriteInt32(MaxAngularX);
+    }
+    if (MaxAngularY != 0) {
+      output.WriteRawTag(136, 1);
+      output.WriteInt32(MaxAngularY);
+    }
+    if (MaxAngularZ != 0) {
+      output.WriteRawTag(144, 1);
+      output.WriteInt32(MaxAngularZ);
+    }
+    if (Sequence != 0) {
+      output.WriteRawTag(152, 1);
+      output.WriteInt32(Sequence);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int CalculateSize() {
+    int size = 0;
+    if (AvgAccelX != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(AvgAccelX);
+    }
+    if (AvgAccelY != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(AvgAccelY);
+    }
+    if (AvgAccelZ != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(AvgAccelZ);
+    }
+    if (MinAccelX != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(MinAccelX);
+    }
+    if (MinAccelY != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(MinAccelY);
+    }
+    if (MinAccelZ != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(MinAccelZ);
+    }
+    if (MaxAccelX != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(MaxAccelX);
+    }
+    if (MaxAccelY != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(MaxAccelY);
+    }
+    if (MaxAccelZ != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(MaxAccelZ);
+    }
+    if (AvgAngularX != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(AvgAngularX);
+    }
+    if (AvgAngularY != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(AvgAngularY);
+    }
+    if (AvgAngularZ != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(AvgAngularZ);
+    }
+    if (MinAngularX != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(MinAngularX);
+    }
+    if (MinAngularY != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(MinAngularY);
+    }
+    if (MinAngularZ != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(MinAngularZ);
+    }
+    if (MaxAngularX != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeInt32Size(MaxAngularX);
+    }
+    if (MaxAngularY != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeInt32Size(MaxAngularY);
+    }
+    if (MaxAngularZ != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeInt32Size(MaxAngularZ);
+    }
+    if (Sequence != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeInt32Size(Sequence);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(RLAccelPayload other) {
+    if (other == null) {
+      return;
+    }
+    if (other.AvgAccelX != 0) {
+      AvgAccelX = other.AvgAccelX;
+    }
+    if (other.AvgAccelY != 0) {
+      AvgAccelY = other.AvgAccelY;
+    }
+    if (other.AvgAccelZ != 0) {
+      AvgAccelZ = other.AvgAccelZ;
+    }
+    if (other.MinAccelX != 0) {
+      MinAccelX = other.MinAccelX;
+    }
+    if (other.MinAccelY != 0) {
+      MinAccelY = other.MinAccelY;
+    }
+    if (other.MinAccelZ != 0) {
+      MinAccelZ = other.MinAccelZ;
+    }
+    if (other.MaxAccelX != 0) {
+      MaxAccelX = other.MaxAccelX;
+    }
+    if (other.MaxAccelY != 0) {
+      MaxAccelY = other.MaxAccelY;
+    }
+    if (other.MaxAccelZ != 0) {
+      MaxAccelZ = other.MaxAccelZ;
+    }
+    if (other.AvgAngularX != 0) {
+      AvgAngularX = other.AvgAngularX;
+    }
+    if (other.AvgAngularY != 0) {
+      AvgAngularY = other.AvgAngularY;
+    }
+    if (other.AvgAngularZ != 0) {
+      AvgAngularZ = other.AvgAngularZ;
+    }
+    if (other.MinAngularX != 0) {
+      MinAngularX = other.MinAngularX;
+    }
+    if (other.MinAngularY != 0) {
+      MinAngularY = other.MinAngularY;
+    }
+    if (other.MinAngularZ != 0) {
+      MinAngularZ = other.MinAngularZ;
+    }
+    if (other.MaxAngularX != 0) {
+      MaxAngularX = other.MaxAngularX;
+    }
+    if (other.MaxAngularY != 0) {
+      MaxAngularY = other.MaxAngularY;
+    }
+    if (other.MaxAngularZ != 0) {
+      MaxAngularZ = other.MaxAngularZ;
+    }
+    if (other.Sequence != 0) {
+      Sequence = other.Sequence;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(pb::CodedInputStream input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          AvgAccelX = input.ReadInt32();
+          break;
+        }
+        case 16: {
+          AvgAccelY = input.ReadInt32();
+          break;
+        }
+        case 24: {
+          AvgAccelZ = input.ReadInt32();
+          break;
+        }
+        case 32: {
+          MinAccelX = input.ReadInt32();
+          break;
+        }
+        case 40: {
+          MinAccelY = input.ReadInt32();
+          break;
+        }
+        case 48: {
+          MinAccelZ = input.ReadInt32();
+          break;
+        }
+        case 56: {
+          MaxAccelX = input.ReadInt32();
+          break;
+        }
+        case 64: {
+          MaxAccelY = input.ReadInt32();
+          break;
+        }
+        case 72: {
+          MaxAccelZ = input.ReadInt32();
+          break;
+        }
+        case 80: {
+          AvgAngularX = input.ReadInt32();
+          break;
+        }
+        case 88: {
+          AvgAngularY = input.ReadInt32();
+          break;
+        }
+        case 96: {
+          AvgAngularZ = input.ReadInt32();
+          break;
+        }
+        case 104: {
+          MinAngularX = input.ReadInt32();
+          break;
+        }
+        case 112: {
+          MinAngularY = input.ReadInt32();
+          break;
+        }
+        case 120: {
+          MinAngularZ = input.ReadInt32();
+          break;
+        }
+        case 128: {
+          MaxAngularX = input.ReadInt32();
+          break;
+        }
+        case 136: {
+          MaxAngularY = input.ReadInt32();
+          break;
+        }
+        case 144: {
+          MaxAngularZ = input.ReadInt32();
+          break;
+        }
+        case 152: {
+          Sequence = input.ReadInt32();
+          break;
+        }
+      }
+    }
+  }
+
+}
+
+/// <summary>
+///Wirepas
+/// </summary>
+public sealed partial class WirepasVersion : pb::IMessage<WirepasVersion> {
+  private static readonly pb::MessageParser<WirepasVersion> _parser = new pb::MessageParser<WirepasVersion>(() => new WirepasVersion());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pb::MessageParser<WirepasVersion> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::MessageReflection.Descriptor.MessageTypes[2]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public WirepasVersion() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public WirepasVersion(WirepasVersion other) : this() {
+    devel_ = other.devel_;
+    maint_ = other.maint_;
+    minor_ = other.minor_;
+    major_ = other.major_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public WirepasVersion Clone() {
+    return new WirepasVersion(this);
+  }
+
+  /// <summary>Field number for the "devel" field.</summary>
+  public const int DevelFieldNumber = 1;
+  private uint devel_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public uint Devel {
+    get { return devel_; }
+    set {
+      devel_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "maint" field.</summary>
+  public const int MaintFieldNumber = 2;
+  private uint maint_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public uint Maint {
+    get { return maint_; }
+    set {
+      maint_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "minor" field.</summary>
+  public const int MinorFieldNumber = 3;
+  private uint minor_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public uint Minor {
+    get { return minor_; }
+    set {
+      minor_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "major" field.</summary>
+  public const int MajorFieldNumber = 4;
+  private uint major_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public uint Major {
+    get { return major_; }
+    set {
+      major_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override bool Equals(object other) {
+    return Equals(other as WirepasVersion);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool Equals(WirepasVersion other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (Devel != other.Devel) return false;
+    if (Maint != other.Maint) return false;
+    if (Minor != other.Minor) return false;
+    if (Major != other.Major) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (Devel != 0) hash ^= Devel.GetHashCode();
+    if (Maint != 0) hash ^= Maint.GetHashCode();
+    if (Minor != 0) hash ^= Minor.GetHashCode();
+    if (Major != 0) hash ^= Major.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void WriteTo(pb::CodedOutputStream output) {
+    if (Devel != 0) {
+      output.WriteRawTag(8);
+      output.WriteUInt32(Devel);
+    }
+    if (Maint != 0) {
+      output.WriteRawTag(16);
+      output.WriteUInt32(Maint);
+    }
+    if (Minor != 0) {
+      output.WriteRawTag(24);
+      output.WriteUInt32(Minor);
+    }
+    if (Major != 0) {
+      output.WriteRawTag(32);
+      output.WriteUInt32(Major);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int CalculateSize() {
+    int size = 0;
+    if (Devel != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Devel);
+    }
+    if (Maint != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Maint);
+    }
+    if (Minor != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Minor);
+    }
+    if (Major != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Major);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(WirepasVersion other) {
+    if (other == null) {
+      return;
+    }
+    if (other.Devel != 0) {
+      Devel = other.Devel;
+    }
+    if (other.Maint != 0) {
+      Maint = other.Maint;
+    }
+    if (other.Minor != 0) {
+      Minor = other.Minor;
+    }
+    if (other.Major != 0) {
+      Major = other.Major;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(pb::CodedInputStream input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          Devel = input.ReadUInt32();
+          break;
+        }
+        case 16: {
+          Maint = input.ReadUInt32();
+          break;
+        }
+        case 24: {
+          Minor = input.ReadUInt32();
+          break;
+        }
+        case 32: {
+          Major = input.ReadUInt32();
+          break;
+        }
+      }
+    }
+  }
+
+}
+
+/// <summary>
+///Redlore Version
+/// </summary>
+public sealed partial class RedloreVersion : pb::IMessage<RedloreVersion> {
+  private static readonly pb::MessageParser<RedloreVersion> _parser = new pb::MessageParser<RedloreVersion>(() => new RedloreVersion());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pb::MessageParser<RedloreVersion> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::MessageReflection.Descriptor.MessageTypes[3]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public RedloreVersion() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public RedloreVersion(RedloreVersion other) : this() {
+    devel_ = other.devel_;
+    maint_ = other.maint_;
+    minor_ = other.minor_;
+    major_ = other.major_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public RedloreVersion Clone() {
+    return new RedloreVersion(this);
+  }
+
+  /// <summary>Field number for the "devel" field.</summary>
+  public const int DevelFieldNumber = 1;
+  private uint devel_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public uint Devel {
+    get { return devel_; }
+    set {
+      devel_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "maint" field.</summary>
+  public const int MaintFieldNumber = 2;
+  private uint maint_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public uint Maint {
+    get { return maint_; }
+    set {
+      maint_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "minor" field.</summary>
+  public const int MinorFieldNumber = 3;
+  private uint minor_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public uint Minor {
+    get { return minor_; }
+    set {
+      minor_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "major" field.</summary>
+  public const int MajorFieldNumber = 4;
+  private uint major_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public uint Major {
+    get { return major_; }
+    set {
+      major_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override bool Equals(object other) {
+    return Equals(other as RedloreVersion);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool Equals(RedloreVersion other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (Devel != other.Devel) return false;
+    if (Maint != other.Maint) return false;
+    if (Minor != other.Minor) return false;
+    if (Major != other.Major) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (Devel != 0) hash ^= Devel.GetHashCode();
+    if (Maint != 0) hash ^= Maint.GetHashCode();
+    if (Minor != 0) hash ^= Minor.GetHashCode();
+    if (Major != 0) hash ^= Major.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void WriteTo(pb::CodedOutputStream output) {
+    if (Devel != 0) {
+      output.WriteRawTag(8);
+      output.WriteUInt32(Devel);
+    }
+    if (Maint != 0) {
+      output.WriteRawTag(16);
+      output.WriteUInt32(Maint);
+    }
+    if (Minor != 0) {
+      output.WriteRawTag(24);
+      output.WriteUInt32(Minor);
+    }
+    if (Major != 0) {
+      output.WriteRawTag(32);
+      output.WriteUInt32(Major);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int CalculateSize() {
+    int size = 0;
+    if (Devel != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Devel);
+    }
+    if (Maint != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Maint);
+    }
+    if (Minor != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Minor);
+    }
+    if (Major != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Major);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(RedloreVersion other) {
+    if (other == null) {
+      return;
+    }
+    if (other.Devel != 0) {
+      Devel = other.Devel;
+    }
+    if (other.Maint != 0) {
+      Maint = other.Maint;
+    }
+    if (other.Minor != 0) {
+      Minor = other.Minor;
+    }
+    if (other.Major != 0) {
+      Major = other.Major;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(pb::CodedInputStream input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          Devel = input.ReadUInt32();
+          break;
+        }
+        case 16: {
+          Maint = input.ReadUInt32();
+          break;
+        }
+        case 24: {
+          Minor = input.ReadUInt32();
+          break;
+        }
+        case 32: {
+          Major = input.ReadUInt32();
+          break;
+        }
+      }
+    }
+  }
+
+}
+
+/// <summary>
+///config payload for the node
+/// </summary>
+public sealed partial class RLConfigPayload : pb::IMessage<RLConfigPayload> {
+  private static readonly pb::MessageParser<RLConfigPayload> _parser = new pb::MessageParser<RLConfigPayload>(() => new RLConfigPayload());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pb::MessageParser<RLConfigPayload> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::MessageReflection.Descriptor.MessageTypes[4]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public RLConfigPayload() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public RLConfigPayload(RLConfigPayload other) : this() {
+    nodeID_ = other.nodeID_;
+    networkID_ = other.networkID_;
+    networkChannel_ = other.networkChannel_;
+    hardwareVersion_ = other.hardwareVersion_;
+    softwareVersion_ = other.softwareVersion_ != null ? other.softwareVersion_.Clone() : null;
+    wirepasVersion_ = other.wirepasVersion_ != null ? other.wirepasVersion_.Clone() : null;
+    nodeConfiguration_ = other.nodeConfiguration_;
+    operatingMode_ = other.operatingMode_;
+    applicationAreaID_ = other.applicationAreaID_;
+    headNodeRSSI_ = other.headNodeRSSI_;
+    batteryVoltage_ = other.batteryVoltage_;
+    gatewayConnected_ = other.gatewayConnected_;
+    uplinkRate_ = other.uplinkRate_;
+    nodeRole_ = other.nodeRole_;
+    assetTrackingEnabled_ = other.assetTrackingEnabled_;
+    sequence_ = other.sequence_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public RLConfigPayload Clone() {
+    return new RLConfigPayload(this);
+  }
+
+  /// <summary>Field number for the "nodeID" field.</summary>
+  public const int NodeIDFieldNumber = 1;
+  private uint nodeID_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public uint NodeID {
+    get { return nodeID_; }
+    set {
+      nodeID_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "networkID" field.</summary>
+  public const int NetworkIDFieldNumber = 2;
+  private uint networkID_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public uint NetworkID {
+    get { return networkID_; }
+    set {
+      networkID_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "networkChannel" field.</summary>
+  public const int NetworkChannelFieldNumber = 3;
+  private uint networkChannel_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public uint NetworkChannel {
+    get { return networkChannel_; }
+    set {
+      networkChannel_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "hardwareVersion" field.</summary>
+  public const int HardwareVersionFieldNumber = 4;
+  private uint hardwareVersion_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public uint HardwareVersion {
+    get { return hardwareVersion_; }
+    set {
+      hardwareVersion_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "softwareVersion" field.</summary>
+  public const int SoftwareVersionFieldNumber = 5;
+  private global::RedloreVersion softwareVersion_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public global::RedloreVersion SoftwareVersion {
+    get { return softwareVersion_; }
+    set {
+      softwareVersion_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "wirepasVersion" field.</summary>
+  public const int WirepasVersionFieldNumber = 6;
+  private global::WirepasVersion wirepasVersion_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public global::WirepasVersion WirepasVersion {
+    get { return wirepasVersion_; }
+    set {
+      wirepasVersion_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "nodeConfiguration" field.</summary>
+  public const int NodeConfigurationFieldNumber = 7;
+  private int nodeConfiguration_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int NodeConfiguration {
+    get { return nodeConfiguration_; }
+    set {
+      nodeConfiguration_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "operatingMode" field.</summary>
+  public const int OperatingModeFieldNumber = 8;
+  private global::NodeOperatingMode operatingMode_ = global::NodeOperatingMode.Run;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public global::NodeOperatingMode OperatingMode {
+    get { return operatingMode_; }
+    set {
+      operatingMode_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "applicationAreaID" field.</summary>
+  public const int ApplicationAreaIDFieldNumber = 9;
+  private uint applicationAreaID_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public uint ApplicationAreaID {
+    get { return applicationAreaID_; }
+    set {
+      applicationAreaID_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "headNodeRSSI" field.</summary>
+  public const int HeadNodeRSSIFieldNumber = 10;
+  private uint headNodeRSSI_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public uint HeadNodeRSSI {
+    get { return headNodeRSSI_; }
+    set {
+      headNodeRSSI_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "batteryVoltage" field.</summary>
+  public const int BatteryVoltageFieldNumber = 11;
+  private uint batteryVoltage_;
+  /// <summary>
+  ///bat vol
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public uint BatteryVoltage {
+    get { return batteryVoltage_; }
+    set {
+      batteryVoltage_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "gatewayConnected" field.</summary>
+  public const int GatewayConnectedFieldNumber = 12;
+  private bool gatewayConnected_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool GatewayConnected {
+    get { return gatewayConnected_; }
+    set {
+      gatewayConnected_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "uplinkRate" field.</summary>
+  public const int UplinkRateFieldNumber = 13;
+  private uint uplinkRate_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public uint UplinkRate {
+    get { return uplinkRate_; }
+    set {
+      uplinkRate_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "nodeRole" field.</summary>
+  public const int NodeRoleFieldNumber = 14;
+  private global::NodeRole nodeRole_ = global::NodeRole.HeadnodeAnchor;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public global::NodeRole NodeRole {
+    get { return nodeRole_; }
+    set {
+      nodeRole_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "assetTrackingEnabled" field.</summary>
+  public const int AssetTrackingEnabledFieldNumber = 15;
+  private bool assetTrackingEnabled_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool AssetTrackingEnabled {
+    get { return assetTrackingEnabled_; }
+    set {
+      assetTrackingEnabled_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "sequence" field.</summary>
+  public const int SequenceFieldNumber = 16;
+  private uint sequence_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public uint Sequence {
+    get { return sequence_; }
+    set {
+      sequence_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override bool Equals(object other) {
+    return Equals(other as RLConfigPayload);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool Equals(RLConfigPayload other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (NodeID != other.NodeID) return false;
+    if (NetworkID != other.NetworkID) return false;
+    if (NetworkChannel != other.NetworkChannel) return false;
+    if (HardwareVersion != other.HardwareVersion) return false;
+    if (!object.Equals(SoftwareVersion, other.SoftwareVersion)) return false;
+    if (!object.Equals(WirepasVersion, other.WirepasVersion)) return false;
+    if (NodeConfiguration != other.NodeConfiguration) return false;
+    if (OperatingMode != other.OperatingMode) return false;
+    if (ApplicationAreaID != other.ApplicationAreaID) return false;
+    if (HeadNodeRSSI != other.HeadNodeRSSI) return false;
+    if (BatteryVoltage != other.BatteryVoltage) return false;
+    if (GatewayConnected != other.GatewayConnected) return false;
+    if (UplinkRate != other.UplinkRate) return false;
+    if (NodeRole != other.NodeRole) return false;
+    if (AssetTrackingEnabled != other.AssetTrackingEnabled) return false;
+    if (Sequence != other.Sequence) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (NodeID != 0) hash ^= NodeID.GetHashCode();
+    if (NetworkID != 0) hash ^= NetworkID.GetHashCode();
+    if (NetworkChannel != 0) hash ^= NetworkChannel.GetHashCode();
+    if (HardwareVersion != 0) hash ^= HardwareVersion.GetHashCode();
+    if (softwareVersion_ != null) hash ^= SoftwareVersion.GetHashCode();
+    if (wirepasVersion_ != null) hash ^= WirepasVersion.GetHashCode();
+    if (NodeConfiguration != 0) hash ^= NodeConfiguration.GetHashCode();
+    if (OperatingMode != global::NodeOperatingMode.Run) hash ^= OperatingMode.GetHashCode();
+    if (ApplicationAreaID != 0) hash ^= ApplicationAreaID.GetHashCode();
+    if (HeadNodeRSSI != 0) hash ^= HeadNodeRSSI.GetHashCode();
+    if (BatteryVoltage != 0) hash ^= BatteryVoltage.GetHashCode();
+    if (GatewayConnected != false) hash ^= GatewayConnected.GetHashCode();
+    if (UplinkRate != 0) hash ^= UplinkRate.GetHashCode();
+    if (NodeRole != global::NodeRole.HeadnodeAnchor) hash ^= NodeRole.GetHashCode();
+    if (AssetTrackingEnabled != false) hash ^= AssetTrackingEnabled.GetHashCode();
+    if (Sequence != 0) hash ^= Sequence.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void WriteTo(pb::CodedOutputStream output) {
+    if (NodeID != 0) {
+      output.WriteRawTag(8);
+      output.WriteUInt32(NodeID);
+    }
+    if (NetworkID != 0) {
+      output.WriteRawTag(16);
+      output.WriteUInt32(NetworkID);
+    }
+    if (NetworkChannel != 0) {
+      output.WriteRawTag(24);
+      output.WriteUInt32(NetworkChannel);
+    }
+    if (HardwareVersion != 0) {
+      output.WriteRawTag(32);
+      output.WriteUInt32(HardwareVersion);
+    }
+    if (softwareVersion_ != null) {
+      output.WriteRawTag(42);
+      output.WriteMessage(SoftwareVersion);
+    }
+    if (wirepasVersion_ != null) {
+      output.WriteRawTag(50);
+      output.WriteMessage(WirepasVersion);
+    }
+    if (NodeConfiguration != 0) {
+      output.WriteRawTag(56);
+      output.WriteInt32(NodeConfiguration);
+    }
+    if (OperatingMode != global::NodeOperatingMode.Run) {
+      output.WriteRawTag(64);
+      output.WriteEnum((int) OperatingMode);
+    }
+    if (ApplicationAreaID != 0) {
+      output.WriteRawTag(72);
+      output.WriteUInt32(ApplicationAreaID);
+    }
+    if (HeadNodeRSSI != 0) {
+      output.WriteRawTag(80);
+      output.WriteUInt32(HeadNodeRSSI);
+    }
+    if (BatteryVoltage != 0) {
+      output.WriteRawTag(88);
+      output.WriteUInt32(BatteryVoltage);
+    }
+    if (GatewayConnected != false) {
+      output.WriteRawTag(96);
+      output.WriteBool(GatewayConnected);
+    }
+    if (UplinkRate != 0) {
+      output.WriteRawTag(104);
+      output.WriteUInt32(UplinkRate);
+    }
+    if (NodeRole != global::NodeRole.HeadnodeAnchor) {
+      output.WriteRawTag(112);
+      output.WriteEnum((int) NodeRole);
+    }
+    if (AssetTrackingEnabled != false) {
+      output.WriteRawTag(120);
+      output.WriteBool(AssetTrackingEnabled);
+    }
+    if (Sequence != 0) {
+      output.WriteRawTag(128, 1);
+      output.WriteUInt32(Sequence);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int CalculateSize() {
+    int size = 0;
+    if (NodeID != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(NodeID);
+    }
+    if (NetworkID != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(NetworkID);
+    }
+    if (NetworkChannel != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(NetworkChannel);
+    }
+    if (HardwareVersion != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(HardwareVersion);
+    }
+    if (softwareVersion_ != null) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(SoftwareVersion);
+    }
+    if (wirepasVersion_ != null) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(WirepasVersion);
+    }
+    if (NodeConfiguration != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(NodeConfiguration);
+    }
+    if (OperatingMode != global::NodeOperatingMode.Run) {
+      size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) OperatingMode);
+    }
+    if (ApplicationAreaID != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(ApplicationAreaID);
+    }
+    if (HeadNodeRSSI != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(HeadNodeRSSI);
+    }
+    if (BatteryVoltage != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(BatteryVoltage);
+    }
+    if (GatewayConnected != false) {
+      size += 1 + 1;
+    }
+    if (UplinkRate != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(UplinkRate);
+    }
+    if (NodeRole != global::NodeRole.HeadnodeAnchor) {
+      size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) NodeRole);
+    }
+    if (AssetTrackingEnabled != false) {
+      size += 1 + 1;
+    }
+    if (Sequence != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(Sequence);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(RLConfigPayload other) {
+    if (other == null) {
+      return;
+    }
+    if (other.NodeID != 0) {
+      NodeID = other.NodeID;
+    }
+    if (other.NetworkID != 0) {
+      NetworkID = other.NetworkID;
+    }
+    if (other.NetworkChannel != 0) {
+      NetworkChannel = other.NetworkChannel;
+    }
+    if (other.HardwareVersion != 0) {
+      HardwareVersion = other.HardwareVersion;
+    }
+    if (other.softwareVersion_ != null) {
+      if (softwareVersion_ == null) {
+        SoftwareVersion = new global::RedloreVersion();
+      }
+      SoftwareVersion.MergeFrom(other.SoftwareVersion);
+    }
+    if (other.wirepasVersion_ != null) {
+      if (wirepasVersion_ == null) {
+        WirepasVersion = new global::WirepasVersion();
+      }
+      WirepasVersion.MergeFrom(other.WirepasVersion);
+    }
+    if (other.NodeConfiguration != 0) {
+      NodeConfiguration = other.NodeConfiguration;
+    }
+    if (other.OperatingMode != global::NodeOperatingMode.Run) {
+      OperatingMode = other.OperatingMode;
+    }
+    if (other.ApplicationAreaID != 0) {
+      ApplicationAreaID = other.ApplicationAreaID;
+    }
+    if (other.HeadNodeRSSI != 0) {
+      HeadNodeRSSI = other.HeadNodeRSSI;
+    }
+    if (other.BatteryVoltage != 0) {
+      BatteryVoltage = other.BatteryVoltage;
+    }
+    if (other.GatewayConnected != false) {
+      GatewayConnected = other.GatewayConnected;
+    }
+    if (other.UplinkRate != 0) {
+      UplinkRate = other.UplinkRate;
+    }
+    if (other.NodeRole != global::NodeRole.HeadnodeAnchor) {
+      NodeRole = other.NodeRole;
+    }
+    if (other.AssetTrackingEnabled != false) {
+      AssetTrackingEnabled = other.AssetTrackingEnabled;
+    }
+    if (other.Sequence != 0) {
+      Sequence = other.Sequence;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(pb::CodedInputStream input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          NodeID = input.ReadUInt32();
+          break;
+        }
+        case 16: {
+          NetworkID = input.ReadUInt32();
+          break;
+        }
+        case 24: {
+          NetworkChannel = input.ReadUInt32();
+          break;
+        }
+        case 32: {
+          HardwareVersion = input.ReadUInt32();
+          break;
+        }
+        case 42: {
+          if (softwareVersion_ == null) {
+            SoftwareVersion = new global::RedloreVersion();
+          }
+          input.ReadMessage(SoftwareVersion);
+          break;
+        }
+        case 50: {
+          if (wirepasVersion_ == null) {
+            WirepasVersion = new global::WirepasVersion();
+          }
+          input.ReadMessage(WirepasVersion);
+          break;
+        }
+        case 56: {
+          NodeConfiguration = input.ReadInt32();
+          break;
+        }
+        case 64: {
+          OperatingMode = (global::NodeOperatingMode) input.ReadEnum();
+          break;
+        }
+        case 72: {
+          ApplicationAreaID = input.ReadUInt32();
+          break;
+        }
+        case 80: {
+          HeadNodeRSSI = input.ReadUInt32();
+          break;
+        }
+        case 88: {
+          BatteryVoltage = input.ReadUInt32();
+          break;
+        }
+        case 96: {
+          GatewayConnected = input.ReadBool();
+          break;
+        }
+        case 104: {
+          UplinkRate = input.ReadUInt32();
+          break;
+        }
+        case 112: {
+          NodeRole = (global::NodeRole) input.ReadEnum();
+          break;
+        }
+        case 120: {
+          AssetTrackingEnabled = input.ReadBool();
+          break;
+        }
+        case 128: {
+          Sequence = input.ReadUInt32();
+          break;
+        }
+      }
+    }
+  }
+
+}
+
+public sealed partial class RLAcknowledgePayload : pb::IMessage<RLAcknowledgePayload> {
+  private static readonly pb::MessageParser<RLAcknowledgePayload> _parser = new pb::MessageParser<RLAcknowledgePayload>(() => new RLAcknowledgePayload());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pb::MessageParser<RLAcknowledgePayload> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::MessageReflection.Descriptor.MessageTypes[5]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public RLAcknowledgePayload() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public RLAcknowledgePayload(RLAcknowledgePayload other) : this() {
+    messageID_ = other.messageID_;
+    updateTime_ = other.updateTime_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public RLAcknowledgePayload Clone() {
+    return new RLAcknowledgePayload(this);
+  }
+
+  /// <summary>Field number for the "messageID" field.</summary>
+  public const int MessageIDFieldNumber = 1;
+  private int messageID_;
+  /// <summary>
+  ///Random number to identify the message.  This will be sent back in the acknowledge
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int MessageID {
+    get { return messageID_; }
+    set {
+      messageID_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "updateTime" field.</summary>
+  public const int UpdateTimeFieldNumber = 2;
+  private int updateTime_;
+  /// <summary>
+  ///The time at which the node plans to make the update calculated as an offset from the message sent timestamp
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int UpdateTime {
+    get { return updateTime_; }
+    set {
+      updateTime_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override bool Equals(object other) {
+    return Equals(other as RLAcknowledgePayload);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool Equals(RLAcknowledgePayload other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (MessageID != other.MessageID) return false;
+    if (UpdateTime != other.UpdateTime) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (MessageID != 0) hash ^= MessageID.GetHashCode();
+    if (UpdateTime != 0) hash ^= UpdateTime.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void WriteTo(pb::CodedOutputStream output) {
+    if (MessageID != 0) {
+      output.WriteRawTag(8);
+      output.WriteInt32(MessageID);
+    }
+    if (UpdateTime != 0) {
+      output.WriteRawTag(16);
+      output.WriteInt32(UpdateTime);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int CalculateSize() {
+    int size = 0;
+    if (MessageID != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(MessageID);
+    }
+    if (UpdateTime != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(UpdateTime);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(RLAcknowledgePayload other) {
+    if (other == null) {
+      return;
+    }
+    if (other.MessageID != 0) {
+      MessageID = other.MessageID;
+    }
+    if (other.UpdateTime != 0) {
+      UpdateTime = other.UpdateTime;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(pb::CodedInputStream input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          MessageID = input.ReadInt32();
+          break;
+        }
+        case 16: {
+          UpdateTime = input.ReadInt32();
+          break;
+        }
+      }
+    }
+  }
+
+}
+
+/// <summary>
+///Payload Message
+/// </summary>
+public sealed partial class RLPayload : pb::IMessage<RLPayload> {
+  private static readonly pb::MessageParser<RLPayload> _parser = new pb::MessageParser<RLPayload>(() => new RLPayload());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pb::MessageParser<RLPayload> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::MessageReflection.Descriptor.MessageTypes[6]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public RLPayload() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public RLPayload(RLPayload other) : this() {
+    switch (other.PayloadCase) {
+      case PayloadOneofCase.DataPayload:
+        DataPayload = other.DataPayload.Clone();
+        break;
+      case PayloadOneofCase.ConfigPayload:
+        ConfigPayload = other.ConfigPayload.Clone();
+        break;
+      case PayloadOneofCase.AcknowledgePayload:
+        AcknowledgePayload = other.AcknowledgePayload.Clone();
+        break;
+      case PayloadOneofCase.AccelPayload:
+        AccelPayload = other.AccelPayload.Clone();
+        break;
+    }
+
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public RLPayload Clone() {
+    return new RLPayload(this);
+  }
+
+  /// <summary>Field number for the "dataPayload" field.</summary>
+  public const int DataPayloadFieldNumber = 1;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public global::RLDataPayload DataPayload {
+    get { return payloadCase_ == PayloadOneofCase.DataPayload ? (global::RLDataPayload) payload_ : null; }
+    set {
+      payload_ = value;
+      payloadCase_ = value == null ? PayloadOneofCase.None : PayloadOneofCase.DataPayload;
+    }
+  }
+
+  /// <summary>Field number for the "configPayload" field.</summary>
+  public const int ConfigPayloadFieldNumber = 2;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public global::RLConfigPayload ConfigPayload {
+    get { return payloadCase_ == PayloadOneofCase.ConfigPayload ? (global::RLConfigPayload) payload_ : null; }
+    set {
+      payload_ = value;
+      payloadCase_ = value == null ? PayloadOneofCase.None : PayloadOneofCase.ConfigPayload;
+    }
+  }
+
+  /// <summary>Field number for the "acknowledgePayload" field.</summary>
+  public const int AcknowledgePayloadFieldNumber = 3;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public global::RLAcknowledgePayload AcknowledgePayload {
+    get { return payloadCase_ == PayloadOneofCase.AcknowledgePayload ? (global::RLAcknowledgePayload) payload_ : null; }
+    set {
+      payload_ = value;
+      payloadCase_ = value == null ? PayloadOneofCase.None : PayloadOneofCase.AcknowledgePayload;
+    }
+  }
+
+  /// <summary>Field number for the "accelPayload" field.</summary>
+  public const int AccelPayloadFieldNumber = 4;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public global::RLAccelPayload AccelPayload {
+    get { return payloadCase_ == PayloadOneofCase.AccelPayload ? (global::RLAccelPayload) payload_ : null; }
+    set {
+      payload_ = value;
+      payloadCase_ = value == null ? PayloadOneofCase.None : PayloadOneofCase.AccelPayload;
+    }
+  }
+
+  private object payload_;
+  /// <summary>Enum of possible cases for the "payload" oneof.</summary>
+  public enum PayloadOneofCase {
+    None = 0,
+    DataPayload = 1,
+    ConfigPayload = 2,
+    AcknowledgePayload = 3,
+    AccelPayload = 4,
+  }
+  private PayloadOneofCase payloadCase_ = PayloadOneofCase.None;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public PayloadOneofCase PayloadCase {
+    get { return payloadCase_; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void ClearPayload() {
+    payloadCase_ = PayloadOneofCase.None;
+    payload_ = null;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override bool Equals(object other) {
+    return Equals(other as RLPayload);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool Equals(RLPayload other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (!object.Equals(DataPayload, other.DataPayload)) return false;
+    if (!object.Equals(ConfigPayload, other.ConfigPayload)) return false;
+    if (!object.Equals(AcknowledgePayload, other.AcknowledgePayload)) return false;
+    if (!object.Equals(AccelPayload, other.AccelPayload)) return false;
+    if (PayloadCase != other.PayloadCase) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (payloadCase_ == PayloadOneofCase.DataPayload) hash ^= DataPayload.GetHashCode();
+    if (payloadCase_ == PayloadOneofCase.ConfigPayload) hash ^= ConfigPayload.GetHashCode();
+    if (payloadCase_ == PayloadOneofCase.AcknowledgePayload) hash ^= AcknowledgePayload.GetHashCode();
+    if (payloadCase_ == PayloadOneofCase.AccelPayload) hash ^= AccelPayload.GetHashCode();
+    hash ^= (int) payloadCase_;
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void WriteTo(pb::CodedOutputStream output) {
+    if (payloadCase_ == PayloadOneofCase.DataPayload) {
+      output.WriteRawTag(10);
+      output.WriteMessage(DataPayload);
+    }
+    if (payloadCase_ == PayloadOneofCase.ConfigPayload) {
+      output.WriteRawTag(18);
+      output.WriteMessage(ConfigPayload);
+    }
+    if (payloadCase_ == PayloadOneofCase.AcknowledgePayload) {
+      output.WriteRawTag(26);
+      output.WriteMessage(AcknowledgePayload);
+    }
+    if (payloadCase_ == PayloadOneofCase.AccelPayload) {
+      output.WriteRawTag(34);
+      output.WriteMessage(AccelPayload);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int CalculateSize() {
+    int size = 0;
+    if (payloadCase_ == PayloadOneofCase.DataPayload) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(DataPayload);
+    }
+    if (payloadCase_ == PayloadOneofCase.ConfigPayload) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(ConfigPayload);
+    }
+    if (payloadCase_ == PayloadOneofCase.AcknowledgePayload) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(AcknowledgePayload);
+    }
+    if (payloadCase_ == PayloadOneofCase.AccelPayload) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(AccelPayload);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(RLPayload other) {
+    if (other == null) {
+      return;
+    }
+    switch (other.PayloadCase) {
+      case PayloadOneofCase.DataPayload:
+        if (DataPayload == null) {
+          DataPayload = new global::RLDataPayload();
+        }
+        DataPayload.MergeFrom(other.DataPayload);
+        break;
+      case PayloadOneofCase.ConfigPayload:
+        if (ConfigPayload == null) {
+          ConfigPayload = new global::RLConfigPayload();
+        }
+        ConfigPayload.MergeFrom(other.ConfigPayload);
+        break;
+      case PayloadOneofCase.AcknowledgePayload:
+        if (AcknowledgePayload == null) {
+          AcknowledgePayload = new global::RLAcknowledgePayload();
+        }
+        AcknowledgePayload.MergeFrom(other.AcknowledgePayload);
+        break;
+      case PayloadOneofCase.AccelPayload:
+        if (AccelPayload == null) {
+          AccelPayload = new global::RLAccelPayload();
+        }
+        AccelPayload.MergeFrom(other.AccelPayload);
+        break;
+    }
+
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(pb::CodedInputStream input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 10: {
+          global::RLDataPayload subBuilder = new global::RLDataPayload();
+          if (payloadCase_ == PayloadOneofCase.DataPayload) {
+            subBuilder.MergeFrom(DataPayload);
+          }
+          input.ReadMessage(subBuilder);
+          DataPayload = subBuilder;
+          break;
+        }
+        case 18: {
+          global::RLConfigPayload subBuilder = new global::RLConfigPayload();
+          if (payloadCase_ == PayloadOneofCase.ConfigPayload) {
+            subBuilder.MergeFrom(ConfigPayload);
+          }
+          input.ReadMessage(subBuilder);
+          ConfigPayload = subBuilder;
+          break;
+        }
+        case 26: {
+          global::RLAcknowledgePayload subBuilder = new global::RLAcknowledgePayload();
+          if (payloadCase_ == PayloadOneofCase.AcknowledgePayload) {
+            subBuilder.MergeFrom(AcknowledgePayload);
+          }
+          input.ReadMessage(subBuilder);
+          AcknowledgePayload = subBuilder;
+          break;
+        }
+        case 34: {
+          global::RLAccelPayload subBuilder = new global::RLAccelPayload();
+          if (payloadCase_ == PayloadOneofCase.AccelPayload) {
+            subBuilder.MergeFrom(AccelPayload);
+          }
+          input.ReadMessage(subBuilder);
+          AccelPayload = subBuilder;
+          break;
+        }
+      }
+    }
+  }
+
+}
+
+public sealed partial class NodeConfigRequest : pb::IMessage<NodeConfigRequest> {
+  private static readonly pb::MessageParser<NodeConfigRequest> _parser = new pb::MessageParser<NodeConfigRequest>(() => new NodeConfigRequest());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pb::MessageParser<NodeConfigRequest> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::MessageReflection.Descriptor.MessageTypes[7]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public NodeConfigRequest() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public NodeConfigRequest(NodeConfigRequest other) : this() {
+    networkID_ = other.networkID_;
+    hasNetworkID_ = other.hasNetworkID_;
+    networkChannel_ = other.networkChannel_;
+    hasNetworkChannel_ = other.hasNetworkChannel_;
+    nodeConfiguration_ = other.nodeConfiguration_;
+    hasNodeConfiguration_ = other.hasNodeConfiguration_;
+    operatingMode_ = other.operatingMode_;
+    hasOperatingMode_ = other.hasOperatingMode_;
+    featureLock_ = other.featureLock_;
+    hasFeatureLock_ = other.hasFeatureLock_;
+    hasEncryptionKey_ = other.hasEncryptionKey_;
+    hasAuthenticationKey_ = other.hasAuthenticationKey_;
+    uplinkRate_ = other.uplinkRate_;
+    hasUplinkRate_ = other.hasUplinkRate_;
+    nodeRole_ = other.nodeRole_;
+    hasNodeRole_ = other.hasNodeRole_;
+    assetTrackingEnabled_ = other.assetTrackingEnabled_;
+    hasAssetTrackingEnabled_ = other.hasAssetTrackingEnabled_;
+    delay_ = other.delay_;
+    switch (other.EncryptionKeyPayloadCase) {
+      case EncryptionKeyPayloadOneofCase.EncryptionKey:
+        EncryptionKey = other.EncryptionKey;
+        break;
+      case EncryptionKeyPayloadOneofCase.EncryptionKeyNullPayload:
+        EncryptionKeyNullPayload = other.EncryptionKeyNullPayload;
+        break;
+    }
+
+    switch (other.AuthenticationKeyPayloadCase) {
+      case AuthenticationKeyPayloadOneofCase.AuthenticationKey:
+        AuthenticationKey = other.AuthenticationKey;
+        break;
+      case AuthenticationKeyPayloadOneofCase.AuthenticationKeyNullPayload:
+        AuthenticationKeyNullPayload = other.AuthenticationKeyNullPayload;
+        break;
+    }
+
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public NodeConfigRequest Clone() {
+    return new NodeConfigRequest(this);
+  }
+
+  /// <summary>Field number for the "networkID" field.</summary>
+  public const int NetworkIDFieldNumber = 1;
+  private int networkID_;
+  /// <summary>
+  ///Network ID
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int NetworkID {
+    get { return networkID_; }
+    set {
+      networkID_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "hasNetworkID" field.</summary>
+  public const int HasNetworkIDFieldNumber = 2;
+  private bool hasNetworkID_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool HasNetworkID {
+    get { return hasNetworkID_; }
+    set {
+      hasNetworkID_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "networkChannel" field.</summary>
+  public const int NetworkChannelFieldNumber = 3;
+  private int networkChannel_;
+  /// <summary>
+  ///Network Channel
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int NetworkChannel {
+    get { return networkChannel_; }
+    set {
+      networkChannel_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "hasNetworkChannel" field.</summary>
+  public const int HasNetworkChannelFieldNumber = 4;
+  private bool hasNetworkChannel_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool HasNetworkChannel {
+    get { return hasNetworkChannel_; }
+    set {
+      hasNetworkChannel_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "nodeConfiguration" field.</summary>
+  public const int NodeConfigurationFieldNumber = 5;
+  private int nodeConfiguration_;
+  /// <summary>
+  ///Node Configuration
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int NodeConfiguration {
+    get { return nodeConfiguration_; }
+    set {
+      nodeConfiguration_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "hasNodeConfiguration" field.</summary>
+  public const int HasNodeConfigurationFieldNumber = 6;
+  private bool hasNodeConfiguration_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool HasNodeConfiguration {
+    get { return hasNodeConfiguration_; }
+    set {
+      hasNodeConfiguration_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "operatingMode" field.</summary>
+  public const int OperatingModeFieldNumber = 7;
+  private global::NodeOperatingMode operatingMode_ = global::NodeOperatingMode.Run;
+  /// <summary>
+  ///Operating Mode
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public global::NodeOperatingMode OperatingMode {
+    get { return operatingMode_; }
+    set {
+      operatingMode_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "hasOperatingMode" field.</summary>
+  public const int HasOperatingModeFieldNumber = 8;
+  private bool hasOperatingMode_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool HasOperatingMode {
+    get { return hasOperatingMode_; }
+    set {
+      hasOperatingMode_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "featureLock" field.</summary>
+  public const int FeatureLockFieldNumber = 9;
+  private bool featureLock_;
+  /// <summary>
+  ///Feature Lock
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool FeatureLock {
+    get { return featureLock_; }
+    set {
+      featureLock_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "hasFeatureLock" field.</summary>
+  public const int HasFeatureLockFieldNumber = 10;
+  private bool hasFeatureLock_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool HasFeatureLock {
+    get { return hasFeatureLock_; }
+    set {
+      hasFeatureLock_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "hasEncryptionKey" field.</summary>
+  public const int HasEncryptionKeyFieldNumber = 11;
+  private bool hasEncryptionKey_;
+  /// <summary>
+  ///Encryption Key
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool HasEncryptionKey {
+    get { return hasEncryptionKey_; }
+    set {
+      hasEncryptionKey_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "encryptionKey" field.</summary>
+  public const int EncryptionKeyFieldNumber = 12;
+  /// <summary>
+  /// [(nanopb).max_size = 16, (nanopb).fixed_length = true];
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public pb::ByteString EncryptionKey {
+    get { return encryptionKeyPayloadCase_ == EncryptionKeyPayloadOneofCase.EncryptionKey ? (pb::ByteString) encryptionKeyPayload_ : pb::ByteString.Empty; }
+    set {
+      encryptionKeyPayload_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      encryptionKeyPayloadCase_ = EncryptionKeyPayloadOneofCase.EncryptionKey;
+    }
+  }
+
+  /// <summary>Field number for the "encryptionKeyNullPayload" field.</summary>
+  public const int EncryptionKeyNullPayloadFieldNumber = 13;
+  /// <summary>
+  ///To use set as true.  This is used in messages that do not have a payload
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool EncryptionKeyNullPayload {
+    get { return encryptionKeyPayloadCase_ == EncryptionKeyPayloadOneofCase.EncryptionKeyNullPayload ? (bool) encryptionKeyPayload_ : false; }
+    set {
+      encryptionKeyPayload_ = value;
+      encryptionKeyPayloadCase_ = EncryptionKeyPayloadOneofCase.EncryptionKeyNullPayload;
+    }
+  }
+
+  /// <summary>Field number for the "hasAuthenticationKey" field.</summary>
+  public const int HasAuthenticationKeyFieldNumber = 14;
+  private bool hasAuthenticationKey_;
+  /// <summary>
+  ///Authentication Key
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool HasAuthenticationKey {
+    get { return hasAuthenticationKey_; }
+    set {
+      hasAuthenticationKey_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "authenticationKey" field.</summary>
+  public const int AuthenticationKeyFieldNumber = 15;
+  /// <summary>
+  /// [(nanopb).max_size = 16, (nanopb).fixed_length = true]; 
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public pb::ByteString AuthenticationKey {
+    get { return authenticationKeyPayloadCase_ == AuthenticationKeyPayloadOneofCase.AuthenticationKey ? (pb::ByteString) authenticationKeyPayload_ : pb::ByteString.Empty; }
+    set {
+      authenticationKeyPayload_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      authenticationKeyPayloadCase_ = AuthenticationKeyPayloadOneofCase.AuthenticationKey;
+    }
+  }
+
+  /// <summary>Field number for the "authenticationKeyNullPayload" field.</summary>
+  public const int AuthenticationKeyNullPayloadFieldNumber = 16;
+  /// <summary>
+  ///To use set as true.  This is used in messages that do not have a payload
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool AuthenticationKeyNullPayload {
+    get { return authenticationKeyPayloadCase_ == AuthenticationKeyPayloadOneofCase.AuthenticationKeyNullPayload ? (bool) authenticationKeyPayload_ : false; }
+    set {
+      authenticationKeyPayload_ = value;
+      authenticationKeyPayloadCase_ = AuthenticationKeyPayloadOneofCase.AuthenticationKeyNullPayload;
+    }
+  }
+
+  /// <summary>Field number for the "uplinkRate" field.</summary>
+  public const int UplinkRateFieldNumber = 17;
+  private int uplinkRate_;
+  /// <summary>
+  ///Uplink Rate
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int UplinkRate {
+    get { return uplinkRate_; }
+    set {
+      uplinkRate_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "hasUplinkRate" field.</summary>
+  public const int HasUplinkRateFieldNumber = 18;
+  private bool hasUplinkRate_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool HasUplinkRate {
+    get { return hasUplinkRate_; }
+    set {
+      hasUplinkRate_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "nodeRole" field.</summary>
+  public const int NodeRoleFieldNumber = 19;
+  private global::NodeRole nodeRole_ = global::NodeRole.HeadnodeAnchor;
+  /// <summary>
+  ///Role
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public global::NodeRole NodeRole {
+    get { return nodeRole_; }
+    set {
+      nodeRole_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "hasNodeRole" field.</summary>
+  public const int HasNodeRoleFieldNumber = 20;
+  private bool hasNodeRole_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool HasNodeRole {
+    get { return hasNodeRole_; }
+    set {
+      hasNodeRole_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "assetTrackingEnabled" field.</summary>
+  public const int AssetTrackingEnabledFieldNumber = 21;
+  private bool assetTrackingEnabled_;
+  /// <summary>
+  ///WPE
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool AssetTrackingEnabled {
+    get { return assetTrackingEnabled_; }
+    set {
+      assetTrackingEnabled_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "hasAssetTrackingEnabled" field.</summary>
+  public const int HasAssetTrackingEnabledFieldNumber = 22;
+  private bool hasAssetTrackingEnabled_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool HasAssetTrackingEnabled {
+    get { return hasAssetTrackingEnabled_; }
+    set {
+      hasAssetTrackingEnabled_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "delay" field.</summary>
+  public const int DelayFieldNumber = 23;
+  private int delay_;
+  /// <summary>
+  ///Delay
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int Delay {
+    get { return delay_; }
+    set {
+      delay_ = value;
+    }
+  }
+
+  private object encryptionKeyPayload_;
+  /// <summary>Enum of possible cases for the "encryptionKeyPayload" oneof.</summary>
+  public enum EncryptionKeyPayloadOneofCase {
+    None = 0,
+    EncryptionKey = 12,
+    EncryptionKeyNullPayload = 13,
+  }
+  private EncryptionKeyPayloadOneofCase encryptionKeyPayloadCase_ = EncryptionKeyPayloadOneofCase.None;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public EncryptionKeyPayloadOneofCase EncryptionKeyPayloadCase {
+    get { return encryptionKeyPayloadCase_; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void ClearEncryptionKeyPayload() {
+    encryptionKeyPayloadCase_ = EncryptionKeyPayloadOneofCase.None;
+    encryptionKeyPayload_ = null;
+  }
+
+  private object authenticationKeyPayload_;
+  /// <summary>Enum of possible cases for the "authenticationKeyPayload" oneof.</summary>
+  public enum AuthenticationKeyPayloadOneofCase {
+    None = 0,
+    AuthenticationKey = 15,
+    AuthenticationKeyNullPayload = 16,
+  }
+  private AuthenticationKeyPayloadOneofCase authenticationKeyPayloadCase_ = AuthenticationKeyPayloadOneofCase.None;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public AuthenticationKeyPayloadOneofCase AuthenticationKeyPayloadCase {
+    get { return authenticationKeyPayloadCase_; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void ClearAuthenticationKeyPayload() {
+    authenticationKeyPayloadCase_ = AuthenticationKeyPayloadOneofCase.None;
+    authenticationKeyPayload_ = null;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override bool Equals(object other) {
+    return Equals(other as NodeConfigRequest);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool Equals(NodeConfigRequest other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (NetworkID != other.NetworkID) return false;
+    if (HasNetworkID != other.HasNetworkID) return false;
+    if (NetworkChannel != other.NetworkChannel) return false;
+    if (HasNetworkChannel != other.HasNetworkChannel) return false;
+    if (NodeConfiguration != other.NodeConfiguration) return false;
+    if (HasNodeConfiguration != other.HasNodeConfiguration) return false;
+    if (OperatingMode != other.OperatingMode) return false;
+    if (HasOperatingMode != other.HasOperatingMode) return false;
+    if (FeatureLock != other.FeatureLock) return false;
+    if (HasFeatureLock != other.HasFeatureLock) return false;
+    if (HasEncryptionKey != other.HasEncryptionKey) return false;
+    if (EncryptionKey != other.EncryptionKey) return false;
+    if (EncryptionKeyNullPayload != other.EncryptionKeyNullPayload) return false;
+    if (HasAuthenticationKey != other.HasAuthenticationKey) return false;
+    if (AuthenticationKey != other.AuthenticationKey) return false;
+    if (AuthenticationKeyNullPayload != other.AuthenticationKeyNullPayload) return false;
+    if (UplinkRate != other.UplinkRate) return false;
+    if (HasUplinkRate != other.HasUplinkRate) return false;
+    if (NodeRole != other.NodeRole) return false;
+    if (HasNodeRole != other.HasNodeRole) return false;
+    if (AssetTrackingEnabled != other.AssetTrackingEnabled) return false;
+    if (HasAssetTrackingEnabled != other.HasAssetTrackingEnabled) return false;
+    if (Delay != other.Delay) return false;
+    if (EncryptionKeyPayloadCase != other.EncryptionKeyPayloadCase) return false;
+    if (AuthenticationKeyPayloadCase != other.AuthenticationKeyPayloadCase) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (NetworkID != 0) hash ^= NetworkID.GetHashCode();
+    if (HasNetworkID != false) hash ^= HasNetworkID.GetHashCode();
+    if (NetworkChannel != 0) hash ^= NetworkChannel.GetHashCode();
+    if (HasNetworkChannel != false) hash ^= HasNetworkChannel.GetHashCode();
+    if (NodeConfiguration != 0) hash ^= NodeConfiguration.GetHashCode();
+    if (HasNodeConfiguration != false) hash ^= HasNodeConfiguration.GetHashCode();
+    if (OperatingMode != global::NodeOperatingMode.Run) hash ^= OperatingMode.GetHashCode();
+    if (HasOperatingMode != false) hash ^= HasOperatingMode.GetHashCode();
+    if (FeatureLock != false) hash ^= FeatureLock.GetHashCode();
+    if (HasFeatureLock != false) hash ^= HasFeatureLock.GetHashCode();
+    if (HasEncryptionKey != false) hash ^= HasEncryptionKey.GetHashCode();
+    if (encryptionKeyPayloadCase_ == EncryptionKeyPayloadOneofCase.EncryptionKey) hash ^= EncryptionKey.GetHashCode();
+    if (encryptionKeyPayloadCase_ == EncryptionKeyPayloadOneofCase.EncryptionKeyNullPayload) hash ^= EncryptionKeyNullPayload.GetHashCode();
+    if (HasAuthenticationKey != false) hash ^= HasAuthenticationKey.GetHashCode();
+    if (authenticationKeyPayloadCase_ == AuthenticationKeyPayloadOneofCase.AuthenticationKey) hash ^= AuthenticationKey.GetHashCode();
+    if (authenticationKeyPayloadCase_ == AuthenticationKeyPayloadOneofCase.AuthenticationKeyNullPayload) hash ^= AuthenticationKeyNullPayload.GetHashCode();
+    if (UplinkRate != 0) hash ^= UplinkRate.GetHashCode();
+    if (HasUplinkRate != false) hash ^= HasUplinkRate.GetHashCode();
+    if (NodeRole != global::NodeRole.HeadnodeAnchor) hash ^= NodeRole.GetHashCode();
+    if (HasNodeRole != false) hash ^= HasNodeRole.GetHashCode();
+    if (AssetTrackingEnabled != false) hash ^= AssetTrackingEnabled.GetHashCode();
+    if (HasAssetTrackingEnabled != false) hash ^= HasAssetTrackingEnabled.GetHashCode();
+    if (Delay != 0) hash ^= Delay.GetHashCode();
+    hash ^= (int) encryptionKeyPayloadCase_;
+    hash ^= (int) authenticationKeyPayloadCase_;
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void WriteTo(pb::CodedOutputStream output) {
+    if (NetworkID != 0) {
+      output.WriteRawTag(8);
+      output.WriteInt32(NetworkID);
+    }
+    if (HasNetworkID != false) {
+      output.WriteRawTag(16);
+      output.WriteBool(HasNetworkID);
+    }
+    if (NetworkChannel != 0) {
+      output.WriteRawTag(24);
+      output.WriteInt32(NetworkChannel);
+    }
+    if (HasNetworkChannel != false) {
+      output.WriteRawTag(32);
+      output.WriteBool(HasNetworkChannel);
+    }
+    if (NodeConfiguration != 0) {
+      output.WriteRawTag(40);
+      output.WriteInt32(NodeConfiguration);
+    }
+    if (HasNodeConfiguration != false) {
+      output.WriteRawTag(48);
+      output.WriteBool(HasNodeConfiguration);
+    }
+    if (OperatingMode != global::NodeOperatingMode.Run) {
+      output.WriteRawTag(56);
+      output.WriteEnum((int) OperatingMode);
+    }
+    if (HasOperatingMode != false) {
+      output.WriteRawTag(64);
+      output.WriteBool(HasOperatingMode);
+    }
+    if (FeatureLock != false) {
+      output.WriteRawTag(72);
+      output.WriteBool(FeatureLock);
+    }
+    if (HasFeatureLock != false) {
+      output.WriteRawTag(80);
+      output.WriteBool(HasFeatureLock);
+    }
+    if (HasEncryptionKey != false) {
+      output.WriteRawTag(88);
+      output.WriteBool(HasEncryptionKey);
+    }
+    if (encryptionKeyPayloadCase_ == EncryptionKeyPayloadOneofCase.EncryptionKey) {
+      output.WriteRawTag(98);
+      output.WriteBytes(EncryptionKey);
+    }
+    if (encryptionKeyPayloadCase_ == EncryptionKeyPayloadOneofCase.EncryptionKeyNullPayload) {
+      output.WriteRawTag(104);
+      output.WriteBool(EncryptionKeyNullPayload);
+    }
+    if (HasAuthenticationKey != false) {
+      output.WriteRawTag(112);
+      output.WriteBool(HasAuthenticationKey);
+    }
+    if (authenticationKeyPayloadCase_ == AuthenticationKeyPayloadOneofCase.AuthenticationKey) {
+      output.WriteRawTag(122);
+      output.WriteBytes(AuthenticationKey);
+    }
+    if (authenticationKeyPayloadCase_ == AuthenticationKeyPayloadOneofCase.AuthenticationKeyNullPayload) {
+      output.WriteRawTag(128, 1);
+      output.WriteBool(AuthenticationKeyNullPayload);
+    }
+    if (UplinkRate != 0) {
+      output.WriteRawTag(136, 1);
+      output.WriteInt32(UplinkRate);
+    }
+    if (HasUplinkRate != false) {
+      output.WriteRawTag(144, 1);
+      output.WriteBool(HasUplinkRate);
+    }
+    if (NodeRole != global::NodeRole.HeadnodeAnchor) {
+      output.WriteRawTag(152, 1);
+      output.WriteEnum((int) NodeRole);
+    }
+    if (HasNodeRole != false) {
+      output.WriteRawTag(160, 1);
+      output.WriteBool(HasNodeRole);
+    }
+    if (AssetTrackingEnabled != false) {
+      output.WriteRawTag(168, 1);
+      output.WriteBool(AssetTrackingEnabled);
+    }
+    if (HasAssetTrackingEnabled != false) {
+      output.WriteRawTag(176, 1);
+      output.WriteBool(HasAssetTrackingEnabled);
+    }
+    if (Delay != 0) {
+      output.WriteRawTag(184, 1);
+      output.WriteInt32(Delay);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int CalculateSize() {
+    int size = 0;
+    if (NetworkID != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(NetworkID);
+    }
+    if (HasNetworkID != false) {
+      size += 1 + 1;
+    }
+    if (NetworkChannel != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(NetworkChannel);
+    }
+    if (HasNetworkChannel != false) {
+      size += 1 + 1;
+    }
+    if (NodeConfiguration != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(NodeConfiguration);
+    }
+    if (HasNodeConfiguration != false) {
+      size += 1 + 1;
+    }
+    if (OperatingMode != global::NodeOperatingMode.Run) {
+      size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) OperatingMode);
+    }
+    if (HasOperatingMode != false) {
+      size += 1 + 1;
+    }
+    if (FeatureLock != false) {
+      size += 1 + 1;
+    }
+    if (HasFeatureLock != false) {
+      size += 1 + 1;
+    }
+    if (HasEncryptionKey != false) {
+      size += 1 + 1;
+    }
+    if (encryptionKeyPayloadCase_ == EncryptionKeyPayloadOneofCase.EncryptionKey) {
+      size += 1 + pb::CodedOutputStream.ComputeBytesSize(EncryptionKey);
+    }
+    if (encryptionKeyPayloadCase_ == EncryptionKeyPayloadOneofCase.EncryptionKeyNullPayload) {
+      size += 1 + 1;
+    }
+    if (HasAuthenticationKey != false) {
+      size += 1 + 1;
+    }
+    if (authenticationKeyPayloadCase_ == AuthenticationKeyPayloadOneofCase.AuthenticationKey) {
+      size += 1 + pb::CodedOutputStream.ComputeBytesSize(AuthenticationKey);
+    }
+    if (authenticationKeyPayloadCase_ == AuthenticationKeyPayloadOneofCase.AuthenticationKeyNullPayload) {
+      size += 2 + 1;
+    }
+    if (UplinkRate != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeInt32Size(UplinkRate);
+    }
+    if (HasUplinkRate != false) {
+      size += 2 + 1;
+    }
+    if (NodeRole != global::NodeRole.HeadnodeAnchor) {
+      size += 2 + pb::CodedOutputStream.ComputeEnumSize((int) NodeRole);
+    }
+    if (HasNodeRole != false) {
+      size += 2 + 1;
+    }
+    if (AssetTrackingEnabled != false) {
+      size += 2 + 1;
+    }
+    if (HasAssetTrackingEnabled != false) {
+      size += 2 + 1;
+    }
+    if (Delay != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeInt32Size(Delay);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(NodeConfigRequest other) {
+    if (other == null) {
+      return;
+    }
+    if (other.NetworkID != 0) {
+      NetworkID = other.NetworkID;
+    }
+    if (other.HasNetworkID != false) {
+      HasNetworkID = other.HasNetworkID;
+    }
+    if (other.NetworkChannel != 0) {
+      NetworkChannel = other.NetworkChannel;
+    }
+    if (other.HasNetworkChannel != false) {
+      HasNetworkChannel = other.HasNetworkChannel;
+    }
+    if (other.NodeConfiguration != 0) {
+      NodeConfiguration = other.NodeConfiguration;
+    }
+    if (other.HasNodeConfiguration != false) {
+      HasNodeConfiguration = other.HasNodeConfiguration;
+    }
+    if (other.OperatingMode != global::NodeOperatingMode.Run) {
+      OperatingMode = other.OperatingMode;
+    }
+    if (other.HasOperatingMode != false) {
+      HasOperatingMode = other.HasOperatingMode;
+    }
+    if (other.FeatureLock != false) {
+      FeatureLock = other.FeatureLock;
+    }
+    if (other.HasFeatureLock != false) {
+      HasFeatureLock = other.HasFeatureLock;
+    }
+    if (other.HasEncryptionKey != false) {
+      HasEncryptionKey = other.HasEncryptionKey;
+    }
+    if (other.HasAuthenticationKey != false) {
+      HasAuthenticationKey = other.HasAuthenticationKey;
+    }
+    if (other.UplinkRate != 0) {
+      UplinkRate = other.UplinkRate;
+    }
+    if (other.HasUplinkRate != false) {
+      HasUplinkRate = other.HasUplinkRate;
+    }
+    if (other.NodeRole != global::NodeRole.HeadnodeAnchor) {
+      NodeRole = other.NodeRole;
+    }
+    if (other.HasNodeRole != false) {
+      HasNodeRole = other.HasNodeRole;
+    }
+    if (other.AssetTrackingEnabled != false) {
+      AssetTrackingEnabled = other.AssetTrackingEnabled;
+    }
+    if (other.HasAssetTrackingEnabled != false) {
+      HasAssetTrackingEnabled = other.HasAssetTrackingEnabled;
+    }
+    if (other.Delay != 0) {
+      Delay = other.Delay;
+    }
+    switch (other.EncryptionKeyPayloadCase) {
+      case EncryptionKeyPayloadOneofCase.EncryptionKey:
+        EncryptionKey = other.EncryptionKey;
+        break;
+      case EncryptionKeyPayloadOneofCase.EncryptionKeyNullPayload:
+        EncryptionKeyNullPayload = other.EncryptionKeyNullPayload;
+        break;
+    }
+
+    switch (other.AuthenticationKeyPayloadCase) {
+      case AuthenticationKeyPayloadOneofCase.AuthenticationKey:
+        AuthenticationKey = other.AuthenticationKey;
+        break;
+      case AuthenticationKeyPayloadOneofCase.AuthenticationKeyNullPayload:
+        AuthenticationKeyNullPayload = other.AuthenticationKeyNullPayload;
+        break;
+    }
+
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(pb::CodedInputStream input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          NetworkID = input.ReadInt32();
+          break;
+        }
+        case 16: {
+          HasNetworkID = input.ReadBool();
+          break;
+        }
+        case 24: {
+          NetworkChannel = input.ReadInt32();
+          break;
+        }
+        case 32: {
+          HasNetworkChannel = input.ReadBool();
+          break;
+        }
+        case 40: {
+          NodeConfiguration = input.ReadInt32();
+          break;
+        }
+        case 48: {
+          HasNodeConfiguration = input.ReadBool();
+          break;
+        }
+        case 56: {
+          OperatingMode = (global::NodeOperatingMode) input.ReadEnum();
+          break;
+        }
+        case 64: {
+          HasOperatingMode = input.ReadBool();
+          break;
+        }
+        case 72: {
+          FeatureLock = input.ReadBool();
+          break;
+        }
+        case 80: {
+          HasFeatureLock = input.ReadBool();
+          break;
+        }
+        case 88: {
+          HasEncryptionKey = input.ReadBool();
+          break;
+        }
+        case 98: {
+          EncryptionKey = input.ReadBytes();
+          break;
+        }
+        case 104: {
+          EncryptionKeyNullPayload = input.ReadBool();
+          break;
+        }
+        case 112: {
+          HasAuthenticationKey = input.ReadBool();
+          break;
+        }
+        case 122: {
+          AuthenticationKey = input.ReadBytes();
+          break;
+        }
+        case 128: {
+          AuthenticationKeyNullPayload = input.ReadBool();
+          break;
+        }
+        case 136: {
+          UplinkRate = input.ReadInt32();
+          break;
+        }
+        case 144: {
+          HasUplinkRate = input.ReadBool();
+          break;
+        }
+        case 152: {
+          NodeRole = (global::NodeRole) input.ReadEnum();
+          break;
+        }
+        case 160: {
+          HasNodeRole = input.ReadBool();
+          break;
+        }
+        case 168: {
+          AssetTrackingEnabled = input.ReadBool();
+          break;
+        }
+        case 176: {
+          HasAssetTrackingEnabled = input.ReadBool();
+          break;
+        }
+        case 184: {
+          Delay = input.ReadInt32();
+          break;
+        }
+      }
+    }
+  }
+
+}
+
+public sealed partial class RemoteFunctionRequest : pb::IMessage<RemoteFunctionRequest> {
+  private static readonly pb::MessageParser<RemoteFunctionRequest> _parser = new pb::MessageParser<RemoteFunctionRequest>(() => new RemoteFunctionRequest());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pb::MessageParser<RemoteFunctionRequest> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::MessageReflection.Descriptor.MessageTypes[8]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public RemoteFunctionRequest() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public RemoteFunctionRequest(RemoteFunctionRequest other) : this() {
+    messageType_ = other.messageType_;
+    messageID_ = other.messageID_;
+    switch (other.PayloadCase) {
+      case PayloadOneofCase.NodeConfigPayload:
+        NodeConfigPayload = other.NodeConfigPayload.Clone();
+        break;
+      case PayloadOneofCase.NullPayload:
+        NullPayload = other.NullPayload;
+        break;
+    }
+
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public RemoteFunctionRequest Clone() {
+    return new RemoteFunctionRequest(this);
+  }
+
+  /// <summary>Field number for the "messageType" field.</summary>
+  public const int MessageTypeFieldNumber = 1;
+  private global::MessageType messageType_ = global::MessageType.NodeLedFlash;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public global::MessageType MessageType {
+    get { return messageType_; }
+    set {
+      messageType_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "messageID" field.</summary>
+  public const int MessageIDFieldNumber = 2;
+  private int messageID_;
+  /// <summary>
+  ///Random number to identify the message.  This will be sent back in the acknowledge
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int MessageID {
+    get { return messageID_; }
+    set {
+      messageID_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "nodeConfigPayload" field.</summary>
+  public const int NodeConfigPayloadFieldNumber = 3;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public global::NodeConfigRequest NodeConfigPayload {
+    get { return payloadCase_ == PayloadOneofCase.NodeConfigPayload ? (global::NodeConfigRequest) payload_ : null; }
+    set {
+      payload_ = value;
+      payloadCase_ = value == null ? PayloadOneofCase.None : PayloadOneofCase.NodeConfigPayload;
+    }
+  }
+
+  /// <summary>Field number for the "nullPayload" field.</summary>
+  public const int NullPayloadFieldNumber = 4;
+  /// <summary>
+  ///To use set as true.  This is used in messages that do not have a payload
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool NullPayload {
+    get { return payloadCase_ == PayloadOneofCase.NullPayload ? (bool) payload_ : false; }
+    set {
+      payload_ = value;
+      payloadCase_ = PayloadOneofCase.NullPayload;
+    }
+  }
+
+  private object payload_;
+  /// <summary>Enum of possible cases for the "payload" oneof.</summary>
+  public enum PayloadOneofCase {
+    None = 0,
+    NodeConfigPayload = 3,
+    NullPayload = 4,
+  }
+  private PayloadOneofCase payloadCase_ = PayloadOneofCase.None;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public PayloadOneofCase PayloadCase {
+    get { return payloadCase_; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void ClearPayload() {
+    payloadCase_ = PayloadOneofCase.None;
+    payload_ = null;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override bool Equals(object other) {
+    return Equals(other as RemoteFunctionRequest);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool Equals(RemoteFunctionRequest other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (MessageType != other.MessageType) return false;
+    if (MessageID != other.MessageID) return false;
+    if (!object.Equals(NodeConfigPayload, other.NodeConfigPayload)) return false;
+    if (NullPayload != other.NullPayload) return false;
+    if (PayloadCase != other.PayloadCase) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (MessageType != global::MessageType.NodeLedFlash) hash ^= MessageType.GetHashCode();
+    if (MessageID != 0) hash ^= MessageID.GetHashCode();
+    if (payloadCase_ == PayloadOneofCase.NodeConfigPayload) hash ^= NodeConfigPayload.GetHashCode();
+    if (payloadCase_ == PayloadOneofCase.NullPayload) hash ^= NullPayload.GetHashCode();
+    hash ^= (int) payloadCase_;
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void WriteTo(pb::CodedOutputStream output) {
+    if (MessageType != global::MessageType.NodeLedFlash) {
+      output.WriteRawTag(8);
+      output.WriteEnum((int) MessageType);
+    }
+    if (MessageID != 0) {
+      output.WriteRawTag(16);
+      output.WriteInt32(MessageID);
+    }
+    if (payloadCase_ == PayloadOneofCase.NodeConfigPayload) {
+      output.WriteRawTag(26);
+      output.WriteMessage(NodeConfigPayload);
+    }
+    if (payloadCase_ == PayloadOneofCase.NullPayload) {
+      output.WriteRawTag(32);
+      output.WriteBool(NullPayload);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int CalculateSize() {
+    int size = 0;
+    if (MessageType != global::MessageType.NodeLedFlash) {
+      size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) MessageType);
+    }
+    if (MessageID != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(MessageID);
+    }
+    if (payloadCase_ == PayloadOneofCase.NodeConfigPayload) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(NodeConfigPayload);
+    }
+    if (payloadCase_ == PayloadOneofCase.NullPayload) {
+      size += 1 + 1;
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(RemoteFunctionRequest other) {
+    if (other == null) {
+      return;
+    }
+    if (other.MessageType != global::MessageType.NodeLedFlash) {
+      MessageType = other.MessageType;
+    }
+    if (other.MessageID != 0) {
+      MessageID = other.MessageID;
+    }
+    switch (other.PayloadCase) {
+      case PayloadOneofCase.NodeConfigPayload:
+        if (NodeConfigPayload == null) {
+          NodeConfigPayload = new global::NodeConfigRequest();
+        }
+        NodeConfigPayload.MergeFrom(other.NodeConfigPayload);
+        break;
+      case PayloadOneofCase.NullPayload:
+        NullPayload = other.NullPayload;
+        break;
+    }
+
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(pb::CodedInputStream input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          MessageType = (global::MessageType) input.ReadEnum();
+          break;
+        }
+        case 16: {
+          MessageID = input.ReadInt32();
+          break;
+        }
+        case 26: {
+          global::NodeConfigRequest subBuilder = new global::NodeConfigRequest();
+          if (payloadCase_ == PayloadOneofCase.NodeConfigPayload) {
+            subBuilder.MergeFrom(NodeConfigPayload);
+          }
+          input.ReadMessage(subBuilder);
+          NodeConfigPayload = subBuilder;
+          break;
+        }
+        case 32: {
+          NullPayload = input.ReadBool();
+          break;
+        }
+      }
+    }
+  }
+
+}
+
+#endregion
+
 
 #endregion Designer generated code

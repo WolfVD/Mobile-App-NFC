@@ -31,8 +31,8 @@
             <Entry x:Name="NetChanEntry" Text="1" Keyboard="Numeric" Grid.Row="1" Grid.Column="2" TextChanged="TextChanged"/>
 
             <CheckBox x:Name="NodeConfigBox" Grid.Row="2" Grid.Column="0" x:FieldModifier="public" CheckedChanged="CheckBoxChanged"/>
-            <Label Text="Node Configuration" FontSize="20" LineBreakMode="WordWrap" VerticalOptions="Center" Grid.Row="2" Grid.Column="1"/>
-            <Picker x:Name="NodeConfigPicker" Title="Configuration ID" Grid.Row="2" Grid.Column="2" SelectedIndexChanged="SelectedIndexChanged"/>
+            <Label x:Name="NodeConfigText" Text="Sensors" FontSize="20" LineBreakMode="WordWrap" VerticalOptions="Center" Grid.Row="2" Grid.Column="1"/>
+            <Label x:Name="NodeConfigClick" Text="View" FontSize="20" Grid.Row="2" Grid.Column="2" TextColor="Blue" TranslationY="17"/>
 
             <CheckBox x:Name="OperModeBox" Grid.Row="3" Grid.Column="0" x:FieldModifier="public" CheckedChanged="CheckBoxChanged"/>
             <Label Text="Operating Mode" FontSize="20" LineBreakMode="WordWrap" Grid.Row="3" VerticalOptions="Center" Grid.Column="1"/>

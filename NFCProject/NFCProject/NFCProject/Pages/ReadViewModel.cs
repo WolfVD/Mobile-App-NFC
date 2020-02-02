@@ -8,18 +8,22 @@ namespace NFCProject.Pages
     {
         public ReadViewModel()
         {
-            NodeIDString = "Node ID (SN): ";
+            NodeIDString = "Serial Number: ";
             NetworkIDString = "Network ID: ";
             NetChanString = "Network Channel: ";
+            AppAreaIDString = "App Area ID: ";
             HardVerString = "Hardware Version: ";
             SoftVerString = "Software Version: ";
-            WireVerString = "Wirepas Version: ";
-            NodeConfigString = "Configuration ID: ";
-            PowerTestString = "Power-On-Self-Test Result: ";
-            AppAreaIDString = "Application Area ID: ";
+            MeshVerString = "Mesh Version: ";
+            NodeConfigString = "Sensors";
+            NodeConfigColor = Color.Gray;
+            OperModeString = "Operating Mode: ";
             HeadNodeRSSIString = "Head Node RSSI: ";
             BatVoltageString = "Battery Voltage: ";
-            GatewaySNString = "Gateway SN: ";
+            GateConnectString = "Gateway Connected: ";
+            UplinkRateString = "Uplink Rate: ";
+            DeviceRoleString = "Device Role: ";
+            AssetTrackString = "Asset Tracking: ";
         }
 
         private string nodeIDString;
@@ -42,16 +46,6 @@ namespace NFCProject.Pages
             }
         }
 
-        private string hardVerString;
-        public string HardVerString
-        {
-            get { return hardVerString; }
-            set
-            {
-                SetProperty(ref hardVerString, value);
-            }
-        }
-
         private string netChanString;
         public string NetChanString
         {
@@ -59,6 +53,26 @@ namespace NFCProject.Pages
             set
             {
                 SetProperty(ref netChanString, value);
+            }
+        }
+
+        private string appAreaIDString;
+        public string AppAreaIDString
+        {
+            get { return appAreaIDString; }
+            set
+            {
+                SetProperty(ref appAreaIDString, value);
+            }
+        }
+
+        private string hardVerString;
+        public string HardVerString
+        {
+            get { return hardVerString; }
+            set
+            {
+                SetProperty(ref hardVerString, value);
             }
         }
 
@@ -72,13 +86,13 @@ namespace NFCProject.Pages
             }
         }
 
-        private string wireVerString;
-        public string WireVerString
+        private string meshVerString;
+        public string MeshVerString
         {
-            get { return wireVerString; }
+            get { return meshVerString; }
             set
             {
-                SetProperty(ref wireVerString, value);
+                SetProperty(ref meshVerString, value);
             }
         }
 
@@ -92,23 +106,23 @@ namespace NFCProject.Pages
             }
         }
 
-        private string powerTestString;
-        public string PowerTestString
+        private Color nodeConfigColor;
+        public Color NodeConfigColor
         {
-            get { return powerTestString; }
+            get { return nodeConfigColor; }
             set
             {
-                SetProperty(ref powerTestString, value);
+                SetProperty(ref nodeConfigColor, value);
             }
         }
 
-        private string appAreaIDString;
-        public string AppAreaIDString
+        private string operModeString;
+        public string OperModeString
         {
-            get { return appAreaIDString; }
+            get { return operModeString; }
             set
             {
-                SetProperty(ref appAreaIDString, value);
+                SetProperty(ref operModeString, value);
             }
         }
 
@@ -132,16 +146,45 @@ namespace NFCProject.Pages
             }
         }
 
-        private string gatewaySNString;
-        public string GatewaySNString
+        private string gateConnectString;
+        public string GateConnectString
         {
-            get { return gatewaySNString; }
+            get { return gateConnectString; }
             set
             {
-                SetProperty(ref gatewaySNString, value);
+                SetProperty(ref gateConnectString, value);
             }
         }
 
+        private string uplinkRateString;
+        public string UplinkRateString
+        {
+            get { return uplinkRateString; }
+            set
+            {
+                SetProperty(ref uplinkRateString, value);
+            }
+        }
+
+        private string deviceRoleString;
+        public string DeviceRoleString
+        {
+            get { return deviceRoleString; }
+            set
+            {
+                SetProperty(ref deviceRoleString, value);
+            }
+        }
+
+        private string assetTrackString;
+        public string AssetTrackString
+        {
+            get { return assetTrackString; }
+            set
+            {
+                SetProperty(ref assetTrackString, value);
+            }
+        }
 
     }
 }

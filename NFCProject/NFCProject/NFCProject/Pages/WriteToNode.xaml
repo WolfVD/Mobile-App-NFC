@@ -15,6 +15,10 @@
                 <RowDefinition Height="60" />
                 <RowDefinition Height="60" />
                 <RowDefinition Height="60" />
+                <RowDefinition Height="60" />
+                <RowDefinition Height="60" />
+                <RowDefinition Height="60" />
+                <RowDefinition Height="60" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="30" />
@@ -45,6 +49,22 @@
             <CheckBox x:Name="AuthKeyBox" Grid.Row="5" Grid.Column="0" x:FieldModifier="public" CheckedChanged="CheckBoxChanged"/>
             <Label Text="Authentication Key" FontSize="20" LineBreakMode="WordWrap" VerticalOptions="Center" Grid.Row="5" Grid.Column="1"/>
             <Entry x:Name="AuthKeyEntry" Text="22de24ea7356c76e79126bff3491333f" Grid.Row="5" Grid.Column="2" TextChanged="TextChanged"/>
+
+            <CheckBox x:Name="UpdateRateBox" Grid.Row="6" Grid.Column="0" x:FieldModifier="public" CheckedChanged="CheckBoxChanged"/>
+            <Label Text="Update Rate" FontSize="20" LineBreakMode="WordWrap" VerticalOptions="Center" Grid.Row="6" Grid.Column="1"/>
+            <Entry x:Name="UpdateRateEntry" Text="12" Keyboard="Numeric" Grid.Row="6" Grid.Column="2" TextChanged="TextChanged"/>
+
+            <CheckBox x:Name="DeviceRoleBox" Grid.Row="7" Grid.Column="0" x:FieldModifier="public" CheckedChanged="CheckBoxChanged"/>
+            <Label Text="Device Role" FontSize="20" LineBreakMode="WordWrap" Grid.Row="7" VerticalOptions="Center" Grid.Column="1"/>
+            <Picker x:Name="DeviceRolePicker" Title="Device Role" Grid.Row="7" Grid.Column="2" SelectedIndexChanged="SelectedIndexChanged"/>
+
+            <CheckBox x:Name="AssetTrackBox" Grid.Row="8" Grid.Column="0" x:FieldModifier="public" CheckedChanged="CheckBoxChanged"/>
+            <Label Text="Asset Tracking" FontSize="20" LineBreakMode="WordWrap" Grid.Row="8" VerticalOptions="Center" Grid.Column="1"/>
+            <Picker x:Name="AssetTrackPicker" Title="Asset Tracking" Grid.Row="8" Grid.Column="2" SelectedIndexChanged="SelectedIndexChanged"/>
+
+            <CheckBox x:Name="FeatLockBox" Grid.Row="9" Grid.Column="0" x:FieldModifier="public" CheckedChanged="CheckBoxChanged"/>
+            <Label Text="Feature Lock" FontSize="20" LineBreakMode="WordWrap" Grid.Row="9" VerticalOptions="Center" Grid.Column="1"/>
+            <Picker x:Name="FeatLockPicker" Title="Feature Lock" Grid.Row="9" Grid.Column="2" SelectedIndexChanged="SelectedIndexChanged"/>
 
         </Grid>
         <Button Text="Scan" FontSize="20" HorizontalOptions="Start" Clicked="StartScan">

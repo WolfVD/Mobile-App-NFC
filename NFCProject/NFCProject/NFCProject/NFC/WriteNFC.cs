@@ -20,26 +20,24 @@ namespace NFCProject
                 HasNetworkID = checkedList[0],
                 NetworkChannel = Convert.ToInt32(valueList[1]),
                 HasNetworkChannel = checkedList[1],
+                NodeConfiguration = SensorView._config,
+                HasNodeConfiguration = checkedList[2],
                 OperatingMode = GetOperatingMode(Convert.ToInt32(valueList[3])),
                 HasOperatingMode = checkedList[3],
                 EncryptionKey = ByteString.CopyFrom(hexToByte(valueList[4])),
                 HasEncryptionKey = checkedList[4],
                 AuthenticationKey = ByteString.CopyFrom(hexToByte(valueList[5])),
                 HasAuthenticationKey = checkedList[5],
-                //From here on, not implemented
-                FeatureLock = false,
-                HasFeatureLock = false,
-                NodeConfiguration = 0,
-                HasNodeConfiguration = false,
-                UplinkRate = 0,
-                HasUplinkRate = false,
-                AssetTrackingEnabled = false,
-                HasAssetTrackingEnabled = false,
-                NodeRole = GetNodeRole(0),
-                HasNodeRole = false,
+                UplinkRate = Convert.ToInt32(valueList[6]),
+                HasUplinkRate = checkedList[6],
+                NodeRole = GetNodeRole(Convert.ToInt32(valueList[7])),
+                HasNodeRole = checkedList[7],
+                AssetTrackingEnabled = Convert.ToInt32(valueList[8])==0,
+                HasAssetTrackingEnabled = checkedList[8],
+                FeatureLock = Convert.ToInt32(valueList[9]) == 0,
+                HasFeatureLock = checkedList[9],
                 Delay = 1
             };
-            Console.WriteLine(request);
 
             byte[] bytes = request.ToByteArray();
             byte[] paddedBytes;
@@ -67,32 +65,6 @@ namespace NFCProject
             byte[] encryptedBytes = cryptoHandler.Encrypt(paddedBytes, Key, IV);
 
             return encryptedBytes;
-        }
-
-        private int CalculateChksum(string[] valueList, bool[] checkedList)
-        {
-            int chksum = 0;
-            int i;
-            chksum += Convert.ToInt32(valueList[0]);
-            chksum += Convert.ToInt32(valueList[1]);
-            chksum += Convert.ToInt32(valueList[3]);
-            for (i = 0; i < 16; i++)
-            {
-                chksum += hexToByte(valueList[4])[i] & 0xff;
-            }
-            for (i = 0; i < 16; i++)
-            {
-                chksum += hexToByte(valueList[5])[i] & 0xff;
-            }
-
-            chksum += checkedList[0] ? 1 : 0;
-            chksum += checkedList[1] ? 1 : 0;
-            chksum += checkedList[2] ? 1 : 0;
-            chksum += checkedList[3] ? 1 : 0;
-            chksum += checkedList[4] ? 1 : 0;
-            chksum += checkedList[5] ? 1 : 0;
-
-            return chksum;
         }
 
         private static NodeOperatingMode GetOperatingMode(int selection)

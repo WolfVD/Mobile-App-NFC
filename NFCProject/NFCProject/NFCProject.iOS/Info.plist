@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleDisplayName</key>
-	<string>NFCProject</string>
+	<string>RL3 NFC</string>
 	<key>CFBundleDocumentTypes</key>
 	<array>
 		<dict>

@@ -17,12 +17,18 @@
         <Label x:Name="NodeID" Text="{Binding NodeIDString}" FontSize="20"/>
         <Label x:Name="NetworkID" Text="{Binding NetworkIDString}" FontSize="20"/>
         <Label x:Name="NetChan" Text="{Binding NetChanString}" FontSize="20"/>
-        <Label x:Name="SoftVer" Text="{Binding SoftVerString}" FontSize="20"/>
-        <Label x:Name="WireVer" Text="{Binding WireVerString}" FontSize="20"/>
-        <Label x:Name="NodeConfig" Text="{Binding NodeConfigString}" FontSize="20"/>
         <Label x:Name="AppAreaID" Text="{Binding AppAreaIDString}" FontSize="20"/>
+        <Label x:Name="HardVer" Text="{Binding HardVerString}" FontSize="20"/>
+        <Label x:Name="SoftVer" Text="{Binding SoftVerString}" FontSize="20"/>
+        <Label x:Name="MeshVer" Text="{Binding MeshVerString}" FontSize="20"/>
+        <Label x:Name="NodeConfig" Text="{Binding NodeConfigString}" TextColor="{Binding NodeConfigColor}" FontSize="20"/>
+        <Label x:Name="OperMode" Text="{Binding OperModeString}" FontSize="20"/>  
         <Label x:Name="HeadNodeRSSI" Text="{Binding HeadNodeRSSIString}" FontSize="20"/>
         <Label x:Name="BatVoltage" Text="{Binding BatVoltageString}" FontSize="20"/>
+        <Label x:Name="GateConnect" Text="{Binding GateConnectString}" FontSize="20"/>
+        <Label x:Name="UplinkRate" Text="{Binding UplinkRateString}" FontSize="20"/>
+        <Label x:Name="DeviceRole" Text="{Binding DeviceRoleString}" FontSize="20"/>
+        <Label x:Name="AssetTrack" Text="{Binding AssetTrackString}" FontSize="20"/>
 
         <Button Text="Scan" FontSize="20" HorizontalOptions="Start" Clicked="StartScan">
             <Button.IsVisible>

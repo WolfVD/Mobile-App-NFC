@@ -20,19 +20,45 @@ namespace NFCProject
             Array.Resize(ref data, lastIndex + 1);
 
             RLConfigPayload payload = RLConfigPayload.Parser.ParseFrom(data);
-            Console.WriteLine(payload);
 
             string NodeID = "Node ID (SN): " + payload.NodeID.ToString();
             string NetworkID = "Network ID: " + payload.NetworkID.ToString();
             string NetworkChannel = "Network Channel: " + payload.NetworkChannel.ToString();
+            string AppAreaID = "Application Area ID: " + payload.ApplicationAreaID.ToString("X");
+            string HardVer = "Hardware Version: " + payload.HardwareVersion.ToString();
             string Softver = "Software Version: " + payload.SoftwareVersion.Major.ToString() + "." + payload.SoftwareVersion.Devel.ToString() + "." + payload.SoftwareVersion.Maint.ToString() + "." + payload.SoftwareVersion.Minor.ToString();
-            string WireVer = "Wirepas Version: " + payload.WirepasVersion.Major.ToString() + "." + payload.WirepasVersion.Devel.ToString() + "." + payload.WirepasVersion.Maint.ToString() + "." + payload.WirepasVersion.Minor.ToString();
-            string NodeConfig = "Configuration ID: " + payload.NodeConfiguration.ToString();
-            string AppAreaID = "Application Area ID: " + payload.ApplicationAreaID.ToString();
-            string HeadNodeRSSI = "Head Node RSSI: " + payload.HeadNodeRSSI.ToString();
-            string BatVoltage = "Battery Voltage: " + (Convert.ToDouble(payload.BatteryVoltage) / 1000).ToString() + " V";
+            string MeshVer = "Wirepas Version: " + payload.WirepasVersion.Major.ToString() + "." + payload.WirepasVersion.Devel.ToString() + "." + payload.WirepasVersion.Maint.ToString() + "." + payload.WirepasVersion.Minor.ToString();
+            string NodeConfig = payload.NodeConfiguration.ToString();
 
-            string[] valueList = new string[] { NodeID, NetworkID, NetworkChannel, Softver, WireVer, NodeConfig, AppAreaID, HeadNodeRSSI, BatVoltage };
+            string OperatingMode = "Operating Mode: ";
+            switch (payload.OperatingMode)
+            {
+                case NodeOperatingMode.Run:
+                    OperatingMode = "Operating Mode: Run";
+                    break;
+                case NodeOperatingMode.Inventory:
+                    OperatingMode = "Operating Mode: Inventory";
+                    break;
+            }            
+            string HeadNodeRSSI = "Normalized Head Node RSSI: " + (Convert.ToDouble((payload.HeadNodeRSSI)/254.0f)*100.0f).ToString() + "%";
+            string BatVoltage = "Battery Voltage: " + (Convert.ToDouble(payload.BatteryVoltage) / 1000.0f).ToString() + " V";
+            string GateConnect = "Gateway Connected: " + (payload.GatewayConnected ? "Yes" : "No").ToString();
+            string UplinkRate = "Uplink Rate: " + payload.UplinkRate.ToString() + " Seconds";
+
+            string DeviceRole = "Device Role: ";
+            switch (payload.NodeRole)
+            {
+                case NodeRole.HeadnodeAnchor:
+                    DeviceRole = "Device Role: Router";
+                    break;
+                case NodeRole.SubnodeTracked:
+                    DeviceRole = "Device Role: Leaf";
+                    break;
+            }
+
+            string AssetTrack = "Asset Tracking: " + (payload.AssetTrackingEnabled ? "Enabled" : "Disabled").ToString();
+
+            string[] valueList = new string[] { NodeID, NetworkID, NetworkChannel, AppAreaID, HardVer, Softver, MeshVer, NodeConfig, OperatingMode, HeadNodeRSSI, BatVoltage, GateConnect, UplinkRate, DeviceRole, AssetTrack};
 
             ReadFromNode readValues = new ReadFromNode();
             readValues.DisplayValues(valueList); //Display the values

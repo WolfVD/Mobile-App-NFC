@@ -37,25 +37,33 @@ namespace NFCProject.iOS
             readValues = ReadValues;
 
             tag.ReadNdef(readValues); //Read NDEF tag and then encrypt the nonce
+            session.InvalidateSession();
 
         }
 
         public void ReadValues(NFCNdefMessage message, NSError error)
         {
-            NFCNdefPayload messageRecord = message.Records[0];
-
-            if (MainPage.currentPage == "Read From Node") //If current page is read page
+            try
             {
-                ReadNFC.DisplayValues(messageRecord.Payload.ToArray()); //Encrypt nonce and create reply
+                NFCNdefPayload messageRecord = message.Records[0];
+
+                if (MainPage.currentPage == "Read From Node") //If current page is read page
+                {
+                    ReadNFC.DisplayValues(messageRecord.Payload.ToArray()); //Encrypt nonce and create reply
+                }
+                else // If current page is write page
+                {
+                    byte[] bytes = WriteNFC.CreateRequest();
+
+                    NFCNdefPayload writePayload = new NFCNdefPayload(NFCTypeNameFormat.Unknown, NSData.FromArray(new byte[0]), NSData.FromArray(new byte[0]), NSData.FromArray(bytes));
+                    NFCNdefMessage writeMessage = new NFCNdefMessage(new NFCNdefPayload[] { writePayload });
+                    tag.WriteNdef(writeMessage, delegate { Console.WriteLine("Write"); });
+
+                }
             }
-            else // If current page is write page
+            catch
             {
-                byte[] bytes = WriteNFC.CreateRequest();
-
-                NFCNdefPayload writePayload = new NFCNdefPayload(NFCTypeNameFormat.Unknown, NSData.FromArray(new byte[0]), NSData.FromArray(new byte[0]), NSData.FromArray(bytes));
-                NFCNdefMessage writeMessage = new NFCNdefMessage(new NFCNdefPayload[] { writePayload });
-                tag.WriteNdef(writeMessage, delegate { });
-
+                Console.WriteLine("Did not contain a message");
             }
 
         }

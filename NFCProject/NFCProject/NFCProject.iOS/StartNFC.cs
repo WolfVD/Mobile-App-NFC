@@ -4,6 +4,7 @@ using Foundation;
 using Google.Protobuf;
 using NFCProject.Services;
 using System;
+using System.Text;
 using UIKit;
 
 namespace NFCProject.iOS
@@ -37,7 +38,7 @@ namespace NFCProject.iOS
             readValues = ReadValues;
 
             tag.ReadNdef(readValues); //Read NDEF tag and then encrypt the nonce
-            session.InvalidateSession();
+            
 
         }
 
@@ -45,11 +46,16 @@ namespace NFCProject.iOS
         {
             try
             {
+                
+                Console.WriteLine(error);
+                Console.WriteLine(message);
                 NFCNdefPayload messageRecord = message.Records[0];
 
                 if (MainPage.currentPage == "Read From Node") //If current page is read page
                 {
+                    
                     ReadNFC.DisplayValues(messageRecord.Payload.ToArray()); //Encrypt nonce and create reply
+                    Session.InvalidateSession();
                 }
                 else // If current page is write page
                 {
@@ -58,6 +64,7 @@ namespace NFCProject.iOS
                     NFCNdefPayload writePayload = new NFCNdefPayload(NFCTypeNameFormat.Unknown, NSData.FromArray(new byte[0]), NSData.FromArray(new byte[0]), NSData.FromArray(bytes));
                     NFCNdefMessage writeMessage = new NFCNdefMessage(new NFCNdefPayload[] { writePayload });
                     tag.WriteNdef(writeMessage, delegate { Console.WriteLine("Write"); });
+                    Session.InvalidateSession();
 
                 }
             }

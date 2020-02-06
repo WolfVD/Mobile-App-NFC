@@ -46,24 +46,25 @@ namespace NFCProject.iOS
         {
             try
             {
-                
-                Console.WriteLine(error);
-                Console.WriteLine(message);
-                NFCNdefPayload messageRecord = message.Records[0];
-
+               
                 if (MainPage.currentPage == "Read From Node") //If current page is read page
                 {
-                    
+                    NFCNdefPayload messageRecord = message.Records[0];
+
                     ReadNFC.DisplayValues(messageRecord.Payload.ToArray()); //Encrypt nonce and create reply
                     Session.InvalidateSession();
                 }
                 else // If current page is write page
                 {
+                    string test = "sjkdsakdjdksad";
+                    //byte[] bytes = Encoding.ASCII.GetBytes(test);
                     byte[] bytes = WriteNFC.CreateRequest();
+                    
 
                     NFCNdefPayload writePayload = new NFCNdefPayload(NFCTypeNameFormat.Unknown, NSData.FromArray(new byte[0]), NSData.FromArray(new byte[0]), NSData.FromArray(bytes));
                     NFCNdefMessage writeMessage = new NFCNdefMessage(new NFCNdefPayload[] { writePayload });
                     tag.WriteNdef(writeMessage, delegate { Console.WriteLine("Write"); });
+                    System.Threading.Thread.Sleep(300);
                     Session.InvalidateSession();
 
                 }

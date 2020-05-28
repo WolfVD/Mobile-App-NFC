@@ -1,4 +1,4 @@
 # Current Status
-Android: Fully functional.
+Xamarin app that allows iOS and Android smartphone to read/write to RL3 sensors (RX1 sensors also work on a previous commit).
 
-iOS: Fully functional.
+Feel free to contact me if you have any questions!
